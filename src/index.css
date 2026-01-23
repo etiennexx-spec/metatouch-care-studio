@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 200 30% 98%;
+    --foreground: 210 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 25% 15%;
+
+    --primary: 197 78% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 145 65% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 200 20% 94%;
+    --muted-foreground: 210 15% 45%;
+
+    --accent: 197 78% 92%;
+    --accent-foreground: 197 78% 35%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 200 25% 88%;
+    --input: 200 25% 88%;
+    --ring: 197 78% 56%;
+
+    --radius: 0.75rem;
+
+    /* Custom Meta Cares colors */
+    --meta-blue: 197 78% 56%;
+    --meta-blue-dark: 197 78% 45%;
+    --meta-green: 145 65% 55%;
+    --meta-green-dark: 145 65% 45%;
+    --meta-gradient: linear-gradient(135deg, hsl(197 78% 56%) 0%, hsl(145 65% 55%) 100%);
+    --meta-gradient-hover: linear-gradient(135deg, hsl(197 78% 45%) 0%, hsl(145 65% 45%) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(197 78% 56% / 0.15);
+    --shadow-md: 0 8px 24px -8px hsl(197 78% 56% / 0.2);
+    --shadow-lg: 0 16px 48px -12px hsl(197 78% 56% / 0.25);
+    --shadow-card: 0 4px 20px -4px hsl(210 25% 15% / 0.08);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 25% 8%;
+    --foreground: 200 30% 98%;
+
+    --card: 210 25% 12%;
+    --card-foreground: 200 30% 98%;
+
+    --popover: 210 25% 12%;
+    --popover-foreground: 200 30% 98%;
+
+    --primary: 197 78% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 145 65% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 25% 18%;
+    --muted-foreground: 200 20% 65%;
+
+    --accent: 197 78% 20%;
+    --accent-foreground: 197 78% 85%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 25% 22%;
+    --input: 210 25% 22%;
+    --ring: 197 78% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: var(--meta-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-bg {
+    background: var(--meta-gradient);
+  }
+
+  .gradient-bg-hover:hover {
+    background: var(--meta-gradient-hover);
+  }
+
+  .shadow-meta-sm {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shadow-meta-md {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-meta-lg {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-right {
+    animation: slideRight 0.6s ease-out forwards;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
