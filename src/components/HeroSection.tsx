@@ -32,15 +32,7 @@ const HeroSection = () => {
             et accompagne les établissements dans leur besoin en personnel qualifié.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <Button size="lg" className="gradient-bg gradient-bg-hover text-primary-foreground group">
-              Demander des soins
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-card/50 text-card hover:bg-card/10">
-              En savoir plus
-            </Button>
-          </div>
+          <div className="mb-12 animate-fade-in-up" style={{ animationDelay: "0.4s" }} />
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-6 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>

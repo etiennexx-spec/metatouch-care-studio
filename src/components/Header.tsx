@@ -10,7 +10,7 @@ const Header = () => {
     { href: "#accueil", label: "Accueil" },
     { href: "#services", label: "Nos Services" },
     { href: "#about", label: "À Propos" },
-    { href: "#patients", label: "Patients" },
+    { href: "#partenaires", label: "Partenaires" },
     { href: "#professionnels", label: "Professionnels" },
     { href: "#contact", label: "Contact" },
   ];
@@ -55,11 +55,15 @@ const Header = () => {
           </div>
 
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              Nous Contacter
+            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground" asChild>
+              <a href="https://metacares.be" target="_blank" rel="noopener noreferrer">
+                En savoir plus
+              </a>
             </Button>
-            <Button className="gradient-bg gradient-bg-hover text-primary-foreground">
-              Rejoindre l'équipe
+            <Button className="gradient-bg gradient-bg-hover text-primary-foreground" asChild>
+              <a href="https://metacares.app" target="_blank" rel="noopener noreferrer">
+                Nous Contacter
+              </a>
             </Button>
           </div>
 
@@ -88,11 +92,15 @@ const Header = () => {
                 </a>
               ))}
               <div className="flex flex-col gap-2 mt-4">
-                <Button variant="outline" className="border-primary text-primary">
-                  Nous Contacter
+                <Button variant="outline" className="border-primary text-primary" asChild>
+                  <a href="https://metacares.be" target="_blank" rel="noopener noreferrer">
+                    En savoir plus
+                  </a>
                 </Button>
-                <Button className="gradient-bg text-primary-foreground">
-                  Rejoindre l'équipe
+                <Button className="gradient-bg text-primary-foreground" asChild>
+                  <a href="https://metacares.app" target="_blank" rel="noopener noreferrer">
+                    Nous Contacter
+                  </a>
                 </Button>
               </div>
             </div>
