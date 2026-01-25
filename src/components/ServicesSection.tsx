@@ -6,18 +6,10 @@ import {
   Clock, 
   Home, 
   Stethoscope,
-  CheckCircle,
   ArrowRight
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import ServiceDetailModal from "./ServiceDetailModal";
 
 const services = [
   {
@@ -155,75 +147,11 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Service Detail Modal */}
-      <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          {selectedService && (
-            <>
-              <DialogHeader>
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="w-16 h-16 rounded-xl gradient-bg flex items-center justify-center">
-                    <selectedService.icon className="w-8 h-8 text-primary-foreground" />
-                  </div>
-                  <DialogTitle className="text-2xl font-bold text-foreground">
-                    {selectedService.title}
-                  </DialogTitle>
-                </div>
-                <DialogDescription className="text-base text-muted-foreground leading-relaxed pt-2">
-                  {selectedService.fullDescription}
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="space-y-6 mt-4">
-                {/* Benefits */}
-                <div>
-                  <h4 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <span className="w-8 h-8 rounded-lg bg-meta-green/10 flex items-center justify-center">
-                      <CheckCircle className="w-5 h-5 text-meta-green" />
-                    </span>
-                    Avantages
-                  </h4>
-                  <ul className="space-y-2">
-                    {selectedService.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-muted-foreground">
-                        <CheckCircle className="w-5 h-5 text-meta-green shrink-0 mt-0.5" />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Process */}
-                <div className="bg-muted/50 rounded-xl p-5">
-                  <h4 className="text-lg font-semibold text-foreground mb-2">
-                    Comment ça fonctionne ?
-                  </h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {selectedService.process}
-                  </p>
-                </div>
-
-                {/* CTA */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <Button className="gradient-bg hover:opacity-90 flex-1">
-                    Demander ce service
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="flex-1"
-                    onClick={() => {
-                      setSelectedService(null);
-                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    Nous contacter
-                  </Button>
-                </div>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
+      {/* Service Detail Modal with multi-step flow */}
+      <ServiceDetailModal 
+        service={selectedService} 
+        onClose={() => setSelectedService(null)} 
+      />
     </section>
   );
 };
