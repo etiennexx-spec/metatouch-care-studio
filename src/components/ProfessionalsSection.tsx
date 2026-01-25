@@ -68,12 +68,16 @@ const ProfessionalsSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="gradient-bg gradient-bg-hover text-primary-foreground">
-                Déposer ma candidature
-                <FileText className="ml-2 w-5 h-5" />
+              <Button size="lg" className="gradient-bg gradient-bg-hover text-primary-foreground" asChild>
+                <a href="https://metacares.app" target="_blank" rel="noopener noreferrer">
+                  Déposer ma candidature
+                  <FileText className="ml-2 w-5 h-5" />
+                </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-card/30 text-card hover:bg-card/10">
-                Voir les opportunités
+              <Button size="lg" variant="outline" className="border-card/30 text-card hover:bg-card/10" asChild>
+                <a href="https://metacares.be" target="_blank" rel="noopener noreferrer">
+                  En savoir plus
+                </a>
               </Button>
             </div>
           </div>
