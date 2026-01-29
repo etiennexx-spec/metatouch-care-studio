@@ -36,8 +36,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            <span className="gradient-text">Meta Cares</span>{" "}
-            l'expérience médicale à portée de main
+            <span className="gradient-text block mb-2">Meta Cares</span>
+            <span className="text-3xl md:text-4xl lg:text-5xl">l'expérience médicale à portée de main</span>
           </motion.h1>
 
           <motion.p 
