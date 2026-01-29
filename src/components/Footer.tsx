@@ -17,19 +17,25 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a 
-                href="https://facebook.com/metacares" 
+                href="https://www.facebook.com/profile.php?id=100090137613823" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-card/10 flex items-center justify-center hover:bg-primary transition-colors"
               >
                 <Facebook className="w-4 h-4 text-card" />
               </a>
               <a 
-                href="https://instagram.com/meta_cares_group" 
+                href="https://www.instagram.com/metacares_group" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-card/10 flex items-center justify-center hover:bg-primary transition-colors"
               >
                 <Instagram className="w-4 h-4 text-card" />
               </a>
               <a 
                 href="https://www.metacares.be" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-card/10 flex items-center justify-center hover:bg-primary transition-colors"
               >
                 <Globe className="w-4 h-4 text-card" />
