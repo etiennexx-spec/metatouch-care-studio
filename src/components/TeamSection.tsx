@@ -159,32 +159,32 @@ const TeamSection = () => {
   }, [employeeApi]);
 
   return (
-    <section className="py-20 bg-background">
+    <section id="equipe" className="py-12 md:py-20 bg-background">
       <div className="container mx-auto px-4">
         {/* Cameroon Branch Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-lg font-medium mb-6"
+            className="inline-block px-4 md:px-6 py-2 md:py-3 rounded-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-sm md:text-lg font-medium mb-4 md:mb-6"
           >
             🇨🇲 Rejoindre la branche camerounaise
           </motion.div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
             Notre <span className="gradient-text">Équipe</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base px-4">
             Découvrez les visages derrière Meta Cares en Belgique et au Cameroun.
           </p>
         </div>
 
         {/* Belgium Administrators */}
-        <div className="mb-16">
-          <h3 className="text-xl font-bold text-foreground mb-6 text-center">
+        <div className="mb-12 md:mb-16">
+          <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
             🇧🇪 Direction - Belgique
           </h3>
-          <div className="max-w-4xl mx-auto px-12">
+          <div className="max-w-4xl mx-auto px-4 md:px-12">
             <Carousel
               setApi={setAdminApi}
               opts={{
@@ -246,10 +246,10 @@ const TeamSection = () => {
 
         {/* Cameroon Employees */}
         <div>
-          <h3 className="text-xl font-bold text-foreground mb-6 text-center">
+          <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
             🇨🇲 Équipe Cameroun - 9 Professionnels
           </h3>
-          <div className="max-w-6xl mx-auto px-12">
+          <div className="max-w-6xl mx-auto px-4 md:px-12">
             <Carousel
               setApi={setEmployeeApi}
               opts={{

@@ -83,23 +83,23 @@ const JoinTeamSection = () => {
   }, [api]);
 
   return (
-    <section id="join-team" className="py-20 bg-background">
+    <section id="join" className="py-12 md:py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             Carrières
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
             Rejoignez{" "}
             <span className="gradient-text">notre équipe</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base px-4">
             Meta Cares recherche des professionnels passionnés pour rejoindre notre réseau et offrir des soins de qualité à domicile.
           </p>
         </div>
 
         {/* Carousel */}
-        <div className="max-w-5xl mx-auto px-12">
+        <div className="max-w-5xl mx-auto px-4 md:px-12">
           <Carousel
             setApi={setApi}
             opts={{
