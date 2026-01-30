@@ -141,31 +141,31 @@ const CameroonJobsSection = () => {
   };
 
   return (
-    <section id="offres" className="py-20 bg-muted/30">
+    <section id="offres" className="py-12 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             Offres d'Emploi
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
             Opportunités au <span className="gradient-text">Cameroun</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base px-4">
             Découvrez nos offres d'emploi et rejoignez une équipe dynamique dédiée aux soins de qualité.
           </p>
         </div>
 
-        {/* Main content - Horizontal layout */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+        {/* Main content - Responsive layout */}
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
           {/* Left - Job listings scrolling */}
-          <div className="bg-card rounded-2xl p-6 shadow-card border border-border/50">
-            <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
+          <div className="bg-card rounded-xl md:rounded-2xl p-4 md:p-6 shadow-card border border-border/50">
+            <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-primary" />
               Postes Disponibles
             </h3>
             <div
               ref={scrollRef}
-              className="h-[400px] overflow-hidden relative"
+              className="h-[300px] md:h-[400px] overflow-hidden relative"
               onMouseEnter={() => {
                 if (scrollRef.current) {
                   scrollRef.current.style.animationPlayState = "paused";
@@ -210,13 +210,13 @@ const CameroonJobsSection = () => {
           </div>
 
           {/* Right - Join Team CTA */}
-          <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-8 text-primary-foreground flex flex-col justify-center">
-            <h3 className="text-2xl font-bold mb-4">Rejoignez notre équipe</h3>
-            <p className="text-primary-foreground/90 mb-6">
+          <div className="bg-gradient-to-br from-primary to-primary/80 rounded-xl md:rounded-2xl p-6 md:p-8 text-primary-foreground flex flex-col justify-center">
+            <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Rejoignez notre équipe</h3>
+            <p className="text-primary-foreground/90 mb-4 md:mb-6 text-sm md:text-base">
               Meta Cares recherche des professionnels passionnés pour offrir des soins de qualité au Cameroun. 
               Bénéficiez d'une rémunération attractive, de formations continues et d'un environnement de travail stimulant.
             </p>
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8 text-sm md:text-base">
               {["Formation continue", "Rémunération compétitive", "Équipe dynamique", "Opportunités d'évolution"].map((item, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary-foreground" />
@@ -224,7 +224,7 @@ const CameroonJobsSection = () => {
                 </li>
               ))}
             </ul>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col gap-3">
               <Button
                 variant="secondary"
                 size="lg"
@@ -248,12 +248,12 @@ const CameroonJobsSection = () => {
           </div>
         </div>
 
-        {/* Activities Carousel */}
-        <div className="mb-8">
-          <h3 className="text-xl font-bold text-foreground mb-6 text-center">
+        {/* Activities Grid */}
+        <div className="mb-6 md:mb-8">
+          <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
             Actualités & Activités
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {activities.map((activity) => (
               <motion.div
                 key={activity.id}
