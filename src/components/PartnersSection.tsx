@@ -80,7 +80,7 @@ const PartnersSection = () => {
   };
 
   return (
-    <section id="partners" className="py-20 bg-accent/30">
+    <section id="partenaires" className="py-20 bg-accent/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/20 text-secondary-foreground text-sm font-medium mb-4">
