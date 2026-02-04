@@ -65,12 +65,12 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Téléphone</p>
-                    <a href="tel:+32123456789" className="text-muted-foreground hover:text-primary transition-colors">
-                      +32 123 456 789 (Belgique)
+                    <a href="tel:+32487431321" className="text-muted-foreground hover:text-primary transition-colors">
+                      +32 487 43 13 21 (Belgique)
                     </a>
                     <br />
-                    <a href="tel:+237612345678" className="text-muted-foreground hover:text-primary transition-colors">
-                      +237 612 345 678 (Cameroun)
+                    <a href="tel:+237689505161" className="text-muted-foreground hover:text-primary transition-colors">
+                      +237 689 505 161 (Cameroun)
                     </a>
                   </div>
                 </div>
@@ -79,9 +79,9 @@ const ContactSection = () => {
                     <MapPin className="w-5 h-5 text-primary-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">Adresses</p>
-                    <p className="text-muted-foreground">Bruxelles, Belgique</p>
-                    <p className="text-muted-foreground">Douala, Cameroun</p>
+                    <p className="font-medium text-foreground">Adresse</p>
+                    <p className="text-muted-foreground">Avenue des Alliés 41/3</p>
+                    <p className="text-muted-foreground">6000 Charleroi, Belgique</p>
                   </div>
                 </div>
               </div>
