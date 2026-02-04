@@ -102,44 +102,44 @@ const ServicesSection = () => {
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
 
   return (
-    <section id="services" className="py-20 bg-muted/30">
+    <section id="services" className="py-12 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+        <div className="text-center mb-8 md:mb-16">
+          <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-3 sm:mb-4">
             Nos Services
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
             Des solutions complètes pour la{" "}
             <span className="gradient-text">santé</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
             Meta Cares offre une gamme complète de services pour accompagner les patients, 
             les professionnels de santé et les établissements médicaux.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <Card 
               key={index} 
               className="group bg-card border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-meta-md overflow-hidden cursor-pointer"
               onClick={() => setSelectedService(service)}
             >
-              <CardHeader>
-                <div className="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-7 h-7 text-primary-foreground" />
+              <CardHeader className="p-4 sm:p-6">
+                <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl gradient-bg flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <service.icon className="w-5 h-5 sm:w-7 sm:h-7 text-primary-foreground" />
                 </div>
-                <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                <CardTitle className="text-base sm:text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                   {service.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-muted-foreground leading-relaxed mb-4">
+              <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
+                <CardDescription className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-3 sm:mb-4">
                   {service.description}
                 </CardDescription>
-                <div className="flex items-center text-primary text-sm font-medium group-hover:gap-2 transition-all">
+                <div className="flex items-center text-primary text-xs sm:text-sm font-medium group-hover:gap-2 transition-all">
                   <span>En savoir plus</span>
-                  <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>
               </CardContent>
             </Card>
