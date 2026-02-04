@@ -80,23 +80,23 @@ const PartnersSection = () => {
   };
 
   return (
-    <section id="partenaires" className="py-20 bg-accent/30">
+    <section id="partenaires" className="py-12 md:py-20 bg-accent/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/20 text-secondary-foreground text-sm font-medium mb-4">
+        <div className="text-center mb-8 md:mb-16">
+          <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-secondary/20 text-secondary-foreground text-xs sm:text-sm font-medium mb-3 sm:mb-4">
             Nos Partenaires
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
             Développons ensemble{" "}
             <span className="gradient-text">l'avenir des soins</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
             Meta Cares collabore avec différents acteurs du secteur de la santé pour offrir des services de qualité.
           </p>
         </div>
 
         {/* Auto-scrolling slideshow */}
-        <div className="relative overflow-hidden mb-12">
+        <div className="relative overflow-hidden mb-8 md:mb-12">
           <div 
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -104,19 +104,19 @@ const PartnersSection = () => {
             {partnerTypes.map((partner, index) => (
               <div 
                 key={index}
-                className="min-w-full px-4"
+                className="min-w-full px-2 sm:px-4"
               >
-                <div className="bg-card rounded-2xl p-8 md:p-12 shadow-card max-w-3xl mx-auto text-center">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <partner.icon className="w-8 h-8 text-primary" />
+                <div className="bg-card rounded-xl md:rounded-2xl p-5 sm:p-8 md:p-12 shadow-card max-w-3xl mx-auto text-center">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center">
+                    <partner.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">{partner.title}</h3>
-                  <p className="text-muted-foreground mb-6">{partner.description}</p>
-                  <div className="flex flex-wrap justify-center gap-2 mb-8">
+                  <h3 className="text-lg sm:text-2xl font-bold text-foreground mb-2 sm:mb-4">{partner.title}</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">{partner.description}</p>
+                  <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-8">
                     {partner.services.map((service, idx) => (
                       <span 
                         key={idx}
-                        className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm"
+                        className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-primary/10 text-primary text-xs sm:text-sm"
                       >
                         {service}
                       </span>
@@ -124,10 +124,10 @@ const PartnersSection = () => {
                   </div>
                   <Button 
                     onClick={() => handlePartnerClick(partner)}
-                    className="gradient-bg gradient-bg-hover text-primary-foreground"
+                    className="gradient-bg gradient-bg-hover text-primary-foreground text-sm sm:text-base"
                   >
                     Devenir partenaire
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    <ArrowRight className="ml-2 w-3 h-3 sm:w-4 sm:h-4" />
                   </Button>
                 </div>
               </div>
@@ -135,13 +135,13 @@ const PartnersSection = () => {
           </div>
 
           {/* Dots indicator */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-6">
             {partnerTypes.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? "bg-primary w-6" : "bg-primary/30"
+                  index === currentIndex ? "bg-primary w-4 sm:w-6" : "bg-primary/30"
                 }`}
               />
             ))}
@@ -149,19 +149,19 @@ const PartnersSection = () => {
         </div>
 
         {/* Quick partner grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-4">
           {partnerTypes.map((partner, index) => (
             <button
               key={index}
               onClick={() => handlePartnerClick(partner)}
-              className={`bg-card p-4 rounded-xl text-center hover:shadow-meta-md transition-all duration-300 group cursor-pointer border ${
+              className={`bg-card p-2 sm:p-4 rounded-lg sm:rounded-xl text-center hover:shadow-meta-md transition-all duration-300 group cursor-pointer border ${
                 index === currentIndex ? "border-primary" : "border-transparent hover:border-primary/30"
               }`}
             >
-              <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <partner.icon className="w-6 h-6 text-primary" />
+              <div className="w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-1.5 sm:mb-3 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                <partner.icon className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
               </div>
-              <p className="text-sm font-medium text-foreground">{partner.title}</p>
+              <p className="text-[10px] sm:text-sm font-medium text-foreground leading-tight">{partner.title}</p>
             </button>
           ))}
         </div>

@@ -29,19 +29,19 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md shadow-card">
       {/* Top bar */}
-      <div className="gradient-bg py-2 px-4">
-        <div className="container mx-auto flex justify-between items-center text-primary-foreground text-sm">
-          <div className="flex items-center gap-4">
-            <a href="tel:+32123456789" className="flex items-center gap-1 hover:opacity-80 transition-opacity">
+      <div className="gradient-bg py-1.5 sm:py-2 px-4">
+        <div className="container mx-auto flex justify-between items-center text-primary-foreground text-xs sm:text-sm">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <a href="tel:+32487431321" className="flex items-center gap-1 hover:opacity-80 transition-opacity">
               <Phone className="w-3 h-3" />
-              <span className="hidden sm:inline">+32 123 456 789</span>
+              <span className="hidden sm:inline">+32 487 43 13 21</span>
             </a>
             <a href="mailto:contact@metacares.be" className="flex items-center gap-1 hover:opacity-80 transition-opacity">
               <Mail className="w-3 h-3" />
               <span className="hidden sm:inline">contact@metacares.be</span>
             </a>
           </div>
-          <span className="text-xs">Belgique • Cameroun</span>
+          <span className="text-xs">🇧🇪 Belgique • 🇨🇲 Cameroun</span>
         </div>
       </div>
 

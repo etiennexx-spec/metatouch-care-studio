@@ -25,63 +25,62 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-12 md:py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-3 sm:mb-4">
             Contact
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
             Contactez <span className="gradient-text">Meta Cares</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
             Une question, un projet de partenariat ou une demande de soins ? 
             Notre équipe est à votre écoute.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Info */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <div>
-              <h3 className="text-xl font-semibold text-foreground mb-6">
+              <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-4 sm:mb-6">
                 Nos coordonnées
               </h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-primary-foreground" />
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">Email</p>
-                    <a href="mailto:contact@metacares.be" className="text-muted-foreground hover:text-primary transition-colors">
+                    <p className="font-medium text-foreground text-sm sm:text-base">Email</p>
+                    <a href="mailto:contact@metacares.be" className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors">
                       contact@metacares.be
                     </a>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-primary-foreground" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">Téléphone</p>
-                    <a href="tel:+32487431321" className="text-muted-foreground hover:text-primary transition-colors">
+                    <p className="font-medium text-foreground text-sm sm:text-base">Téléphone</p>
+                    <a href="tel:+32487431321" className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors block">
                       +32 487 43 13 21 (Belgique)
                     </a>
-                    <br />
-                    <a href="tel:+237689505161" className="text-muted-foreground hover:text-primary transition-colors">
+                    <a href="tel:+237689505161" className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors block">
                       +237 689 505 161 (Cameroun)
                     </a>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-primary-foreground" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">Adresse</p>
-                    <p className="text-muted-foreground">Avenue des Alliés 41/3</p>
-                    <p className="text-muted-foreground">6000 Charleroi, Belgique</p>
+                    <p className="font-medium text-foreground text-sm sm:text-base">Adresse</p>
+                    <p className="text-sm sm:text-base text-muted-foreground">Avenue des Alliés 41/3</p>
+                    <p className="text-sm sm:text-base text-muted-foreground">6000 Charleroi, Belgique</p>
                   </div>
                 </div>
               </div>
@@ -89,45 +88,45 @@ const ContactSection = () => {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">
+              <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-3 sm:mb-4">
                 Suivez-nous
               </h3>
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4">
                 <a 
-                  href="https://facebook.com/metacares" 
+                  href="https://www.facebook.com/profile.php?id=100090137613823" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all group"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all group"
                 >
-                  <Facebook className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
+                  <Facebook className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:text-primary-foreground" />
                 </a>
                 <a 
-                  href="https://instagram.com/meta_cares_group" 
+                  href="https://www.instagram.com/metacares_group" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all group"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all group"
                 >
-                  <Instagram className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
+                  <Instagram className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:text-primary-foreground" />
                 </a>
                 <a 
                   href="https://www.metacares.be" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all group"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all group"
                 >
-                  <Globe className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
+                  <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:text-primary-foreground" />
                 </a>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="bg-card rounded-2xl p-8 shadow-card border border-border/50">
-            <h3 className="text-xl font-semibold text-foreground mb-6">
+          <div className="bg-card rounded-xl md:rounded-2xl p-5 sm:p-8 shadow-card border border-border/50">
+            <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-4 sm:mb-6">
               Envoyez-nous un message
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <Input
                     name="name"
@@ -135,7 +134,7 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="bg-muted/50 border-border"
+                    className="bg-muted/50 border-border text-sm sm:text-base"
                   />
                 </div>
                 <div>
@@ -146,11 +145,11 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="bg-muted/50 border-border"
+                    className="bg-muted/50 border-border text-sm sm:text-base"
                   />
                 </div>
               </div>
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <Input
                     name="phone"
@@ -158,7 +157,7 @@ const ContactSection = () => {
                     placeholder="Téléphone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="bg-muted/50 border-border"
+                    className="bg-muted/50 border-border text-sm sm:text-base"
                   />
                 </div>
                 <div>
@@ -168,7 +167,7 @@ const ContactSection = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="bg-muted/50 border-border"
+                    className="bg-muted/50 border-border text-sm sm:text-base"
                   />
                 </div>
               </div>
@@ -179,13 +178,13 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
-                  className="bg-muted/50 border-border resize-none"
+                  rows={4}
+                  className="bg-muted/50 border-border resize-none text-sm sm:text-base"
                 />
               </div>
-              <Button type="submit" size="lg" className="w-full gradient-bg gradient-bg-hover text-primary-foreground">
+              <Button type="submit" size="lg" className="w-full gradient-bg gradient-bg-hover text-primary-foreground text-sm sm:text-base">
                 Envoyer le message
-                <Send className="ml-2 w-5 h-5" />
+                <Send className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
             </form>
           </div>
