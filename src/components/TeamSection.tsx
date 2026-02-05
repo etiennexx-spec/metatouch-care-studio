@@ -205,6 +205,7 @@ const TeamSection = () => {
                           src={admin.image}
                           alt={admin.name}
                           className="w-full h-64 object-cover"
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       </div>
@@ -214,6 +215,7 @@ const TeamSection = () => {
                             src={admin.image}
                             alt={admin.name}
                             className="w-full h-full object-cover"
+                            loading="lazy"
                           />
                         </div>
                         <h4 className="font-bold text-foreground text-lg">{admin.name}</h4>
@@ -270,6 +272,7 @@ const TeamSection = () => {
                           src={employee.image}
                           alt={employee.name}
                           className="w-full h-48 object-cover"
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                         <div className="absolute bottom-0 left-0 right-0 p-3 text-white">

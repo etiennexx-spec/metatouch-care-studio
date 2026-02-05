@@ -29,10 +29,12 @@ const AboutSection = () => {
             <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-meta-lg">
               <video 
                 src={videoPresentation} 
-                autoPlay
                 loop
                 muted
                 playsInline
+                preload="none"
+                poster=""
+                controls
                 className="w-full h-48 sm:h-64 md:h-80 lg:h-auto object-cover"
               />
             </div>

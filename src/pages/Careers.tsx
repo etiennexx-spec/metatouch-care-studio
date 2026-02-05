@@ -1,12 +1,21 @@
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Briefcase, Users, MapPin, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
-import CameroonJobsSection from "@/components/CameroonJobsSection";
-import TeamSection from "@/components/TeamSection";
-import JoinTeamSection from "@/components/JoinTeamSection";
-import Footer from "@/components/Footer";
+
+// Lazy load below-the-fold components
+const JoinTeamSection = lazy(() => import("@/components/JoinTeamSection"));
+const CameroonJobsSection = lazy(() => import("@/components/CameroonJobsSection"));
+const TeamSection = lazy(() => import("@/components/TeamSection"));
+const Footer = lazy(() => import("@/components/Footer"));
+
+const SectionLoader = () => (
+  <div className="py-20 flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const Careers = () => {
   return (
@@ -75,12 +84,20 @@ const Careers = () => {
           </div>
         </section>
 
-        {/* Main Content */}
-        <JoinTeamSection />
-        <CameroonJobsSection />
-        <TeamSection />
+        {/* Main Content - Lazy Loaded */}
+        <Suspense fallback={<SectionLoader />}>
+          <JoinTeamSection />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <CameroonJobsSection />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <TeamSection />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<SectionLoader />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };
