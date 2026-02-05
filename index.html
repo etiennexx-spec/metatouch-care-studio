@@ -37,10 +37,6 @@
       fbq('init', 'YOUR_PIXEL_ID');
       fbq('track', 'PageView');
     </script>
-    <noscript>
-      <img height="1" width="1" style="display:none"
-           src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
-    </noscript>
 
     <!-- LINKEDIN INSIGHT TAG -->
     <!-- Remplacez YOUR_PARTNER_ID par votre ID LinkedIn Insight -->
@@ -60,10 +56,6 @@
         s.parentNode.insertBefore(b, s);
       })(window.lintrk);
     </script>
-    <noscript>
-      <img height="1" width="1" style="display:none" alt=""
-           src="https://px.ads.linkedin.com/collect/?pid=YOUR_PARTNER_ID&fmt=gif" />
-    </noscript>
 
     <!-- HOTJAR TRACKING -->
     <!-- Remplacez YOUR_HOTJAR_ID par votre ID Hotjar -->
@@ -79,6 +71,16 @@
     </script>
   </head>
   <body>
+    <!-- Tracking noscript fallbacks (must be in body) -->
+    <noscript>
+      <img height="1" width="1" style="display:none"
+           src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
+    <noscript>
+      <img height="1" width="1" style="display:none" alt=""
+           src="https://px.ads.linkedin.com/collect/?pid=YOUR_PARTNER_ID&fmt=gif" />
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
