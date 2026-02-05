@@ -1,17 +1,25 @@
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import ServicesSection from "@/components/ServicesSection";
-import AboutSection from "@/components/AboutSection";
-import PartnersSection from "@/components/PartnersSection";
-import ProfessionalsSection from "@/components/ProfessionalsSection";
 
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+// Lazy load below-the-fold components
+const ServicesSection = lazy(() => import("@/components/ServicesSection"));
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const PartnersSection = lazy(() => import("@/components/PartnersSection"));
+const ProfessionalsSection = lazy(() => import("@/components/ProfessionalsSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+const Footer = lazy(() => import("@/components/Footer"));
+
+const SectionLoader = () => (
+  <div className="py-20 flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const Index = () => {
   return (
@@ -19,9 +27,15 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        <ServicesSection />
-        <AboutSection />
-        <PartnersSection />
+        <Suspense fallback={<SectionLoader />}>
+          <ServicesSection />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <AboutSection />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <PartnersSection />
+        </Suspense>
         
         {/* CTA to Careers Page */}
         <section className="py-12 md:py-16 bg-gradient-to-r from-primary/5 to-secondary/5">
@@ -54,12 +68,20 @@ const Index = () => {
           </div>
         </section>
 
-        <ProfessionalsSection />
+        <Suspense fallback={<SectionLoader />}>
+          <ProfessionalsSection />
+        </Suspense>
         
-        <TestimonialsSection />
-        <ContactSection />
+        <Suspense fallback={<SectionLoader />}>
+          <TestimonialsSection />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <ContactSection />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<SectionLoader />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };
