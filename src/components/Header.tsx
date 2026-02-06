@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, ShoppingBag, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo-metacares.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const isCareersPage = location.pathname === "/carrieres";
+  const isMarketplacePage = location.pathname === "/marketplace";
 
   const homeLinks = [
     { href: "#accueil", label: "Accueil" },
@@ -24,7 +32,20 @@ const Header = () => {
     { href: "#equipe", label: "Équipe" },
   ];
 
-  const navLinks = isHomePage ? homeLinks : careerLinks;
+  const marketplaceLinks = [
+    { href: "#securite-transfert", label: "Sécurité & Transfert" },
+    { href: "#soins", label: "Soins" },
+    { href: "#protection", label: "Protection" },
+    { href: "#instruments", label: "Instruments" },
+  ];
+
+  const navLinks = isHomePage 
+    ? homeLinks 
+    : isCareersPage 
+    ? careerLinks 
+    : isMarketplacePage 
+    ? marketplaceLinks 
+    : homeLinks;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md shadow-card">
@@ -64,12 +85,42 @@ const Header = () => {
               </a>
             ))}
             
+            {/* Dropdown Menu - Nos Produits */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-1 text-foreground/80 hover:text-primary font-medium transition-colors duration-200 text-sm">
+                  Nos Produits
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-56">
+                <DropdownMenuItem asChild>
+                  <Link to="/marketplace" className="flex items-center gap-2 cursor-pointer">
+                    <ShoppingBag className="w-4 h-4" />
+                    Marketplace
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a 
+                    href="https://metacares.shop/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    Boutique en ligne
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             {/* Page switcher */}
-            {isHomePage ? (
+            {!isCareersPage ? (
               <Link
                 to="/carrieres"
-                className="text-primary font-semibold hover:text-primary/80 transition-colors duration-200 text-sm border-b-2 border-primary pb-1"
+                className="flex items-center gap-1 text-primary font-semibold hover:text-primary/80 transition-colors duration-200 text-sm border-b-2 border-primary pb-1"
               >
+                <Briefcase className="w-4 h-4" />
                 Carrières
               </Link>
             ) : (
@@ -120,19 +171,45 @@ const Header = () => {
                 </a>
               ))}
               
-              {/* Page switcher mobile */}
-              {isHomePage ? (
+              {/* Mobile - Nos Produits Section */}
+              <div className="border-t border-border pt-3 mt-2">
+                <span className="text-xs uppercase text-muted-foreground font-semibold tracking-wider">
+                  Nos Produits
+                </span>
                 <Link
-                  to="/carrieres"
-                  className="text-primary font-semibold py-2 border-l-4 border-primary pl-3"
+                  to="/marketplace"
+                  className="flex items-center gap-2 text-foreground/80 hover:text-primary font-medium py-2 pl-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  🚀 Carrières & Offres d'emploi
+                  <ShoppingBag className="w-4 h-4" />
+                  Marketplace
+                </Link>
+                <a
+                  href="https://metacares.shop/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-foreground/80 hover:text-primary font-medium py-2 pl-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  Boutique en ligne
+                </a>
+              </div>
+              
+              {/* Page switcher mobile */}
+              {!isCareersPage ? (
+                <Link
+                  to="/carrieres"
+                  className="flex items-center gap-2 text-primary font-semibold py-2 border-l-4 border-primary pl-3 mt-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Briefcase className="w-4 h-4" />
+                  Carrières & Offres d'emploi
                 </Link>
               ) : (
                 <Link
                   to="/"
-                  className="text-primary font-semibold py-2 border-l-4 border-primary pl-3"
+                  className="text-primary font-semibold py-2 border-l-4 border-primary pl-3 mt-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🏠 Retour à l'accueil
