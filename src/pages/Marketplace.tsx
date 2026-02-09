@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import FooterSimple from "@/components/FooterSimple";
 import ProductCarousel from "@/components/ProductCarousel";
 import { categories, products } from "@/data/products";
 
@@ -163,7 +163,7 @@ const Marketplace = () => {
         </section>
       </main>
 
-      <Footer />
+      <FooterSimple />
     </div>
   );
 };
