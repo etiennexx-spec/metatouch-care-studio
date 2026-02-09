@@ -69,41 +69,29 @@ const Marketplace = () => {
           </div>
         </section>
 
-        {/* Category Tabs - Horizontal Menu */}
-        <section className="border-y border-border/50 bg-card/50 backdrop-blur-sm sticky top-20 z-30">
+        {/* Category Tabs - On Page */}
+        <section className="py-8 bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container mx-auto px-4">
-            <nav className="flex justify-center">
-              <ul className="flex flex-wrap justify-center gap-0">
-                {categories.map((category) => (
-                  <li key={category.id}>
-                    <button
-                      onClick={() => setActiveCategory(category.id)}
-                      className={`
-                        relative px-6 py-4 text-sm font-medium transition-all duration-300
-                        ${activeCategory === category.id 
-                          ? "text-primary" 
-                          : "text-muted-foreground hover:text-foreground"
-                        }
-                      `}
-                    >
-                      <span className="flex items-center gap-2">
-                        <span className="text-lg">{category.icon}</span>
-                        <span className="hidden sm:inline">{category.name}</span>
-                      </span>
-                      
-                      {/* Active indicator line */}
-                      {activeCategory === category.id && (
-                        <motion.div
-                          layoutId="activeTab"
-                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                        />
-                      )}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`
+                    relative px-5 py-3 rounded-xl text-sm md:text-base font-medium transition-all duration-300
+                    ${activeCategory === category.id 
+                      ? "gradient-bg text-white shadow-meta-md scale-105" 
+                      : "bg-card border border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/50 hover:shadow-meta-sm"
+                    }
+                  `}
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-lg">{category.icon}</span>
+                    <span>{category.name}</span>
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </section>
 
