@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
@@ -7,9 +8,14 @@ import ProductCarousel from "@/components/ProductCarousel";
 import { categories, products } from "@/data/products";
 
 const Marketplace = () => {
+  const [activeCategory, setActiveCategory] = useState(categories[0].id);
+
   const getProductsByCategory = (categoryId: string) => {
     return products.filter((product) => product.category === categoryId);
   };
+
+  const activeProducts = getProductsByCategory(activeCategory);
+  const activeCategoryData = categories.find(cat => cat.id === activeCategory);
 
   return (
     <div className="min-h-screen bg-background">
@@ -63,34 +69,62 @@ const Marketplace = () => {
           </div>
         </section>
 
-        {/* Category Quick Links */}
-        <section className="py-8 border-y border-border/50 bg-card/50 backdrop-blur-sm sticky top-20 z-30">
+        {/* Category Tabs - Horizontal Menu */}
+        <section className="border-y border-border/50 bg-card/50 backdrop-blur-sm sticky top-20 z-30">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-3">
-              {categories.map((category) => (
-                <a
-                  key={category.id}
-                  href={`#${category.id}`}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-background border border-border hover:border-primary hover:bg-primary/5 transition-all duration-300 text-sm font-medium"
-                >
-                  <span>{category.icon}</span>
-                  {category.name}
-                </a>
-              ))}
-            </div>
+            <nav className="flex justify-center">
+              <ul className="flex flex-wrap justify-center gap-0">
+                {categories.map((category) => (
+                  <li key={category.id}>
+                    <button
+                      onClick={() => setActiveCategory(category.id)}
+                      className={`
+                        relative px-6 py-4 text-sm font-medium transition-all duration-300
+                        ${activeCategory === category.id 
+                          ? "text-primary" 
+                          : "text-muted-foreground hover:text-foreground"
+                        }
+                      `}
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="text-lg">{category.icon}</span>
+                        <span className="hidden sm:inline">{category.name}</span>
+                      </span>
+                      
+                      {/* Active indicator line */}
+                      {activeCategory === category.id && (
+                        <motion.div
+                          layoutId="activeTab"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                        />
+                      )}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </section>
 
-        {/* Product Carousels by Category */}
+        {/* Active Category Carousel */}
         <div className="container mx-auto px-4 py-8">
-          {categories.map((category) => (
-            <div key={category.id} id={category.id} className="scroll-mt-40">
-              <ProductCarousel
-                category={category}
-                products={getProductsByCategory(category.id)}
-              />
-            </div>
-          ))}
+          <AnimatePresence mode="wait">
+            {activeCategoryData && (
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ProductCarousel
+                  category={activeCategoryData}
+                  products={activeProducts}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* CTA Section */}
