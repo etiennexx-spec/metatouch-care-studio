@@ -97,7 +97,7 @@ const Header = () => {
                 <DropdownMenuItem asChild>
                   <Link to="/marketplace" className="flex items-center gap-2 cursor-pointer">
                     <ShoppingBag className="w-4 h-4" />
-                    Marketplace
+                    Espace Clients
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
@@ -182,7 +182,7 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <ShoppingBag className="w-4 h-4" />
-                  Marketplace
+                  Espace Clients
                 </Link>
                 <a
                   href="https://metacares.shop/"
