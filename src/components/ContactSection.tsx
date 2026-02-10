@@ -90,8 +90,8 @@ const ContactSection = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                  <a href="mailto:contact@metacares.be" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    contact@metacares.be
+                  <a href="mailto:metacares.cm.branch014@gmail.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    metacares.cm.branch014@gmail.com
                   </a>
                 </div>
               </div>
