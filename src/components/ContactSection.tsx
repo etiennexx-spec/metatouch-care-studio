@@ -47,41 +47,54 @@ const ContactSection = () => {
               <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-4 sm:mb-6">
                 Nos coordonnées
               </h3>
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
-                  </div>
+            </div>
+            {/* Siège Social - Belgique */}
+            <div className="bg-card rounded-xl p-5 sm:p-6 shadow-card border border-border/50 mb-4">
+              <h4 className="text-base sm:text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full gradient-bg"></span>
+                Siège Social — Belgique
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-foreground text-sm sm:text-base">Email</p>
-                    <a href="mailto:contact@metacares.be" className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors">
-                      contact@metacares.be
-                    </a>
+                    <p className="text-sm text-muted-foreground">Avenue des Alliés 41/3</p>
+                    <p className="text-sm text-muted-foreground">6000 Charleroi, Belgique</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground text-sm sm:text-base">Téléphone</p>
-                    <a href="tel:+32487431321" className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors block">
-                      +32 487 43 13 21 (Belgique)
-                    </a>
-                    <a href="tel:+237689505161" className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors block">
-                      +237 689 505 161 (Cameroun)
-                    </a>
-                  </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                  <a href="tel:+32487431321" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    +32 487 43 13 21
+                  </a>
                 </div>
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground text-sm sm:text-base">Adresse</p>
-                    <p className="text-sm sm:text-base text-muted-foreground">Avenue des Alliés 41/3</p>
-                    <p className="text-sm sm:text-base text-muted-foreground">6000 Charleroi, Belgique</p>
-                  </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                  <a href="mailto:contact@metacares.be" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    contact@metacares.be
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Siège Connexe - Cameroun */}
+            <div className="bg-card rounded-xl p-5 sm:p-6 shadow-card border border-border/50">
+              <h4 className="text-base sm:text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full gradient-bg"></span>
+                Siège Connexe — Cameroun
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                  <a href="tel:+237689505161" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    +237 689 505 161
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                  <a href="mailto:contact@metacares.be" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    contact@metacares.be
+                  </a>
                 </div>
               </div>
             </div>
