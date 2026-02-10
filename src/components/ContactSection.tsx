@@ -50,8 +50,7 @@ const ContactSection = () => {
             </div>
             {/* Siège Social - Belgique */}
             <div className="bg-card rounded-xl p-5 sm:p-6 shadow-card border border-border/50 mb-4">
-              <h4 className="text-base sm:text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full gradient-bg"></span>
+              <h4 className="text-base sm:text-lg font-semibold text-foreground mb-3">
                 Siège Social Belgique
               </h4>
               <div className="space-y-3">
@@ -79,8 +78,7 @@ const ContactSection = () => {
 
             {/* Siège Connexe - Cameroun */}
             <div className="bg-card rounded-xl p-5 sm:p-6 shadow-card border border-border/50">
-              <h4 className="text-base sm:text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full gradient-bg"></span>
+              <h4 className="text-base sm:text-lg font-semibold text-foreground mb-3">
                 Siège Connexe Cameroun
               </h4>
               <div className="space-y-3">
