@@ -52,7 +52,7 @@ const ContactSection = () => {
             <div className="bg-card rounded-xl p-5 sm:p-6 shadow-card border border-border/50 mb-4">
               <h4 className="text-base sm:text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full gradient-bg"></span>
-                Siège Social — Belgique
+                Siège Social Belgique
               </h4>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
@@ -81,7 +81,7 @@ const ContactSection = () => {
             <div className="bg-card rounded-xl p-5 sm:p-6 shadow-card border border-border/50">
               <h4 className="text-base sm:text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full gradient-bg"></span>
-                Siège Connexe — Cameroun
+                Siège Connexe Cameroun
               </h4>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
