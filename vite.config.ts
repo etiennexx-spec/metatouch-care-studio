@@ -27,10 +27,9 @@ export default defineConfig(({ mode }) => ({
       output: {
         // Manual chunks for better caching
         manualChunks: {
-          // Vendor chunks - cached separately
           "vendor-react": ["react", "react-dom", "react-router-dom"],
-          "vendor-ui": ["framer-motion", "@radix-ui/react-dialog", "@radix-ui/react-accordion"],
-          "vendor-query": ["@tanstack/react-query"],
+          "vendor-ui": ["@radix-ui/react-dialog", "@radix-ui/react-accordion"],
+          "vendor-motion": ["framer-motion"],
         },
       },
     },

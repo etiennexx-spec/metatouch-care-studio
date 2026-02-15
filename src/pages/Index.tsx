@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowRight, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
@@ -40,13 +39,7 @@ const Index = () => {
         {/* CTA to Careers Page */}
         <section className="py-12 md:py-16 bg-gradient-to-r from-primary/5 to-secondary/5">
           <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center max-w-3xl mx-auto"
-            >
+            <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium mb-4">
                 <Users className="w-4 h-4" />
                 Rejoignez notre équipe
@@ -64,7 +57,7 @@ const Index = () => {
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-            </motion.div>
+            </div>
           </div>
         </section>
 
