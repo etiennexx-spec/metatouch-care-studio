@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { MessageCircle, Facebook, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+
 import {
   Carousel,
   CarouselContent,
@@ -109,12 +109,7 @@ const TestimonialsSection = () => {
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-card rounded-2xl p-6 shadow-card h-full flex flex-col border border-border/50"
-                  >
+                  <div className="bg-card rounded-2xl p-6 shadow-card h-full flex flex-col border border-border/50">
                     <div className="flex items-center gap-4 mb-4">
                       <img
                         src={testimonial.image}
@@ -132,7 +127,7 @@ const TestimonialsSection = () => {
                       ))}
                     </div>
                     <p className="text-muted-foreground flex-1 italic">"{testimonial.content}"</p>
-                  </motion.div>
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
