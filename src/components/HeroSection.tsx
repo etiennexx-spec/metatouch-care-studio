@@ -1,7 +1,14 @@
 import { HeartPulse, Users, Shield } from "lucide-react";
 import heroImage from "@/assets/hero-healthcare.jpg";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 const HeroSection = () => {
+  const { data: section } = useSiteSection("hero");
+
+  const title = section?.title ?? "Meta Cares";
+  const subtitle = section?.subtitle ?? "l'expérience médicale à portée de main";
+  const description = section?.description ?? "Meta Cares connecte les patients aux meilleurs professionnels de santé et accompagne les établissements dans leur besoin en personnel qualifié.";
+
   return (
     <section id="accueil" className="relative min-h-screen flex items-center pt-32 pb-16">
       {/* Background - no framer-motion for LCP critical image */}
