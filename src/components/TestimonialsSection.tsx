@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { MessageCircle, Facebook, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 import {
   Carousel,
