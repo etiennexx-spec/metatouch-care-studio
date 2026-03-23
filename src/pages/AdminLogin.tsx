@@ -10,36 +10,35 @@ const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const { signIn, isAdmin, user } = useAuth();
+  const { signIn, isAdmin, user, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && isAdmin) {
+    console.log("LOGIN STATE =>", { user, isAdmin, loading });
+
+    if (!loading && user && isAdmin) {
       navigate("/admin", { replace: true });
     }
-  }, [user, isAdmin, navigate]);
+  }, [user, isAdmin, loading, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    setSubmitting(true);
 
     const { error } = await signIn(email, password);
 
     if (error) {
       setError("Email ou mot de passe incorrect.");
-      setLoading(false);
+      setSubmitting(false);
       return;
     }
 
     toast.success("Connexion réussie");
-
-    // On ne redirige pas ici immédiatement.
-    // Le useEffect s'en chargera quand user/isAdmin seront réellement à jour.
-    setLoading(false);
+    setSubmitting(false);
   };
 
   return (
@@ -103,10 +102,10 @@ const AdminLogin = () => {
 
           <Button
             type="submit"
-            disabled={loading}
+            disabled={submitting || loading}
             className="w-full gradient-bg gradient-bg-hover text-primary-foreground"
           >
-            {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+            {submitting || loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
             Se connecter
           </Button>
         </form>
