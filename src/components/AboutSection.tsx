@@ -1,5 +1,6 @@
 import { CheckCircle2, Award, Globe, Heart } from "lucide-react";
 import videoPresentation from "@/assets/video-presentation.mp4";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 const values = [
   {
@@ -20,6 +21,8 @@ const values = [
 ];
 
 const AboutSection = () => {
+  const { data: section } = useSiteSection("about");
+
   return (
     <section id="about" className="py-12 md:py-20">
       <div className="container mx-auto px-4">
@@ -55,17 +58,14 @@ const AboutSection = () => {
           {/* Content Side */}
           <div className="order-1 lg:order-2">
             <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-3 sm:mb-4">
-              Qui sommes-nous
+              {section?.subtitle ?? "Qui sommes-nous"}
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4 sm:mb-6">
-              Votre partenaire de confiance en{" "}
+              {section?.title ?? "Votre partenaire de confiance en"}{" "}
               <span className="gradient-text">services de santé</span>
             </h2>
             <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
-              Meta Cares est une entreprise spécialisée dans les services de santé, 
-              présente en Belgique et au Cameroun. Notre mission est de faciliter 
-              l'accès aux soins de qualité en connectant les patients aux meilleurs 
-              professionnels de santé.
+              {section?.description ?? "Meta Cares est une entreprise spécialisée dans les services de santé, présente en Belgique et au Cameroun. Notre mission est de faciliter l'accès aux soins de qualité en connectant les patients aux meilleurs professionnels de santé."}
             </p>
             <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               Nous accompagnons également les établissements de santé dans leur 

@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 const benefits = [
   {
@@ -33,6 +34,8 @@ const benefits = [
 ];
 
 const ProfessionalsSection = () => {
+  const { data: section } = useSiteSection("professionals");
+
   return (
     <section id="professionnels" className="py-12 md:py-20 bg-foreground">
       <div className="container mx-auto px-4">
@@ -40,16 +43,14 @@ const ProfessionalsSection = () => {
           {/* Content */}
           <div>
             <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/20 text-primary text-xs sm:text-sm font-medium mb-3 sm:mb-4">
-              Pour les Professionnels
+              {section?.subtitle ?? "Pour les Professionnels"}
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-card mb-4 sm:mb-6">
-              Rejoignez{" "}
+              {section?.title ?? "Rejoignez"}{" "}
               <span className="gradient-text">Meta Cares</span>
             </h2>
             <p className="text-sm sm:text-base text-card/80 mb-6 sm:mb-8 leading-relaxed">
-              Vous êtes infirmier, aide-soignant, médecin ou professionnel de santé ? 
-              Rejoignez notre équipe et bénéficiez d'opportunités uniques de carrière 
-              et de développement professionnel.
+              {section?.description ?? "Vous êtes infirmier, aide-soignant, médecin ou professionnel de santé ? Rejoignez notre équipe et bénéficiez d'opportunités uniques de carrière et de développement professionnel."}
             </p>
 
             {/* Benefits grid */}

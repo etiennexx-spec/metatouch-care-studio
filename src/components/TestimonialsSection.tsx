@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { MessageCircle, Facebook, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 import {
   Carousel,
@@ -57,6 +58,7 @@ const testimonials = [
 const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const { data: section } = useSiteSection("testimonials");
 
   const onSelect = useCallback(() => {
     if (!api) return;
@@ -86,13 +88,13 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Témoignages
+            {section?.subtitle ?? "Témoignages"}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Ce que disent nos <span className="gradient-text">partenaires</span>
+            {section?.title ? <>{section.title.split(" nos")[0]} nos <span className="gradient-text">partenaires</span></> : <>Ce que disent nos <span className="gradient-text">partenaires</span></>}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Découvrez les expériences de nos patients, partenaires et professionnels de santé.
+            {section?.description ?? "Découvrez les expériences de nos patients, partenaires et professionnels de santé."}
           </p>
         </div>
 

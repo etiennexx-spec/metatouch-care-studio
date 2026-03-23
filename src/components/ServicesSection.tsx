@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { 
-  UserPlus, 
-  GraduationCap, 
-  Briefcase, 
-  Clock, 
-  Home, 
+import {
+  UserPlus,
+  GraduationCap,
+  Briefcase,
+  Clock,
+  Home,
   Stethoscope,
   ArrowRight
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import ServiceDetailModal from "./ServiceDetailModal";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 const services = [
   {
@@ -100,21 +101,24 @@ const services = [
 
 const ServicesSection = () => {
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+  const { data: section } = useSiteSection("services");
 
   return (
     <section id="services" className="py-12 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-16">
           <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-3 sm:mb-4">
-            Nos Services
+            {section?.subtitle ?? "Nos Services"}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
-            Des solutions complètes pour la{" "}
-            <span className="gradient-text">santé</span>
+            {section?.title ? (
+              <>{section.title.split(" la ")[0]}{" "}<span className="gradient-text">{"la " + (section.title.split(" la ")[1] ?? "santé")}</span></>
+            ) : (
+              <>Des solutions complètes pour la{" "}<span className="gradient-text">santé</span></>
+            )}
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
-            Meta Cares offre une gamme complète de services pour accompagner les patients, 
-            les professionnels de santé et les établissements médicaux.
+            {section?.description ?? "Meta Cares offre une gamme complète de services pour accompagner les patients, les professionnels de santé et les établissements médicaux."}
           </p>
         </div>
 

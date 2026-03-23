@@ -1,7 +1,14 @@
 import { HeartPulse, Users, Shield } from "lucide-react";
 import heroImage from "@/assets/hero-healthcare.jpg";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 const HeroSection = () => {
+  const { data: section } = useSiteSection("hero");
+
+  const title = section?.title ?? "Meta Cares";
+  const subtitle = section?.subtitle ?? "l'expérience médicale à portée de main";
+  const description = section?.description ?? "Meta Cares connecte les patients aux meilleurs professionnels de santé et accompagne les établissements dans leur besoin en personnel qualifié.";
+
   return (
     <section id="accueil" className="relative min-h-screen flex items-center pt-32 pb-16">
       {/* Background - no framer-motion for LCP critical image */}
@@ -25,13 +32,12 @@ const HeroSection = () => {
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-card mb-6 leading-tight animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
-            <span className="gradient-text block mb-2">Meta Cares</span>
-            <span className="text-3xl md:text-4xl lg:text-5xl">l'expérience médicale à portée de main</span>
+            <span className="gradient-text block mb-2">{title}</span>
+            <span className="text-3xl md:text-4xl lg:text-5xl">{subtitle}</span>
           </h1>
 
           <p className="text-lg md:text-xl text-card/80 mb-8 max-w-2xl animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-            Meta Cares connecte les patients aux meilleurs professionnels de santé 
-            et accompagne les établissements dans leur besoin en personnel qualifié.
+            {description}
           </p>
 
           <div className="mb-12" />
