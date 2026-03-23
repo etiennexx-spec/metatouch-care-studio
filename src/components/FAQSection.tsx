@@ -34,18 +34,20 @@ const faqs = [
 ];
 
 const FAQSection = () => {
+  const { data: section } = useSiteSection("faq");
+
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            FAQ
+            {section?.subtitle ?? "FAQ"}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Questions <span className="gradient-text">fréquentes</span>
+            {section?.title ? <>{section.title.split(" ")[0]} <span className="gradient-text">{section.title.split(" ").slice(1).join(" ")}</span></> : <>Questions <span className="gradient-text">fréquentes</span></>}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Retrouvez les réponses aux questions les plus posées par nos patients et partenaires.
+            {section?.description ?? "Retrouvez les réponses aux questions les plus posées par nos patients et partenaires."}
           </p>
         </div>
 

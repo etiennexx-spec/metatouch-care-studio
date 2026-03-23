@@ -47,14 +47,13 @@ const ContactSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12">
           <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium mb-3 sm:mb-4">
-            Contact
+            {section?.subtitle ?? "Contact"}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
-            Contactez <span className="gradient-text">Meta Cares</span>
+            {section?.title ? <>{section.title.split(" Meta")[0]} <span className="gradient-text">Meta Cares</span></> : <>Contactez <span className="gradient-text">Meta Cares</span></>}
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
-            Une question, un projet de partenariat ou une demande de soins ? 
-            Notre équipe est à votre écoute.
+            {section?.description ?? "Une question, un projet de partenariat ou une demande de soins ? Notre équipe est à votre écoute."}
           </p>
         </div>
 
