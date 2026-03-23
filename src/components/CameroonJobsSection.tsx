@@ -103,6 +103,7 @@ const CameroonJobsSection = () => {
     message: "",
   });
   const [files, setFiles] = useState<File[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -133,13 +134,28 @@ const CameroonJobsSection = () => {
     setFiles(files.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:recrutement@metacares.be?subject=Candidature: ${selectedJob?.title}&body=Nom: ${formData.name}%0AEmail: ${formData.email}%0ATéléphone: ${formData.phone}%0A%0AMessage:%0A${formData.message}`;
-    window.location.href = mailtoLink;
-    setSelectedJob(null);
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setFiles([]);
+    if (!selectedJob) return;
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from("job_applications").insert({
+        job_title: selectedJob.title,
+        full_name: formData.name,
+        email: formData.email,
+        phone: formData.phone || null,
+        motivation: formData.message || "Candidature soumise",
+      });
+      if (error) throw error;
+      toast.success("Candidature envoyée avec succès !");
+      setSelectedJob(null);
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFiles([]);
+    } catch {
+      toast.error("Erreur lors de l'envoi. Veuillez réessayer.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
