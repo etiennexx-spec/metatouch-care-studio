@@ -12,6 +12,7 @@ import {
 import logo from "@/assets/logo-metacares.png";
 
 const Header = () => {
+  const { isAdmin } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
