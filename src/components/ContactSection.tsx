@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Facebook, Instagram, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Facebook, Instagram, Globe, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -13,11 +14,26 @@ const ContactSection = () => {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.");
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from("contact_messages").insert({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject || null,
+        message: formData.message,
+      });
+      if (error) throw error;
+      toast.success("Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.");
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch {
+      toast.error("Erreur lors de l'envoi. Veuillez réessayer.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
