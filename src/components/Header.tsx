@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, ChevronDown, ShoppingBag, Briefcase } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,6 +12,7 @@ import {
 import logo from "@/assets/logo-metacares.png";
 
 const Header = () => {
+  const { isAdmin } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -69,8 +71,8 @@ const Header = () => {
       {/* Main navigation */}
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Meta Cares Logo" className="h-10 sm:h-12 w-auto" />
+          <Link to={isAdmin ? "/admin" : "/"} className="flex items-center gap-2" title={isAdmin ? "Accéder au dashboard" : "Accueil"}>
+            <img src={logo} alt="Meta Cares Logo" className={`h-10 sm:h-12 w-auto ${isAdmin ? "ring-2 ring-primary/50 rounded-lg p-0.5" : ""}`} />
           </Link>
 
           {/* Desktop Navigation */}
