@@ -11,16 +11,6 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import ServiceDetailModal from "./ServiceDetailModal";
 import { useSiteSection } from "@/hooks/useSiteSection";
-  UserPlus, 
-  GraduationCap, 
-  Briefcase, 
-  Clock, 
-  Home, 
-  Stethoscope,
-  ArrowRight
-} from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import ServiceDetailModal from "./ServiceDetailModal";
 
 const services = [
   {
