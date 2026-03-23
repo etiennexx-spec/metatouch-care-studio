@@ -21,6 +21,8 @@ const values = [
 ];
 
 const AboutSection = () => {
+  const { data: section } = useSiteSection("about");
+
   return (
     <section id="about" className="py-12 md:py-20">
       <div className="container mx-auto px-4">
