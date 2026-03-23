@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -12,26 +12,34 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
   const { signIn, isAdmin, user } = useAuth();
   const navigate = useNavigate();
 
-  if (user && isAdmin) {
-    navigate("/admin", { replace: true });
-    return null;
-  }
+  useEffect(() => {
+    if (user && isAdmin) {
+      navigate("/admin", { replace: true });
+    }
+  }, [user, isAdmin, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
+
     const { error } = await signIn(email, password);
+
     if (error) {
       setError("Email ou mot de passe incorrect.");
       setLoading(false);
       return;
     }
+
     toast.success("Connexion réussie");
-    navigate("/admin", { replace: true });
+
+    // On ne redirige pas ici immédiatement.
+    // Le useEffect s'en chargera quand user/isAdmin seront réellement à jour.
+    setLoading(false);
   };
 
   return (
@@ -44,20 +52,33 @@ const AdminLogin = () => {
           <h1 className="text-2xl font-bold text-foreground">Administration</h1>
           <p className="text-muted-foreground text-sm mt-1">Meta Cares — Espace Admin</p>
         </div>
-        <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-6 sm:p-8 shadow-lg border border-primary/10 space-y-5">
+
+        <form
+          onSubmit={handleSubmit}
+          className="bg-card rounded-2xl p-6 sm:p-8 shadow-lg border border-primary/10 space-y-5"
+        >
           {error && (
             <div className="flex items-center gap-2 text-destructive text-sm bg-destructive/10 p-3 rounded-lg">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
               {error}
             </div>
           )}
+
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground">Email</label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="admin@metacares.be" className="pl-10" required />
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@metacares.be"
+                className="pl-10"
+                required
+              />
             </div>
           </div>
+
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground">Mot de passe</label>
             <div className="relative">
@@ -65,7 +86,7 @@ const AdminLogin = () => {
               <Input
                 type={showPassword ? "text" : "password"}
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 className="pl-10 pr-10"
                 required
@@ -79,7 +100,12 @@ const AdminLogin = () => {
               </button>
             </div>
           </div>
-          <Button type="submit" disabled={loading} className="w-full gradient-bg gradient-bg-hover text-primary-foreground">
+
+          <Button
+            type="submit"
+            disabled={loading}
+            className="w-full gradient-bg gradient-bg-hover text-primary-foreground"
+          >
             {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
             Se connecter
           </Button>
