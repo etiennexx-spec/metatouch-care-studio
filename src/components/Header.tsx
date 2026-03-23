@@ -71,8 +71,8 @@ const Header = () => {
       {/* Main navigation */}
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Meta Cares Logo" className="h-10 sm:h-12 w-auto" />
+          <Link to={isAdmin ? "/admin" : "/"} className="flex items-center gap-2" title={isAdmin ? "Accéder au dashboard" : "Accueil"}>
+            <img src={logo} alt="Meta Cares Logo" className={`h-10 sm:h-12 w-auto ${isAdmin ? "ring-2 ring-primary/50 rounded-lg p-0.5" : ""}`} />
           </Link>
 
           {/* Desktop Navigation */}
