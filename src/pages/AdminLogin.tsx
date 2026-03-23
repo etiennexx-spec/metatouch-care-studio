@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Lock, Mail, Loader2, AlertCircle } from "lucide-react";
+import { Lock, Mail, Loader2, AlertCircle, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { signIn, isAdmin, user } = useAuth();
@@ -34,7 +35,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/30 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-bg mb-4">
@@ -43,7 +44,7 @@ const AdminLogin = () => {
           <h1 className="text-2xl font-bold text-foreground">Administration</h1>
           <p className="text-muted-foreground text-sm mt-1">Meta Cares — Espace Admin</p>
         </div>
-        <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-6 sm:p-8 shadow-lg border border-border/50 space-y-5">
+        <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-6 sm:p-8 shadow-lg border border-primary/10 space-y-5">
           {error && (
             <div className="flex items-center gap-2 text-destructive text-sm bg-destructive/10 p-3 rounded-lg">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
@@ -61,7 +62,21 @@ const AdminLogin = () => {
             <label className="text-sm font-medium text-foreground">Mot de passe</label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" className="pl-10" required />
+              <Input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="pl-10 pr-10"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
             </div>
           </div>
           <Button type="submit" disabled={loading} className="w-full gradient-bg gradient-bg-hover text-primary-foreground">
