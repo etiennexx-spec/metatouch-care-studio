@@ -209,9 +209,18 @@ const ContactSection = () => {
                   className="bg-muted/50 border-border resize-none text-sm sm:text-base"
                 />
               </div>
-              <Button type="submit" size="lg" className="w-full gradient-bg gradient-bg-hover text-primary-foreground text-sm sm:text-base">
-                Envoyer le message
-                <Send className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+              <Button type="submit" size="lg" disabled={isSubmitting} className="w-full gradient-bg gradient-bg-hover text-primary-foreground text-sm sm:text-base">
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="ml-2 w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                    Envoi en cours...
+                  </>
+                ) : (
+                  <>
+                    Envoyer le message
+                    <Send className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+                  </>
+                )}
               </Button>
             </form>
           </div>

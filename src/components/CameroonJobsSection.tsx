@@ -391,9 +391,18 @@ const CameroonJobsSection = () => {
                   )}
                 </div>
 
-                <Button type="submit" className="w-full gradient-bg gradient-bg-hover">
-                  <Send className="mr-2 w-4 h-4" />
-                  Envoyer ma candidature
+                <Button type="submit" disabled={isSubmitting} className="w-full gradient-bg gradient-bg-hover">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 w-4 h-4" />
+                      Envoyer ma candidature
+                    </>
+                  )}
                 </Button>
               </form>
             </div>
