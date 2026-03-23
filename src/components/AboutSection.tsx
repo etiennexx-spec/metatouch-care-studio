@@ -1,5 +1,6 @@
 import { CheckCircle2, Award, Globe, Heart } from "lucide-react";
 import videoPresentation from "@/assets/video-presentation.mp4";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 const values = [
   {
