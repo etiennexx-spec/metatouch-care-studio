@@ -1,21 +1,25 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import FooterSimple from "@/components/FooterSimple";
 import ProductCarousel from "@/components/ProductCarousel";
-import { categories, products } from "@/data/products";
+import { useCategories, useProducts } from "@/hooks/useProducts";
 
 const Marketplace = () => {
-  const [activeCategory, setActiveCategory] = useState(categories[0].id);
+  const { data: categories = [] } = useCategories();
+  const { data: products = [] } = useProducts();
+  const [activeCategory, setActiveCategory] = useState("");
 
-  const getProductsByCategory = (categoryId: string) => {
-    return products.filter((product) => product.category === categoryId);
-  };
+  // Set default active category when data loads
+  const effectiveCategory = activeCategory || categories[0]?.id || "";
 
-  const activeProducts = getProductsByCategory(activeCategory);
-  const activeCategoryData = categories.find(cat => cat.id === activeCategory);
+  const activeProducts = useMemo(
+    () => products.filter((p) => p.category === effectiveCategory),
+    [products, effectiveCategory]
+  );
+  const activeCategoryData = categories.find((c) => c.id === effectiveCategory);
 
   return (
     <div className="min-h-screen bg-background">

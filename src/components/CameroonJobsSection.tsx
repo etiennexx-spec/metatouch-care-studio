@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { Briefcase, Send, Upload, FileText, X, MapPin, Clock } from "lucide-react";
+import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Dialog,
@@ -101,6 +103,7 @@ const CameroonJobsSection = () => {
     message: "",
   });
   const [files, setFiles] = useState<File[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -131,13 +134,28 @@ const CameroonJobsSection = () => {
     setFiles(files.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:recrutement@metacares.be?subject=Candidature: ${selectedJob?.title}&body=Nom: ${formData.name}%0AEmail: ${formData.email}%0ATéléphone: ${formData.phone}%0A%0AMessage:%0A${formData.message}`;
-    window.location.href = mailtoLink;
-    setSelectedJob(null);
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setFiles([]);
+    if (!selectedJob) return;
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from("job_applications").insert({
+        job_title: selectedJob.title,
+        full_name: formData.name,
+        email: formData.email,
+        phone: formData.phone || null,
+        motivation: formData.message || "Candidature soumise",
+      });
+      if (error) throw error;
+      toast.success("Candidature envoyée avec succès !");
+      setSelectedJob(null);
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFiles([]);
+    } catch {
+      toast.error("Erreur lors de l'envoi. Veuillez réessayer.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -373,9 +391,18 @@ const CameroonJobsSection = () => {
                   )}
                 </div>
 
-                <Button type="submit" className="w-full gradient-bg gradient-bg-hover">
-                  <Send className="mr-2 w-4 h-4" />
-                  Envoyer ma candidature
+                <Button type="submit" disabled={isSubmitting} className="w-full gradient-bg gradient-bg-hover">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 w-4 h-4" />
+                      Envoyer ma candidature
+                    </>
+                  )}
                 </Button>
               </form>
             </div>
