@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 const faqs = [
   {
