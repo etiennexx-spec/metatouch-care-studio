@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { LayoutDashboard, Package, FileText, Image, Mail, Briefcase, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, Package, FileText, Image, Mail, Briefcase, LogOut, Menu, X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import logo from "@/assets/logo-metacares.png";
