@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Lock, Mail, Loader2, AlertCircle, Eye, EyeOff } from "lucide-react";
-import { toast } from "sonner";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -13,16 +12,24 @@ const AdminLogin = () => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const { signIn, isAdmin, user, loading } = useAuth();
+  const { signIn, signOut, isAdmin, user, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("LOGIN STATE =>", { user, isAdmin, loading });
+    if (!submitting) return;
 
     if (!loading && user && isAdmin) {
+      setSubmitting(false);
       navigate("/admin", { replace: true });
+      return;
     }
-  }, [user, isAdmin, loading, navigate]);
+
+    if (!loading && user && !isAdmin) {
+      setError("Accès refusé : ce compte n'a pas les droits administrateur.");
+      setSubmitting(false);
+      void signOut();
+    }
+  }, [submitting, loading, user, isAdmin, navigate, signOut]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,11 +41,7 @@ const AdminLogin = () => {
     if (error) {
       setError("Email ou mot de passe incorrect.");
       setSubmitting(false);
-      return;
     }
-
-    toast.success("Connexion réussie");
-    setSubmitting(false);
   };
 
   return (
@@ -71,7 +74,7 @@ const AdminLogin = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@metacares.be"
+                placeholder="metacares.cm.branch014@gmail.com"
                 className="pl-10"
                 required
               />
