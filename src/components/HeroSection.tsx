@@ -8,13 +8,15 @@ const HeroSection = () => {
   const title = section?.title ?? "Meta Cares";
   const subtitle = section?.subtitle ?? "l'expérience médicale à portée de main";
   const description = section?.description ?? "Meta Cares connecte les patients aux meilleurs professionnels de santé et accompagne les établissements dans leur besoin en personnel qualifié.";
+  // Use admin-uploaded hero image if available, fallback to static asset
+  const bgImage = section?.image_url || heroImage;
 
   return (
     <section id="accueil" className="relative min-h-screen flex items-center pt-32 pb-16">
       {/* Background - no framer-motion for LCP critical image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={heroImage} 
+          src={bgImage} 
           alt="Équipe médicale professionnelle" 
           className="w-full h-full object-cover"
           loading="eager"
