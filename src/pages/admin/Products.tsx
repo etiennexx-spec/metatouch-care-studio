@@ -121,7 +121,7 @@ const AdminProducts = () => {
                 {products?.map(p => (
                   <tr key={p.id} className="hover:bg-muted/30">
                     <td className="px-4 py-3">
-                      <img src={p.image} alt={p.name} className="w-12 h-12 rounded-lg object-cover" />
+                      <img src={p.image} alt={p.name} className="w-12 h-12 rounded-lg object-cover" loading="lazy" decoding="async" />
                     </td>
                     <td className="px-4 py-3 font-medium text-foreground">{p.name}</td>
                     <td className="px-4 py-3 hidden sm:table-cell text-muted-foreground">{p.price}</td>
