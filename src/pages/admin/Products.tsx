@@ -163,7 +163,7 @@ const AdminProducts = () => {
               </select>
               <div>
                 <label className="text-sm font-medium text-foreground block mb-2">Image</label>
-                {editProduct.image && <img src={editProduct.image} alt="" className="w-24 h-24 rounded-lg object-cover mb-2" />}
+                {editProduct.image && <img src={editProduct.image} alt="" className="w-24 h-24 rounded-lg object-cover mb-2" loading="lazy" decoding="async" />}
                 <label className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted cursor-pointer hover:bg-muted/80 text-sm">
                   <Upload className="w-4 h-4" />
                   {uploading ? "Upload..." : "Choisir une image"}

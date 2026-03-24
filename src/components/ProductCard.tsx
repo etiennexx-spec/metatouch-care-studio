@@ -41,7 +41,9 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ name, price, description, image, index = 0 }: ProductCardProps) => {
-  const imageSrc = imageMap[image] || levePersonne;
+  // Support both local image keys and external URLs (admin uploads)
+  const isExternalUrl = image?.startsWith("http") || image?.startsWith("blob:");
+  const imageSrc = isExternalUrl ? image : (imageMap[image] || levePersonne);
 
   return (
     <motion.div
@@ -58,6 +60,7 @@ const ProductCard = ({ name, price, description, image, index = 0 }: ProductCard
             alt={name}
             className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
+            decoding="async"
           />
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-card/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

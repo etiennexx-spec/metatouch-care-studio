@@ -65,7 +65,7 @@ const GalleryManager = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {images?.map(img => (
           <div key={img.id} className="group relative bg-card rounded-xl border border-border/50 overflow-hidden shadow-sm">
-            <img src={img.image_url} alt={img.title ?? ""} className="w-full aspect-square object-cover" />
+            <img src={img.image_url} alt={img.title ?? ""} className="w-full aspect-square object-cover" loading="lazy" decoding="async" />
             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
               <Button variant="destructive" size="icon" onClick={() => { if (confirm("Supprimer ?")) deleteMutation.mutate(img.id); }}>
                 <Trash2 className="w-4 h-4" />
