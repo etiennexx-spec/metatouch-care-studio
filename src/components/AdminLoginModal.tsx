@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -27,10 +27,10 @@ const AdminLoginModal = ({ open, onOpenChange }: AdminLoginModalProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [mode, setMode] = useState<"login" | "setup">("login");
-  const { signIn } = useAuth();
+  const { signIn, signOut, user, isAdmin, loading } = useAuth();
   const navigate = useNavigate();
 
   const resetForm = () => {
@@ -43,23 +43,37 @@ const AdminLoginModal = ({ open, onOpenChange }: AdminLoginModalProps) => {
     setShowNewPassword(false);
     setShowConfirmPassword(false);
     setMode("login");
+    setSubmitting(false);
   };
+
+  useEffect(() => {
+    if (!open || submitting) return;
+
+    if (!loading && user && isAdmin) {
+      toast.success("Connexion administrateur réussie");
+      onOpenChange(false);
+      resetForm();
+      navigate("/admin", { replace: true });
+      return;
+    }
+
+    if (!loading && user && !isAdmin) {
+      setError("Accès refusé : ce compte n'a pas les droits administrateur.");
+      void signOut();
+      setSubmitting(false);
+    }
+  }, [open, submitting, loading, user, isAdmin, navigate, onOpenChange, signOut]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    setSubmitting(true);
+
     const { error } = await signIn(email, password);
     if (error) {
       setError("Email ou mot de passe incorrect.");
-      setLoading(false);
-      return;
+      setSubmitting(false);
     }
-    toast.success("Connexion réussie");
-    setLoading(false);
-    onOpenChange(false);
-    resetForm();
-    navigate("/admin", { replace: true });
   };
 
   const handleSetupPassword = async (e: React.FormEvent) => {
@@ -70,41 +84,45 @@ const AdminLoginModal = ({ open, onOpenChange }: AdminLoginModalProps) => {
       setError("Le mot de passe doit contenir au moins 8 caractères.");
       return;
     }
+
     if (newPassword !== confirmPassword) {
       setError("Les mots de passe ne correspondent pas.");
       return;
     }
 
-    setLoading(true);
+    setSubmitting(true);
 
-    // First sign in with current credentials
     const { error: signInError } = await signIn(email, password);
     if (signInError) {
       setError("Identifiants actuels incorrects. Connectez-vous d'abord.");
-      setLoading(false);
+      setSubmitting(false);
       return;
     }
 
-    // Update the password
     const { error: updateError } = await supabase.auth.updateUser({
       password: newPassword,
     });
 
     if (updateError) {
       setError("Erreur lors de la mise à jour du mot de passe.");
-      setLoading(false);
+      setSubmitting(false);
       return;
     }
 
     toast.success("Mot de passe mis à jour avec succès !");
-    setLoading(false);
     onOpenChange(false);
     resetForm();
     navigate("/admin", { replace: true });
   };
 
   return (
-    <Dialog open={open} onOpenChange={(o) => { onOpenChange(o); if (!o) resetForm(); }}>
+    <Dialog
+      open={open}
+      onOpenChange={(nextOpen) => {
+        onOpenChange(nextOpen);
+        if (!nextOpen) resetForm();
+      }}
+    >
       <DialogContent className="sm:max-w-md border-primary/20">
         <DialogHeader>
           <div className="flex items-center justify-center mb-2">
@@ -142,7 +160,7 @@ const AdminLoginModal = ({ open, onOpenChange }: AdminLoginModalProps) => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@metacares.be"
+                  placeholder="metacares.cm.branch014@gmail.com"
                   className="pl-10"
                   required
                 />
@@ -171,15 +189,18 @@ const AdminLoginModal = ({ open, onOpenChange }: AdminLoginModalProps) => {
             </div>
             <Button
               type="submit"
-              disabled={loading}
+              disabled={submitting || loading}
               className="w-full gradient-bg gradient-bg-hover text-primary-foreground"
             >
-              {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+              {submitting || loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
               Se connecter
             </Button>
             <button
               type="button"
-              onClick={() => { setError(""); setMode("setup"); }}
+              onClick={() => {
+                setError("");
+                setMode("setup");
+              }}
               className="w-full text-center text-xs text-muted-foreground hover:text-primary transition-colors pt-1"
             >
               Modifier mon mot de passe
@@ -201,7 +222,7 @@ const AdminLoginModal = ({ open, onOpenChange }: AdminLoginModalProps) => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@metacares.be"
+                  placeholder="metacares.cm.branch014@gmail.com"
                   className="pl-10"
                   required
                 />
@@ -274,15 +295,18 @@ const AdminLoginModal = ({ open, onOpenChange }: AdminLoginModalProps) => {
             </div>
             <Button
               type="submit"
-              disabled={loading}
+              disabled={submitting || loading}
               className="w-full gradient-bg gradient-bg-hover text-primary-foreground"
             >
-              {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+              {submitting || loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
               Enregistrer le mot de passe
             </Button>
             <button
               type="button"
-              onClick={() => { setError(""); setMode("login"); }}
+              onClick={() => {
+                setError("");
+                setMode("login");
+              }}
               className="w-full text-center text-xs text-muted-foreground hover:text-primary transition-colors pt-1"
             >
               ← Retour à la connexion

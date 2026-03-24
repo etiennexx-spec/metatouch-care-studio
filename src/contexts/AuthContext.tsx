@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         _user_id: userId,
         _role: "admin",
       });
+
       if (error) return false;
       return data === true;
     } catch (err) {
@@ -36,41 +37,34 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     let mounted = true;
 
-    const initializeAuth = async () => {
-      setLoading(true);
-      const { data: { session } } = await supabase.auth.getSession();
+    const applySession = async (nextSession: Session | null) => {
       if (!mounted) return;
 
-      setSession(session);
-      setUser(session?.user ?? null);
+      setSession(nextSession);
+      setUser(nextSession?.user ?? null);
+      setLoading(true);
 
-      if (session?.user) {
-        const isAdminResult = await checkAdmin(session.user.id);
-        if (mounted) {
-          setIsAdmin(isAdminResult);
-          setLoading(false);
-        }
+      if (nextSession?.user) {
+        const isAdminResult = await checkAdmin(nextSession.user.id);
+        if (!mounted) return;
+        setIsAdmin(isAdminResult);
       } else {
         setIsAdmin(false);
+      }
+
+      if (mounted) {
         setLoading(false);
       }
     };
 
-    initializeAuth();
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      void applySession(session);
+    });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-
-      if (session?.user) {
-        checkAdmin(session.user.id).then((isAdminResult) => {
-          setIsAdmin(isAdminResult);
-          setLoading(false);
-        });
-      } else {
-        setIsAdmin(false);
-        setLoading(false);
-      }
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      void applySession(nextSession);
     });
 
     return () => {
@@ -80,18 +74,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    setLoading(true);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
+
     if (error) {
       setLoading(false);
     }
+
     return { error: error as Error | null };
   };
 
   const signOut = async () => {
+    setLoading(true);
     await supabase.auth.signOut();
     setIsAdmin(false);
     setUser(null);
     setSession(null);
+    setLoading(false);
   };
 
   return (
