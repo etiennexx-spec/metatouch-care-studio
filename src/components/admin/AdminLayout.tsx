@@ -55,7 +55,11 @@ const AdminLayout = () => {
           </NavLink>
         ))}
       </nav>
-      <div className="p-3 border-t border-primary/10">
+      <div className="p-3 border-t border-primary/10 space-y-1">
+        <Button variant="ghost" size="sm" onClick={() => { setMobileOpen(false); navigate("/"); }} className="w-full justify-start text-muted-foreground hover:text-primary hover:bg-primary/5">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Retour au site
+        </Button>
         <Button variant="ghost" size="sm" onClick={handleSignOut} className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/5">
           <LogOut className="w-4 h-4 mr-2" />
           Déconnexion
