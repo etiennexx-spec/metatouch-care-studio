@@ -68,13 +68,13 @@ const cameroonEmployees = [
   {
     name: "BISSILA Etienne",
     role: "Responsable Marketing Digital",
-    location: "Douala",
+    location: "yaoundé",
     image: employee4,
   },
   {
     name: "OBAM Alexandre",
     role: "Responsable Contenu",
-    location: "Douala",
+    location: "yaoundé",
     image: employee5,
   },
 ];
@@ -146,7 +146,13 @@ const TeamSection = () => {
             {teamSection?.subtitle ?? "🇨🇲 Rejoindre la branche camerounaise"}
           </motion.div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {teamSection?.title ? <span className="gradient-text">{teamSection.title}</span> : <>Notre <span className="gradient-text">Équipe</span></>}
+            {teamSection?.title ? (
+              <span className="gradient-text">{teamSection.title}</span>
+            ) : (
+              <>
+                Notre <span className="gradient-text">Équipe</span>
+              </>
+            )}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base px-4">
             {teamSection?.description ?? "Découvrez les visages derrière Meta Cares en Belgique et au Cameroun."}
