@@ -66,7 +66,7 @@ const Careers = () => {
                 <span className="gradient-text">l'avenir des soins</span>
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 px-4">
+              <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8 px-4">
                 Découvrez nos opportunités de carrière et rejoignez une équipe passionnée 
                 au service de l'excellence médicale entre la Belgique et le Cameroun.
               </p>
