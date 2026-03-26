@@ -20,10 +20,6 @@ import employee2 from "@/assets/employee-cm-2.jpg";
 import employee3 from "@/assets/employee-cm-3.jpg";
 import employee4 from "@/assets/employee-cm-4.jpg";
 import employee5 from "@/assets/employee-cm-5.jpg";
-import employee6 from "@/assets/employee-cm-6.jpg";
-import employee7 from "@/assets/employee-cm-7.jpg";
-import employee8 from "@/assets/employee-cm-8.jpg";
-import employee9 from "@/assets/employee-cm-9.jpg";
 
 const belgiumAdmins = [
   {
@@ -79,30 +75,6 @@ const cameroonEmployees = [
     role: "Responsable Contenu",
     location: "Douala",
     image: employee5,
-  },
-  {
-    name: "Clarisse Eyenga",
-    role: "Chargée de Communication",
-    location: "Yaoundé",
-    image: employee6,
-  },
-  {
-    name: "Blaise Tchinda",
-    role: "Responsable SEO/SEA",
-    location: "Douala",
-    image: employee7,
-  },
-  {
-    name: "Solange Atangana",
-    role: "Directrice Marketing",
-    location: "Yaoundé",
-    image: employee8,
-  },
-  {
-    name: "Michel Kouam",
-    role: "Responsable Stratégie Digitale",
-    location: "Douala",
-    image: employee9,
   },
 ];
 
@@ -249,7 +221,7 @@ const TeamSection = () => {
         {/* Cameroon Employees */}
         <div>
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
-            🇨🇲 Équipe Cameroun - 9 Professionnels
+            🇨🇲 Équipe Cameroun - 5 Professionnels
           </h3>
           <div className="max-w-6xl mx-auto px-4 md:px-12">
             <Carousel
