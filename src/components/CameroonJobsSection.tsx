@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useSiteSection } from "@/hooks/useSiteSection";
 import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -94,6 +95,7 @@ const activities = [
 ];
 
 const CameroonJobsSection = () => {
+  const { data: section } = useSiteSection("cameroon_jobs");
   const [selectedJob, setSelectedJob] = useState<typeof cameroonJobs[0] | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<typeof activities[0] | null>(null);
   const [formData, setFormData] = useState({
@@ -163,13 +165,13 @@ const CameroonJobsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Offres d'Emploi
+            {section?.subtitle ?? "Offres d'Emploi"}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Opportunités au <span className="gradient-text">Cameroun</span>
+            {section?.title ? <span className="gradient-text">{section.title}</span> : <>Opportunités au <span className="gradient-text">Cameroun</span></>}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base px-4">
-            Découvrez nos offres d'emploi et rejoignez une équipe dynamique dédiée aux soins de qualité.
+            {section?.description ?? "Découvrez nos offres d'emploi et rejoignez une équipe dynamique dédiée aux soins de qualité."}
           </p>
         </div>
 

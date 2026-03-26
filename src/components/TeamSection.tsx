@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import { useSiteSection } from "@/hooks/useSiteSection";
 import {
   Carousel,
   CarouselContent,
@@ -79,6 +80,7 @@ const cameroonEmployees = [
 ];
 
 const TeamSection = () => {
+  const { data: teamSection } = useSiteSection("team");
   const [adminApi, setAdminApi] = useState<CarouselApi>();
   const [employeeApi, setEmployeeApi] = useState<CarouselApi>();
   const [adminCurrent, setAdminCurrent] = useState(0);
@@ -141,13 +143,13 @@ const TeamSection = () => {
             transition={{ duration: 0.6 }}
             className="inline-block px-4 md:px-6 py-2 md:py-3 rounded-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-sm md:text-lg font-medium mb-4 md:mb-6"
           >
-            🇨🇲 Rejoindre la branche camerounaise
+            {teamSection?.subtitle ?? "🇨🇲 Rejoindre la branche camerounaise"}
           </motion.div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Notre <span className="gradient-text">Équipe</span>
+            {teamSection?.title ? <span className="gradient-text">{teamSection.title}</span> : <>Notre <span className="gradient-text">Équipe</span></>}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base px-4">
-            Découvrez les visages derrière Meta Cares en Belgique et au Cameroun.
+            {teamSection?.description ?? "Découvrez les visages derrière Meta Cares en Belgique et au Cameroun."}
           </p>
         </div>
 

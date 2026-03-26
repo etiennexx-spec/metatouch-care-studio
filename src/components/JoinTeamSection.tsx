@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Stethoscope, HeartPulse, Brain, Baby, Bone, Users, ArrowRight, ExternalLink } from "lucide-react";
+import { useSiteSection } from "@/hooks/useSiteSection";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -56,6 +57,7 @@ const teamCategories = [
 ];
 
 const JoinTeamSection = () => {
+  const { data: section } = useSiteSection("join_team");
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -87,14 +89,13 @@ const JoinTeamSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Carrières
+            {section?.subtitle ?? "Carrières"}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Rejoignez{" "}
-            <span className="gradient-text">notre équipe</span>
+            {section?.title ? <span className="gradient-text">{section.title}</span> : <>Rejoignez{" "}<span className="gradient-text">notre équipe</span></>}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base px-4">
-            Meta Cares recherche des professionnels passionnés pour rejoindre notre réseau et offrir des soins de qualité à domicile.
+            {section?.description ?? "Meta Cares recherche des professionnels passionnés pour rejoindre notre réseau et offrir des soins de qualité à domicile."}
           </p>
         </div>
 
