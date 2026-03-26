@@ -20,8 +20,9 @@ const SectionLoader = () => (
 );
 
 const Careers = () => {
-  const { data: section } = useSiteSection("hero");
-  const bannerImage = section?.image_url || heroImage;
+  const { data: heroSection } = useSiteSection("hero");
+  const { data: section } = useSiteSection("careers");
+  const bannerImage = heroSection?.image_url || heroImage;
 
   return (
     <div className="min-h-screen bg-background">
