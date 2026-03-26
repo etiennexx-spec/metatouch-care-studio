@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Briefcase, Users, MapPin, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
+import heroImage from "@/assets/hero-healthcare.jpg";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 // Lazy load below-the-fold components
 const JoinTeamSection = lazy(() => import("@/components/JoinTeamSection"));
