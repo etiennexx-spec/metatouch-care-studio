@@ -80,30 +80,6 @@ const cameroonEmployees = [
     location: "Douala",
     image: employee5,
   },
-  {
-    name: "Clarisse Eyenga",
-    role: "Chargée de Communication",
-    location: "Yaoundé",
-    image: employee6,
-  },
-  {
-    name: "Blaise Tchinda",
-    role: "Responsable SEO/SEA",
-    location: "Douala",
-    image: employee7,
-  },
-  {
-    name: "Solange Atangana",
-    role: "Directrice Marketing",
-    location: "Yaoundé",
-    image: employee8,
-  },
-  {
-    name: "Michel Kouam",
-    role: "Responsable Stratégie Digitale",
-    location: "Douala",
-    image: employee9,
-  },
 ];
 
 const TeamSection = () => {
