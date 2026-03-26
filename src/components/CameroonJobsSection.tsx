@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useSiteSection } from "@/hooks/useSiteSection";
 import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
