@@ -76,12 +76,6 @@ const cameroonEmployees = [
     role: "Responsable Contenu",
     location: "yaoundé",
     image: employee5,
-    biographie: Passionnée par la stratégie
-de marque, l’engagement des communautés et le développement de projets innovants à fort
-impact social, son expérience lui permet aujourd’hui d’accompagner des projets ambi�eux
-en élaborant des stratégies de communica�on performantes, en concevant des campagnes
-digitales impactantes et en développant des communautés engagées autour de causes
-importantes,
   },
 ];
 
@@ -209,7 +203,6 @@ const TeamSection = () => {
                         <p className="text-muted-foreground text-xs mt-1">{admin.location}</p>
                         <p className="text-muted-foreground text-sm mt-3">{admin.description}</p>
                         <p className="text-muted-foreground text-sm mt-3">{admin.biographie}</p>
-                        
                       </div>
                     </motion.div>
                   </CarouselItem>
@@ -268,7 +261,6 @@ const TeamSection = () => {
                           <p className="text-xs opacity-90">{employee.role}</p>
                           <p className="text-xs opacity-75">{employee.location}</p>
                           <p className="text-xs opacity-75">{employee.biographie}</p>
-                          
                         </div>
                       </div>
                     </motion.div>
