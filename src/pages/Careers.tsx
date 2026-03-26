@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Briefcase, Users, MapPin, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
+import heroImage from "@/assets/hero-healthcare.jpg";
+import { useSiteSection } from "@/hooks/useSiteSection";
 
 // Lazy load below-the-fold components
 const JoinTeamSection = lazy(() => import("@/components/JoinTeamSection"));
@@ -18,14 +20,25 @@ const SectionLoader = () => (
 );
 
 const Careers = () => {
+  const { data: section } = useSiteSection("hero");
+  const bannerImage = section?.image_url || heroImage;
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main>
         {/* Hero Section for Careers */}
-        <section className="pt-32 pb-16 md:pt-40 md:pb-20 relative overflow-hidden">
-          <div className="absolute inset-0 gradient-bg opacity-5" />
-          <div className="container mx-auto px-4 relative z-10">
+        <section className="relative pt-20 pb-16 md:pt-24 md:pb-20 overflow-hidden min-h-[50vh] flex items-center">
+          <div className="absolute inset-0 z-0">
+            <img 
+              src={bannerImage} 
+              alt="Équipe Meta Cares" 
+              className="w-full h-full object-cover object-top"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/65 to-foreground/40" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10 pt-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -48,12 +61,12 @@ const Careers = () => {
                 🌍 Rejoignez l'aventure Meta Cares
               </motion.div>
               
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                 Construisons ensemble{" "}
                 <span className="gradient-text">l'avenir des soins</span>
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 px-4">
+              <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8 px-4">
                 Découvrez nos opportunités de carrière et rejoignez une équipe passionnée 
                 au service de l'excellence médicale entre la Belgique et le Cameroun.
               </p>

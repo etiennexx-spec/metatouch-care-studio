@@ -18,7 +18,7 @@ const HeroSection = () => {
         <img 
           src={bgImage} 
           alt="Équipe médicale professionnelle" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
           loading="eager"
           fetchPriority="high"
           decoding="async"

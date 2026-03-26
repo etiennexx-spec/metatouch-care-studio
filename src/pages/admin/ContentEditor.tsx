@@ -79,7 +79,7 @@ const SectionCard = ({ section, onSave, onImageUpload, uploading, saving }: {
   const [description, setDescription] = useState(section.description ?? "");
 
   const sectionLabels: Record<string, string> = {
-    hero: "🏠 Hero (Accueil)",
+    hero: "🏠 Hero / Bannière (toutes les pages)",
     about: "ℹ️ À propos",
     services: "⚕️ Services",
     testimonials: "💬 Témoignages",
