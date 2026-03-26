@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Stethoscope, HeartPulse, Brain, Baby, Bone, Users, ArrowRight, ExternalLink } from "lucide-react";
+import { useSiteSection } from "@/hooks/useSiteSection";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
