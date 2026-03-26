@@ -20,14 +20,25 @@ const SectionLoader = () => (
 );
 
 const Careers = () => {
+  const { data: section } = useSiteSection("hero");
+  const bannerImage = section?.image_url || heroImage;
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main>
         {/* Hero Section for Careers */}
-        <section className="pt-32 pb-16 md:pt-40 md:pb-20 relative overflow-hidden">
-          <div className="absolute inset-0 gradient-bg opacity-5" />
-          <div className="container mx-auto px-4 relative z-10">
+        <section className="relative pt-20 pb-16 md:pt-24 md:pb-20 overflow-hidden min-h-[50vh] flex items-center">
+          <div className="absolute inset-0 z-0">
+            <img 
+              src={bannerImage} 
+              alt="Équipe Meta Cares" 
+              className="w-full h-full object-cover object-top"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/65 to-foreground/40" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10 pt-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
