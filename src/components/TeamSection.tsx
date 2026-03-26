@@ -202,7 +202,6 @@ const TeamSection = () => {
                         <p className="text-primary font-medium text-sm">{admin.role}</p>
                         <p className="text-muted-foreground text-xs mt-1">{admin.location}</p>
                         <p className="text-muted-foreground text-sm mt-3">{admin.description}</p>
-                        <p className="text-muted-foreground text-sm mt-3">{admin.biographie}</p>
                       </div>
                     </motion.div>
                   </CarouselItem>
@@ -260,7 +259,6 @@ const TeamSection = () => {
                           <h4 className="font-semibold text-sm">{employee.name}</h4>
                           <p className="text-xs opacity-90">{employee.role}</p>
                           <p className="text-xs opacity-75">{employee.location}</p>
-                          <p className="text-xs opacity-75">{employee.biographie}</p>
                         </div>
                       </div>
                     </motion.div>
