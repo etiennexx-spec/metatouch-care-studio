@@ -48,31 +48,31 @@ const belgiumAdmins = [
 
 const cameroonEmployees = [
   {
-    name: "Emmanuel Fotso",
+    name: "DONGHO Aliçone",
     role: "Responsable Marketing Digital",
-    location: "Douala",
+    location: "Yaoundé",
     image: employee1,
   },
   {
-    name: "Grace Ngoumou",
-    role: "Directrice Communication",
+    name: "MENGADA Grace",
+    role: "Responsable Marketing Digital",
     location: "Yaoundé",
     image: employee2,
   },
   {
-    name: "Paul Mbarga",
-    role: "Chef de Projet Digital",
-    location: "Douala",
+    name: "PEGOU Nelson",
+    role: "Responsable Marketing Digital",
+    location: "Yaoundé",
     image: employee3,
   },
   {
-    name: "Hervé Nguema",
-    role: "Social Media Manager",
+    name: "BISSILA Etienne",
+    role: "Responsable Marketing Digital",
     location: "Douala",
     image: employee4,
   },
   {
-    name: "Jean-Pierre Essomba",
+    name: "OBAM Alexandre",
     role: "Responsable Contenu",
     location: "Douala",
     image: employee5,
