@@ -80,6 +80,7 @@ const cameroonEmployees = [
 ];
 
 const TeamSection = () => {
+  const { data: teamSection } = useSiteSection("team");
   const [adminApi, setAdminApi] = useState<CarouselApi>();
   const [employeeApi, setEmployeeApi] = useState<CarouselApi>();
   const [adminCurrent, setAdminCurrent] = useState(0);
