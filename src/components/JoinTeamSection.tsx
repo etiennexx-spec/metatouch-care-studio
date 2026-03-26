@@ -57,6 +57,7 @@ const teamCategories = [
 ];
 
 const JoinTeamSection = () => {
+  const { data: section } = useSiteSection("join_team");
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
