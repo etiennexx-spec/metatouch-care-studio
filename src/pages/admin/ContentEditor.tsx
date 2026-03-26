@@ -87,6 +87,10 @@ const SectionCard = ({ section, onSave, onImageUpload, uploading, saving }: {
     professionals: "👨‍⚕️ Professionnels",
     contact: "📧 Contact",
     partners: "🤝 Partenaires",
+    careers: "🎯 Page Carrières - Hero",
+    team: "👥 Équipe (Belgique & Cameroun)",
+    join_team: "🤝 Rejoindre l'équipe",
+    cameroon_jobs: "🇨🇲 Offres d'emploi Cameroun",
   };
 
   return (

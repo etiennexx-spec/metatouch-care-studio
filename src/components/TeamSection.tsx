@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import { useSiteSection } from "@/hooks/useSiteSection";
 import {
   Carousel,
   CarouselContent,
