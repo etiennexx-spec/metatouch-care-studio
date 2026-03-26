@@ -221,7 +221,7 @@ const TeamSection = () => {
         {/* Cameroon Employees */}
         <div>
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
-            🇨🇲 Équipe Cameroun - 9 Professionnels
+            🇨🇲 Équipe Cameroun - 5 Professionnels
           </h3>
           <div className="max-w-6xl mx-auto px-4 md:px-12">
             <Carousel
