@@ -214,7 +214,7 @@ const TeamSection = () => {
                           <img
                             src={admin.image}
                             alt={admin.name}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover object-top"
                             loading="lazy"
                           />
                         </div>
