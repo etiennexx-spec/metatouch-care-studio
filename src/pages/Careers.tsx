@@ -61,7 +61,7 @@ const Careers = () => {
                 🌍 Rejoignez l'aventure Meta Cares
               </motion.div>
               
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                 Construisons ensemble{" "}
                 <span className="gradient-text">l'avenir des soins</span>
               </h1>
