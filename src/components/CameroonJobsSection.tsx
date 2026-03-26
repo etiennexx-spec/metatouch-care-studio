@@ -95,6 +95,7 @@ const activities = [
 ];
 
 const CameroonJobsSection = () => {
+  const { data: section } = useSiteSection("cameroon_jobs");
   const [selectedJob, setSelectedJob] = useState<typeof cameroonJobs[0] | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<typeof activities[0] | null>(null);
   const [formData, setFormData] = useState({
