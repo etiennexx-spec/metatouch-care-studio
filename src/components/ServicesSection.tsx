@@ -144,7 +144,13 @@ const ServicesSection = () => {
             <Card 
               key={index} 
               className="group bg-card border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-meta-md overflow-hidden cursor-pointer"
-              onClick={() => setSelectedService(service)}
+              onClick={() => {
+                if ('externalLink' in service && service.externalLink) {
+                  window.open(service.externalLink as string, '_blank', 'noopener,noreferrer');
+                } else {
+                  setSelectedService(service);
+                }
+              }}
             >
               <CardHeader className="p-4 sm:p-6">
                 <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl gradient-bg flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -159,8 +165,17 @@ const ServicesSection = () => {
                   {service.description}
                 </CardDescription>
                 <div className="flex items-center text-primary text-xs sm:text-sm font-medium group-hover:gap-2 transition-all">
-                  <span>En savoir plus</span>
-                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  {'externalLink' in service && service.externalLink ? (
+                    <>
+                      <span>Visiter la boutique</span>
+                      <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  ) : (
+                    <>
+                      <span>En savoir plus</span>
+                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </div>
               </CardContent>
             </Card>
