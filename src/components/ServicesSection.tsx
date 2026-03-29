@@ -6,7 +6,9 @@ import {
   Clock,
   Home,
   Stethoscope,
-  ArrowRight
+  ShoppingBag,
+  ArrowRight,
+  ExternalLink
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import ServiceDetailModal from "./ServiceDetailModal";
@@ -97,6 +99,21 @@ const services = [
     ],
     process: "Après analyse de votre besoin médical, nous identifions le spécialiste le plus adapté et organisons le rendez-vous dans les meilleurs délais. Un compte-rendu est transmis à votre médecin traitant pour assurer la continuité des soins."
   },
+  {
+    icon: ShoppingBag,
+    title: "Vente de produits médicaux",
+    description: "Découvrez notre boutique en ligne de produits médicaux et paramédicaux de qualité professionnelle, livrés partout au Cameroun et en Belgique.",
+    fullDescription: "Meta Cares propose une gamme complète de produits médicaux et paramédicaux via sa plateforme e-commerce. Des équipements de diagnostic aux consommables médicaux, en passant par les dispositifs de soins à domicile, nous sélectionnons des produits de qualité professionnelle à des prix compétitifs.",
+    benefits: [
+      "Large catalogue de produits médicaux certifiés",
+      "Livraison rapide au Cameroun et en Belgique",
+      "Prix compétitifs et transparents",
+      "Conseils personnalisés par des professionnels de santé",
+      "Service après-vente réactif et garantie produit"
+    ],
+    process: "Parcourez notre catalogue en ligne, sélectionnez vos produits et passez commande en toute simplicité. Notre équipe prépare votre commande avec soin et assure la livraison dans les meilleurs délais.",
+    externalLink: "https://www.metacares.shop/fr"
+  },
 ];
 
 const ServicesSection = () => {
@@ -127,7 +144,13 @@ const ServicesSection = () => {
             <Card 
               key={index} 
               className="group bg-card border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-meta-md overflow-hidden cursor-pointer"
-              onClick={() => setSelectedService(service)}
+              onClick={() => {
+                if ('externalLink' in service && service.externalLink) {
+                  window.open(service.externalLink as string, '_blank', 'noopener,noreferrer');
+                } else {
+                  setSelectedService(service);
+                }
+              }}
             >
               <CardHeader className="p-4 sm:p-6">
                 <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl gradient-bg flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -142,8 +165,17 @@ const ServicesSection = () => {
                   {service.description}
                 </CardDescription>
                 <div className="flex items-center text-primary text-xs sm:text-sm font-medium group-hover:gap-2 transition-all">
-                  <span>En savoir plus</span>
-                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  {'externalLink' in service && service.externalLink ? (
+                    <>
+                      <span>Visiter la boutique</span>
+                      <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  ) : (
+                    <>
+                      <span>En savoir plus</span>
+                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </div>
               </CardContent>
             </Card>
