@@ -6,7 +6,9 @@ import {
   Clock,
   Home,
   Stethoscope,
-  ArrowRight
+  ShoppingBag,
+  ArrowRight,
+  ExternalLink
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import ServiceDetailModal from "./ServiceDetailModal";
