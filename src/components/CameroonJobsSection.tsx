@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useSiteSection } from "@/hooks/useSiteSection";
-import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2 } from "lucide-react";
+import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2, Calendar, CalendarDays, CalendarRange } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,6 +14,16 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+
+import actFormation from "@/assets/activity-formation.jpg";
+import actCampagne from "@/assets/activity-campagne.jpg";
+import actReunion from "@/assets/activity-reunion.jpg";
+import actVisite from "@/assets/activity-visite.jpg";
+import actLogistique from "@/assets/activity-logistique.jpg";
+import actSensibilisation from "@/assets/activity-sensibilisation.jpg";
+import actGala from "@/assets/activity-gala.jpg";
+import actMarketing from "@/assets/activity-marketing.jpg";
+import actPartenariat from "@/assets/activity-partenariat.jpg";
 
 const cameroonJobs = [
   {
@@ -63,41 +73,116 @@ const cameroonJobs = [
   },
 ];
 
-const activities = [
+type ProgramPeriod = "hebdomadaire" | "mensuel" | "annuel";
+
+interface Activity {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  type: string;
+  period: ProgramPeriod;
+  date?: string;
+}
+
+const activities: Activity[] = [
+  // Hebdomadaire
   {
     id: 1,
-    title: "Formation Continue 2024",
-    description: "Nos équipes participent régulièrement à des formations pour maintenir un haut niveau de compétence.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
-    type: "formation",
+    title: "Réunion d'équipe soins à domicile",
+    description: "Briefing hebdomadaire de l'équipe terrain : planification des visites, répartition des patients et suivi des cas prioritaires à Douala et Yaoundé.",
+    image: actReunion,
+    type: "réunion",
+    period: "hebdomadaire",
+    date: "Tous les lundis",
   },
   {
     id: 2,
-    title: "Journée Portes Ouvertes",
-    description: "Venez découvrir nos locaux et rencontrer nos équipes lors de notre prochaine journée portes ouvertes.",
-    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=250&fit=crop",
-    type: "evenement",
+    title: "Visites à domicile – Suivi patients",
+    description: "Programme de visites régulières chez les patients chroniques et les personnes âgées. Contrôle des constantes, renouvellement des pansements et accompagnement personnalisé.",
+    image: actVisite,
+    type: "soins",
+    period: "hebdomadaire",
+    date: "Du lundi au vendredi",
   },
   {
     id: 3,
-    title: "Partenariat avec l'Hôpital Laquintinie",
-    description: "Nouveau partenariat stratégique pour améliorer l'accès aux soins de qualité à Douala.",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=250&fit=crop",
-    type: "partenariat",
+    title: "Stratégie marketing digital",
+    description: "Session de travail sur les réseaux sociaux, création de contenu santé et analyse des performances des campagnes digitales de Meta Cares Cameroun.",
+    image: actMarketing,
+    type: "marketing",
+    period: "hebdomadaire",
+    date: "Tous les mercredis",
   },
+  // Mensuel
   {
     id: 4,
-    title: "Recrutement Massif Infirmiers",
-    description: "Meta Cares recrute 20 infirmiers pour renforcer son équipe au Cameroun.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=250&fit=crop",
-    type: "emploi",
+    title: "Formation continue des soignants",
+    description: "Atelier de perfectionnement pour les infirmiers et aides-soignants : nouvelles techniques de soins, protocoles d'hygiène et gestion des urgences à domicile.",
+    image: actFormation,
+    type: "formation",
+    period: "mensuel",
+    date: "1er samedi du mois",
   },
+  {
+    id: 5,
+    title: "Campagne de sensibilisation santé",
+    description: "Descente dans les quartiers de Douala pour sensibiliser les populations sur l'hypertension, le diabète et les maladies chroniques. Dépistages gratuits et conseils de prévention.",
+    image: actCampagne,
+    type: "campagne",
+    period: "mensuel",
+    date: "2ème semaine du mois",
+  },
+  {
+    id: 6,
+    title: "Approvisionnement matériel médical",
+    description: "Réception et inventaire du matériel médical : équipements de soins, consommables et dispositifs médicaux pour les interventions terrain et partenaires hospitaliers.",
+    image: actLogistique,
+    type: "logistique",
+    period: "mensuel",
+    date: "Fin de mois",
+  },
+  // Annuel
+  {
+    id: 7,
+    title: "Conférence annuelle Meta Cares",
+    description: "Grand événement rassemblant les équipes Belgique et Cameroun : bilan de l'année, objectifs stratégiques, remise de distinctions et soirée de gala.",
+    image: actGala,
+    type: "événement",
+    period: "annuel",
+    date: "Décembre",
+  },
+  {
+    id: 8,
+    title: "Séminaire de sensibilisation nationale",
+    description: "Journée nationale de sensibilisation aux soins à domicile au Cameroun. Conférences avec des médecins, témoignages de patients et tables rondes sur l'avenir de la santé.",
+    image: actSensibilisation,
+    type: "séminaire",
+    period: "annuel",
+    date: "Avril",
+  },
+  {
+    id: 9,
+    title: "Signature de nouveaux partenariats",
+    description: "Cérémonie officielle de signature de conventions avec les hôpitaux et cliniques partenaires au Cameroun pour étendre la couverture des soins Meta Cares.",
+    image: actPartenariat,
+    type: "partenariat",
+    period: "annuel",
+    date: "Septembre",
+  },
+];
+
+const periodFilters: { key: ProgramPeriod; label: string; icon: typeof Calendar }[] = [
+  { key: "hebdomadaire", label: "Hebdomadaire", icon: Calendar },
+  { key: "mensuel", label: "Mensuel", icon: CalendarDays },
+  { key: "annuel", label: "Annuel", icon: CalendarRange },
 ];
 
 const CameroonJobsSection = () => {
   const { data: section } = useSiteSection("cameroon_jobs");
   const [selectedJob, setSelectedJob] = useState<typeof cameroonJobs[0] | null>(null);
-  const [selectedActivity, setSelectedActivity] = useState<typeof activities[0] | null>(null);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
+  const [activePeriod, setActivePeriod] = useState<ProgramPeriod>("hebdomadaire");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -268,34 +353,77 @@ const CameroonJobsSection = () => {
           </div>
         </div>
 
-        {/* Activities Grid */}
+        {/* Programs & Activities with Filters */}
         <div className="mb-6 md:mb-8">
-          <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
-            Actualités & Activités
+          <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 text-center">
+            Programmes & Activités
           </h3>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-            {activities.map((activity) => (
-              <motion.div
-                key={activity.id}
-                whileHover={{ scale: 1.05 }}
-                onClick={() => setSelectedActivity(activity)}
-                className="relative rounded-xl overflow-hidden cursor-pointer group"
+          <p className="text-sm text-muted-foreground text-center mb-6">
+            Découvrez les activités planifiées par l'équipe Meta Cares au Cameroun
+          </p>
+
+          {/* Period Filters */}
+          <div className="flex justify-center gap-2 md:gap-3 mb-6">
+            {periodFilters.map((filter) => (
+              <Button
+                key={filter.key}
+                variant={activePeriod === filter.key ? "default" : "outline"}
+                onClick={() => setActivePeriod(filter.key)}
+                className={activePeriod === filter.key ? "gradient-bg text-primary-foreground" : ""}
+                size="sm"
               >
-                <img
-                  src={activity.image}
-                  alt={activity.title}
-                  className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <span className="inline-block px-2 py-0.5 rounded-full bg-primary/80 text-primary-foreground text-xs mb-2">
-                    {activity.type}
-                  </span>
-                  <h4 className="text-sm font-semibold text-white line-clamp-2">{activity.title}</h4>
-                </div>
-              </motion.div>
+                <filter.icon className="w-4 h-4 mr-1.5" />
+                {filter.label}
+              </Button>
             ))}
           </div>
+
+          {/* Filtered Activities Grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activePeriod}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
+            >
+              {activities
+                .filter((a) => a.period === activePeriod)
+                .map((activity) => (
+                  <motion.div
+                    key={activity.id}
+                    whileHover={{ scale: 1.03 }}
+                    onClick={() => setSelectedActivity(activity)}
+                    className="relative rounded-xl overflow-hidden cursor-pointer group bg-card border border-border/50 shadow-sm"
+                  >
+                    <img
+                      src={activity.image}
+                      alt={activity.title}
+                      loading="lazy"
+                      width={768}
+                      height={512}
+                      className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                          {activity.type}
+                        </span>
+                        {activity.date && (
+                          <span className="text-xs text-muted-foreground flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            {activity.date}
+                          </span>
+                        )}
+                      </div>
+                      <h4 className="text-sm font-semibold text-foreground line-clamp-2 mb-1">{activity.title}</h4>
+                      <p className="text-xs text-muted-foreground line-clamp-2">{activity.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Job Application Dialog */}
@@ -416,6 +544,20 @@ const CameroonJobsSection = () => {
           <DialogContent className="max-w-lg">
             <DialogHeader>
               <DialogTitle>{selectedActivity?.title}</DialogTitle>
+              <DialogDescription className="flex items-center gap-2">
+                <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium capitalize">
+                  {selectedActivity?.type}
+                </span>
+                {selectedActivity?.date && (
+                  <span className="text-xs text-muted-foreground flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    {selectedActivity.date}
+                  </span>
+                )}
+                <span className="text-xs text-muted-foreground capitalize">
+                  • Programme {selectedActivity?.period}
+                </span>
+              </DialogDescription>
             </DialogHeader>
             <img
               src={selectedActivity?.image}
@@ -423,13 +565,6 @@ const CameroonJobsSection = () => {
               className="w-full h-48 object-cover rounded-lg"
             />
             <p className="text-muted-foreground">{selectedActivity?.description}</p>
-            {selectedActivity?.type === "emploi" && (
-              <Button asChild className="gradient-bg gradient-bg-hover">
-                <a href="https://metacares.app" target="_blank" rel="noopener noreferrer">
-                  Déposer ma candidature
-                </a>
-              </Button>
-            )}
           </DialogContent>
         </Dialog>
       </div>
