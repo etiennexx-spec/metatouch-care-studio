@@ -40,6 +40,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/carrieres" element={<Careers />} />
+              <Route path="/equipe/:id" element={<TeamMemberProfile />} />
               <Route path="/marketplace" element={<Marketplace />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
