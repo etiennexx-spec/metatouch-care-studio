@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useSiteSection } from "@/hooks/useSiteSection";
-import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2 } from "lucide-react";
+import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2, Calendar, CalendarDays, CalendarRange } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,6 +14,16 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+
+import actFormation from "@/assets/activity-formation.jpg";
+import actCampagne from "@/assets/activity-campagne.jpg";
+import actReunion from "@/assets/activity-reunion.jpg";
+import actVisite from "@/assets/activity-visite.jpg";
+import actLogistique from "@/assets/activity-logistique.jpg";
+import actSensibilisation from "@/assets/activity-sensibilisation.jpg";
+import actGala from "@/assets/activity-gala.jpg";
+import actMarketing from "@/assets/activity-marketing.jpg";
+import actPartenariat from "@/assets/activity-partenariat.jpg";
 
 const cameroonJobs = [
   {
@@ -63,34 +73,102 @@ const cameroonJobs = [
   },
 ];
 
-const activities = [
+type ProgramPeriod = "hebdomadaire" | "mensuel" | "annuel";
+
+interface Activity {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  type: string;
+  period: ProgramPeriod;
+  date?: string;
+}
+
+const activities: Activity[] = [
+  // Hebdomadaire
   {
     id: 1,
-    title: "Formation Continue 2024",
-    description: "Nos équipes participent régulièrement à des formations pour maintenir un haut niveau de compétence.",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
-    type: "formation",
+    title: "Réunion d'équipe soins à domicile",
+    description: "Briefing hebdomadaire de l'équipe terrain : planification des visites, répartition des patients et suivi des cas prioritaires à Douala et Yaoundé.",
+    image: actReunion,
+    type: "réunion",
+    period: "hebdomadaire",
+    date: "Tous les lundis",
   },
   {
     id: 2,
-    title: "Journée Portes Ouvertes",
-    description: "Venez découvrir nos locaux et rencontrer nos équipes lors de notre prochaine journée portes ouvertes.",
-    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=250&fit=crop",
-    type: "evenement",
+    title: "Visites à domicile – Suivi patients",
+    description: "Programme de visites régulières chez les patients chroniques et les personnes âgées. Contrôle des constantes, renouvellement des pansements et accompagnement personnalisé.",
+    image: actVisite,
+    type: "soins",
+    period: "hebdomadaire",
+    date: "Du lundi au vendredi",
   },
   {
     id: 3,
-    title: "Partenariat avec l'Hôpital Laquintinie",
-    description: "Nouveau partenariat stratégique pour améliorer l'accès aux soins de qualité à Douala.",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=250&fit=crop",
-    type: "partenariat",
+    title: "Stratégie marketing digital",
+    description: "Session de travail sur les réseaux sociaux, création de contenu santé et analyse des performances des campagnes digitales de Meta Cares Cameroun.",
+    image: actMarketing,
+    type: "marketing",
+    period: "hebdomadaire",
+    date: "Tous les mercredis",
   },
+  // Mensuel
   {
     id: 4,
-    title: "Recrutement Massif Infirmiers",
-    description: "Meta Cares recrute 20 infirmiers pour renforcer son équipe au Cameroun.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=250&fit=crop",
-    type: "emploi",
+    title: "Formation continue des soignants",
+    description: "Atelier de perfectionnement pour les infirmiers et aides-soignants : nouvelles techniques de soins, protocoles d'hygiène et gestion des urgences à domicile.",
+    image: actFormation,
+    type: "formation",
+    period: "mensuel",
+    date: "1er samedi du mois",
+  },
+  {
+    id: 5,
+    title: "Campagne de sensibilisation santé",
+    description: "Descente dans les quartiers de Douala pour sensibiliser les populations sur l'hypertension, le diabète et les maladies chroniques. Dépistages gratuits et conseils de prévention.",
+    image: actCampagne,
+    type: "campagne",
+    period: "mensuel",
+    date: "2ème semaine du mois",
+  },
+  {
+    id: 6,
+    title: "Approvisionnement matériel médical",
+    description: "Réception et inventaire du matériel médical : équipements de soins, consommables et dispositifs médicaux pour les interventions terrain et partenaires hospitaliers.",
+    image: actLogistique,
+    type: "logistique",
+    period: "mensuel",
+    date: "Fin de mois",
+  },
+  // Annuel
+  {
+    id: 7,
+    title: "Conférence annuelle Meta Cares",
+    description: "Grand événement rassemblant les équipes Belgique et Cameroun : bilan de l'année, objectifs stratégiques, remise de distinctions et soirée de gala.",
+    image: actGala,
+    type: "événement",
+    period: "annuel",
+    date: "Décembre",
+  },
+  {
+    id: 8,
+    title: "Séminaire de sensibilisation nationale",
+    description: "Journée nationale de sensibilisation aux soins à domicile au Cameroun. Conférences avec des médecins, témoignages de patients et tables rondes sur l'avenir de la santé.",
+    image: actSensibilisation,
+    type: "séminaire",
+    period: "annuel",
+    date: "Avril",
+  },
+  {
+    id: 9,
+    title: "Signature de nouveaux partenariats",
+    description: "Cérémonie officielle de signature de conventions avec les hôpitaux et cliniques partenaires au Cameroun pour étendre la couverture des soins Meta Cares.",
+    image: actPartenariat,
+    type: "partenariat",
+    period: "annuel",
+    date: "Septembre",
   },
 ];
 
