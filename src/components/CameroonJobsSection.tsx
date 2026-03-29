@@ -172,10 +172,17 @@ const activities: Activity[] = [
   },
 ];
 
+const periodFilters: { key: ProgramPeriod; label: string; icon: typeof Calendar }[] = [
+  { key: "hebdomadaire", label: "Hebdomadaire", icon: Calendar },
+  { key: "mensuel", label: "Mensuel", icon: CalendarDays },
+  { key: "annuel", label: "Annuel", icon: CalendarRange },
+];
+
 const CameroonJobsSection = () => {
   const { data: section } = useSiteSection("cameroon_jobs");
   const [selectedJob, setSelectedJob] = useState<typeof cameroonJobs[0] | null>(null);
-  const [selectedActivity, setSelectedActivity] = useState<typeof activities[0] | null>(null);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
+  const [activePeriod, setActivePeriod] = useState<ProgramPeriod>("hebdomadaire");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
