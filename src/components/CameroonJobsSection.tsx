@@ -544,6 +544,20 @@ const CameroonJobsSection = () => {
           <DialogContent className="max-w-lg">
             <DialogHeader>
               <DialogTitle>{selectedActivity?.title}</DialogTitle>
+              <DialogDescription className="flex items-center gap-2">
+                <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium capitalize">
+                  {selectedActivity?.type}
+                </span>
+                {selectedActivity?.date && (
+                  <span className="text-xs text-muted-foreground flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    {selectedActivity.date}
+                  </span>
+                )}
+                <span className="text-xs text-muted-foreground capitalize">
+                  • Programme {selectedActivity?.period}
+                </span>
+              </DialogDescription>
             </DialogHeader>
             <img
               src={selectedActivity?.image}
@@ -551,13 +565,6 @@ const CameroonJobsSection = () => {
               className="w-full h-48 object-cover rounded-lg"
             />
             <p className="text-muted-foreground">{selectedActivity?.description}</p>
-            {selectedActivity?.type === "emploi" && (
-              <Button asChild className="gradient-bg gradient-bg-hover">
-                <a href="https://metacares.app" target="_blank" rel="noopener noreferrer">
-                  Déposer ma candidature
-                </a>
-              </Button>
-            )}
           </DialogContent>
         </Dialog>
       </div>
