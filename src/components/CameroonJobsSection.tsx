@@ -353,31 +353,78 @@ const CameroonJobsSection = () => {
           </div>
         </div>
 
-        {/* Activities Grid */}
+        {/* Programs & Activities with Filters */}
         <div className="mb-6 md:mb-8">
-          <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
-            Actualités & Activités
+          <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 text-center">
+            Programmes & Activités
           </h3>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-            {activities.map((activity) => (
-              <motion.div
-                key={activity.id}
-                whileHover={{ scale: 1.05 }}
-                onClick={() => setSelectedActivity(activity)}
-                className="relative rounded-xl overflow-hidden cursor-pointer group"
+          <p className="text-sm text-muted-foreground text-center mb-6">
+            Découvrez les activités planifiées par l'équipe Meta Cares au Cameroun
+          </p>
+
+          {/* Period Filters */}
+          <div className="flex justify-center gap-2 md:gap-3 mb-6">
+            {periodFilters.map((filter) => (
+              <Button
+                key={filter.key}
+                variant={activePeriod === filter.key ? "default" : "outline"}
+                onClick={() => setActivePeriod(filter.key)}
+                className={activePeriod === filter.key ? "gradient-bg text-primary-foreground" : ""}
+                size="sm"
               >
-                <img
-                  src={activity.image}
-                  alt={activity.title}
-                  className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <span className="inline-block px-2 py-0.5 rounded-full bg-primary/80 text-primary-foreground text-xs mb-2">
-                    {activity.type}
-                  </span>
-                  <h4 className="text-sm font-semibold text-white line-clamp-2">{activity.title}</h4>
-                </div>
+                <filter.icon className="w-4 h-4 mr-1.5" />
+                {filter.label}
+              </Button>
+            ))}
+          </div>
+
+          {/* Filtered Activities Grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activePeriod}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
+            >
+              {activities
+                .filter((a) => a.period === activePeriod)
+                .map((activity) => (
+                  <motion.div
+                    key={activity.id}
+                    whileHover={{ scale: 1.03 }}
+                    onClick={() => setSelectedActivity(activity)}
+                    className="relative rounded-xl overflow-hidden cursor-pointer group bg-card border border-border/50 shadow-sm"
+                  >
+                    <img
+                      src={activity.image}
+                      alt={activity.title}
+                      loading="lazy"
+                      width={768}
+                      height={512}
+                      className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                          {activity.type}
+                        </span>
+                        {activity.date && (
+                          <span className="text-xs text-muted-foreground flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            {activity.date}
+                          </span>
+                        )}
+                      </div>
+                      <h4 className="text-sm font-semibold text-foreground line-clamp-2 mb-1">{activity.title}</h4>
+                      <p className="text-xs text-muted-foreground line-clamp-2">{activity.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
               </motion.div>
             ))}
           </div>
