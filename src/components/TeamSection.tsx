@@ -1,5 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Eye } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useSiteSection } from "@/hooks/useSiteSection";
 import {
   Carousel,
@@ -9,18 +12,12 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { cameroonEmployees } from "@/data/teamMembers";
 
 // Import admin images
 import admin1 from "@/assets/admin-1.jpg";
 import admin2 from "@/assets/admin-2.jpg";
 import admin3 from "@/assets/admin-3.jpg";
-
-// Import Cameroon employee images
-import employee1 from "@/assets/employee-cm-1.jpg";
-import employee2 from "@/assets/employee-cm-2.jpg";
-import employee3 from "@/assets/employee-cm-3.jpg";
-import employee4 from "@/assets/employee-cm-4.jpg";
-import employee5 from "@/assets/employee-cm-5.jpg";
 
 const belgiumAdmins = [
   {
