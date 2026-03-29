@@ -425,10 +425,6 @@ const CameroonJobsSection = () => {
             </motion.div>
           </AnimatePresence>
         </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
 
         {/* Job Application Dialog */}
         <Dialog open={!!selectedJob} onOpenChange={() => setSelectedJob(null)}>
