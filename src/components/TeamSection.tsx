@@ -43,38 +43,6 @@ const belgiumAdmins = [
   },
 ];
 
-const cameroonEmployees = [
-  {
-    name: "DONGHO Aliçone",
-    role: "Responsable Marketing Digital",
-    location: "Yaoundé",
-    image: employee1,
-  },
-  {
-    name: "MENGADA Grace",
-    role: "Responsable Marketing Digital",
-    location: "Yaoundé",
-    image: employee2,
-  },
-  {
-    name: "PEGOU Nelson",
-    role: "Responsable Marketing Digital",
-    location: "Yaoundé",
-    image: employee3,
-  },
-  {
-    name: "BISSILA Etienne",
-    role: "Responsable Marketing Digital",
-    location: "yaoundé",
-    image: employee4,
-  },
-  {
-    name: "OBAM Alexandre",
-    role: "Responsable Contenu",
-    location: "yaoundé",
-    image: employee5,
-  },
-];
 
 const TeamSection = () => {
   const { data: teamSection } = useSiteSection("team");
