@@ -210,7 +210,7 @@ const TeamSection = () => {
                   <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
                     <motion.div
                       whileHover={{ scale: 1.05 }}
-                      className="bg-card rounded-xl overflow-hidden shadow-card border border-border/50 cursor-pointer"
+                      className="bg-card rounded-xl overflow-hidden shadow-card border border-border/50"
                     >
                       <div className="relative">
                         <img
@@ -225,6 +225,14 @@ const TeamSection = () => {
                           <p className="text-xs opacity-90">{employee.role}</p>
                           <p className="text-xs opacity-75">{employee.location}</p>
                         </div>
+                      </div>
+                      <div className="p-2">
+                        <Link to={`/equipe/${employee.id}`}>
+                          <Button variant="ghost" size="sm" className="w-full text-primary hover:text-primary/80 text-xs">
+                            <Eye className="w-3 h-3 mr-1" />
+                            Voir plus
+                          </Button>
+                        </Link>
                       </div>
                     </motion.div>
                   </CarouselItem>
