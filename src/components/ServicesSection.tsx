@@ -99,6 +99,21 @@ const services = [
     ],
     process: "Après analyse de votre besoin médical, nous identifions le spécialiste le plus adapté et organisons le rendez-vous dans les meilleurs délais. Un compte-rendu est transmis à votre médecin traitant pour assurer la continuité des soins."
   },
+  {
+    icon: ShoppingBag,
+    title: "Vente de produits médicaux",
+    description: "Découvrez notre boutique en ligne de produits médicaux et paramédicaux de qualité professionnelle, livrés partout au Cameroun et en Belgique.",
+    fullDescription: "Meta Cares propose une gamme complète de produits médicaux et paramédicaux via sa plateforme e-commerce. Des équipements de diagnostic aux consommables médicaux, en passant par les dispositifs de soins à domicile, nous sélectionnons des produits de qualité professionnelle à des prix compétitifs.",
+    benefits: [
+      "Large catalogue de produits médicaux certifiés",
+      "Livraison rapide au Cameroun et en Belgique",
+      "Prix compétitifs et transparents",
+      "Conseils personnalisés par des professionnels de santé",
+      "Service après-vente réactif et garantie produit"
+    ],
+    process: "Parcourez notre catalogue en ligne, sélectionnez vos produits et passez commande en toute simplicité. Notre équipe prépare votre commande avec soin et assure la livraison dans les meilleurs délais.",
+    externalLink: "https://www.metacares.shop/fr"
+  },
 ];
 
 const ServicesSection = () => {
