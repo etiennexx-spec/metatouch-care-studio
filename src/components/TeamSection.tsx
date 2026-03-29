@@ -1,5 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Eye } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useSiteSection } from "@/hooks/useSiteSection";
 import {
   Carousel,
@@ -9,18 +12,12 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { cameroonEmployees } from "@/data/teamMembers";
 
 // Import admin images
 import admin1 from "@/assets/admin-1.jpg";
 import admin2 from "@/assets/admin-2.jpg";
 import admin3 from "@/assets/admin-3.jpg";
-
-// Import Cameroon employee images
-import employee1 from "@/assets/employee-cm-1.jpg";
-import employee2 from "@/assets/employee-cm-2.jpg";
-import employee3 from "@/assets/employee-cm-3.jpg";
-import employee4 from "@/assets/employee-cm-4.jpg";
-import employee5 from "@/assets/employee-cm-5.jpg";
 
 const belgiumAdmins = [
   {
@@ -46,38 +43,6 @@ const belgiumAdmins = [
   },
 ];
 
-const cameroonEmployees = [
-  {
-    name: "DONGHO Aliçone",
-    role: "Responsable Marketing Digital",
-    location: "Yaoundé",
-    image: employee1,
-  },
-  {
-    name: "MENGADA Grace",
-    role: "Responsable Marketing Digital",
-    location: "Yaoundé",
-    image: employee2,
-  },
-  {
-    name: "PEGOU Nelson",
-    role: "Responsable Marketing Digital",
-    location: "Yaoundé",
-    image: employee3,
-  },
-  {
-    name: "BISSILA Etienne",
-    role: "Responsable Marketing Digital",
-    location: "yaoundé",
-    image: employee4,
-  },
-  {
-    name: "OBAM Alexandre",
-    role: "Responsable Contenu",
-    location: "yaoundé",
-    image: employee5,
-  },
-];
 
 const TeamSection = () => {
   const { data: teamSection } = useSiteSection("team");
@@ -245,7 +210,7 @@ const TeamSection = () => {
                   <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
                     <motion.div
                       whileHover={{ scale: 1.05 }}
-                      className="bg-card rounded-xl overflow-hidden shadow-card border border-border/50 cursor-pointer"
+                      className="bg-card rounded-xl overflow-hidden shadow-card border border-border/50"
                     >
                       <div className="relative">
                         <img
@@ -260,6 +225,14 @@ const TeamSection = () => {
                           <p className="text-xs opacity-90">{employee.role}</p>
                           <p className="text-xs opacity-75">{employee.location}</p>
                         </div>
+                      </div>
+                      <div className="p-2">
+                        <Link to={`/equipe/${employee.id}`}>
+                          <Button variant="ghost" size="sm" className="w-full text-primary hover:text-primary/80 text-xs">
+                            <Eye className="w-3 h-3 mr-1" />
+                            Voir plus
+                          </Button>
+                        </Link>
                       </div>
                     </motion.div>
                   </CarouselItem>
