@@ -96,7 +96,7 @@ const TeamSection = () => {
                   alt="Manager du Cameroun"
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
-                  width={768}
+                  width={1500}
                   height={1024}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
