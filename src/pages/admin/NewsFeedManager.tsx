@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Loader2, Plus, Trash2, Pencil, Upload, Calendar, CalendarDays, CalendarRange, Image as ImageIcon, Video as VideoIcon, Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Period = "hebdomadaire" | "mensuel" | "annuel";
 type MediaType = "image" | "video";
@@ -220,8 +220,9 @@ const NewsFormDialog = ({
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  // Reset form when editing changes
-  useState(() => {
+  // Reset form when editing changes (or dialog opens)
+  useEffect(() => {
+    if (!open) return;
     setTitle(editing?.title ?? "");
     setDescription(editing?.description ?? "");
     setPeriod(editing?.period ?? "hebdomadaire");
@@ -229,7 +230,7 @@ const NewsFormDialog = ({
     setMediaUrl(editing?.media_url ?? null);
     setMediaType(editing?.media_type ?? "image");
     setIsPublished(editing?.is_published ?? true);
-  });
+  }, [editing, open]);
 
   const handleUpload = async (file: File) => {
     const isVideo = file.type.startsWith("video/");
