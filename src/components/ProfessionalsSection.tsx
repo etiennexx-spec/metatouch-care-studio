@@ -1,11 +1,4 @@
-import { 
-  TrendingUp, 
-  Users, 
-  Globe2, 
-  BadgeCheck,
-  FileText,
-  ArrowRight
-} from "lucide-react";
+import { TrendingUp, Users, Globe2, BadgeCheck, FileText, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useSiteSection } from "@/hooks/useSiteSection";
@@ -46,11 +39,11 @@ const ProfessionalsSection = () => {
               {section?.subtitle ?? "Pour les Professionnels"}
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-card mb-4 sm:mb-6">
-              {section?.title ?? "Rejoignez"}{" "}
-              <span className="gradient-text">Meta Cares</span>
+              {section?.title ?? "Rejoignez"} <span className="gradient-text">MetaCares</span>
             </h2>
             <p className="text-sm sm:text-base text-card/80 mb-6 sm:mb-8 leading-relaxed">
-              {section?.description ?? "Vous êtes infirmier, aide-soignant, médecin ou professionnel de santé ? Rejoignez notre équipe et bénéficiez d'opportunités uniques de carrière et de développement professionnel."}
+              {section?.description ??
+                "Vous êtes infirmier, aide-soignant, médecin ou professionnel de santé ? Rejoignez notre équipe et bénéficiez d'opportunités uniques de carrière et de développement professionnel."}
             </p>
 
             {/* Benefits grid */}
@@ -62,20 +55,31 @@ const ProfessionalsSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-card text-xs sm:text-sm">{benefit.title}</h4>
-                    <p className="text-card/60 text-[10px] sm:text-xs mt-0.5 sm:mt-1 hidden sm:block">{benefit.description}</p>
+                    <p className="text-card/60 text-[10px] sm:text-xs mt-0.5 sm:mt-1 hidden sm:block">
+                      {benefit.description}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Button size="lg" className="gradient-bg gradient-bg-hover text-primary-foreground text-sm sm:text-base" asChild>
+              <Button
+                size="lg"
+                className="gradient-bg gradient-bg-hover text-primary-foreground text-sm sm:text-base"
+                asChild
+              >
                 <a href="https://metacares.app" target="_blank" rel="noopener noreferrer">
                   Déposer ma candidature
                   <FileText className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-card/30 text-card hover:bg-card/10 text-sm sm:text-base" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-card/30 text-card hover:bg-card/10 text-sm sm:text-base"
+                asChild
+              >
                 <a href="https://metacares.be" target="_blank" rel="noopener noreferrer">
                   En savoir plus
                 </a>
@@ -87,9 +91,7 @@ const ProfessionalsSection = () => {
           <div className="relative mt-6 lg:mt-0">
             <Card className="bg-card/10 backdrop-blur-sm border-card/20 p-4 sm:p-8">
               <CardContent className="p-0">
-                <h3 className="text-lg sm:text-xl font-bold text-card mb-4 sm:mb-6">
-                  Pourquoi nous rejoindre ?
-                </h3>
+                <h3 className="text-lg sm:text-xl font-bold text-card mb-4 sm:mb-6">Pourquoi nous rejoindre ?</h3>
                 <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl gradient-bg flex items-center justify-center flex-shrink-0">
