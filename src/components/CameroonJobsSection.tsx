@@ -290,20 +290,21 @@ const CameroonJobsSection = () => {
                     onClick={() => setSelectedJob(job)}
                     className="bg-background rounded-xl p-4 cursor-pointer border border-border/50 hover:border-primary/50 transition-colors"
                   >
-                    <div className="flex gap-4">
-                      <img
-                        src={job.image}
-                        alt={job.title}
-                        className="w-20 h-20 rounded-lg object-cover"
-                      />
-                      <div className="flex-1">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Briefcase className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
                         <h4 className="font-semibold text-foreground mb-1">{job.title}</h4>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                          <MapPin className="w-3 h-3" />
-                          {job.location}
-                          <span className="mx-1">•</span>
-                          <Clock className="w-3 h-3" />
-                          {job.type}
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2 flex-wrap">
+                          <span className="flex items-center gap-1">
+                            <MapPin className="w-3 h-3" />
+                            {job.location}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            {job.type}
+                          </span>
                         </div>
                         <p className="text-sm text-muted-foreground line-clamp-2">{job.description}</p>
                       </div>

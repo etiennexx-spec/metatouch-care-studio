@@ -112,26 +112,20 @@ const JoinTeamSection = () => {
             <CarouselContent>
               {teamCategories.map((category, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="bg-card rounded-2xl overflow-hidden shadow-card h-full flex flex-col">
-                    <div className="relative h-40 overflow-hidden">
-                      <img 
-                        src={category.image} 
-                        alt={category.title}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                      <div className="absolute bottom-4 left-4 w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                        <category.icon className="w-5 h-5 text-primary-foreground" />
+                  <div className="bg-card rounded-2xl overflow-hidden shadow-card h-full flex flex-col border border-border/50">
+                    <div className="p-6 flex flex-col h-full">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center flex-shrink-0">
+                          <category.icon className="w-6 h-6 text-primary-foreground" />
+                        </div>
+                        <h3 className="text-lg font-bold text-foreground">{category.title}</h3>
                       </div>
-                    </div>
-                    <div className="p-5 flex-1 flex flex-col">
-                      <h3 className="text-lg font-bold text-foreground mb-2">{category.title}</h3>
                       <p className="text-muted-foreground text-sm mb-4 flex-1">{category.description}</p>
-                      <div className="space-y-1 mb-4">
+                      <div className="space-y-1.5 pt-3 border-t border-border/50">
+                        <p className="text-xs uppercase tracking-wide text-muted-foreground font-semibold mb-2">Postes recherchés</p>
                         {category.roles.map((role, idx) => (
-                          <div key={idx} className="text-xs text-primary flex items-center gap-1">
-                            <span className="w-1 h-1 rounded-full bg-primary" />
+                          <div key={idx} className="text-xs text-primary flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                             {role}
                           </div>
                         ))}
