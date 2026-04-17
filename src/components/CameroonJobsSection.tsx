@@ -433,6 +433,82 @@ const CameroonJobsSection = () => {
                 ))}
             </motion.div>
           </AnimatePresence>
+
+          {/* Dynamic News Feed (admin-managed) */}
+          {filteredNews.length > 0 && (
+            <div className="mt-10">
+              <div className="flex items-center justify-center gap-2 mb-5">
+                <span className="h-px flex-1 bg-border max-w-[80px]" />
+                <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                  📰 Fil d'actualité {activePeriod}
+                </h4>
+                <span className="h-px flex-1 bg-border max-w-[80px]" />
+              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`news-${activePeriod}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
+                >
+                  {filteredNews.map((news) => (
+                    <motion.div
+                      key={news.id}
+                      whileHover={{ scale: 1.03 }}
+                      onClick={() => setSelectedNews(news)}
+                      className="relative rounded-xl overflow-hidden cursor-pointer group bg-card border border-primary/20 shadow-sm"
+                    >
+                      {news.media_url && (
+                        <div className="relative h-44 bg-muted">
+                          {news.media_type === "video" ? (
+                            <>
+                              <video
+                                src={news.media_url}
+                                className="w-full h-full object-cover"
+                                muted
+                                playsInline
+                              />
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
+                                <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
+                                  <VideoIcon className="w-6 h-6 text-primary" />
+                                </div>
+                              </div>
+                            </>
+                          ) : (
+                            <img
+                              src={news.media_url}
+                              alt={news.title}
+                              loading="lazy"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                          )}
+                        </div>
+                      )}
+                      <div className="p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="inline-block px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-xs font-medium">
+                            Actualité
+                          </span>
+                          {news.event_date && (
+                            <span className="text-xs text-muted-foreground flex items-center gap-1">
+                              <Calendar className="w-3 h-3" />
+                              {news.event_date}
+                            </span>
+                          )}
+                        </div>
+                        <h4 className="text-sm font-semibold text-foreground line-clamp-2 mb-1">{news.title}</h4>
+                        {news.description && (
+                          <p className="text-xs text-muted-foreground line-clamp-2">{news.description}</p>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          )}
         </div>
 
         {/* Job Application Dialog */}
