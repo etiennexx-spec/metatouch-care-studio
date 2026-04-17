@@ -20,6 +20,7 @@ const ContentEditor = lazy(() => import("./pages/admin/ContentEditor"));
 const GalleryManager = lazy(() => import("./pages/admin/GalleryManager"));
 const Messages = lazy(() => import("./pages/admin/Messages"));
 const Applications = lazy(() => import("./pages/admin/Applications"));
+const NewsFeedManager = lazy(() => import("./pages/admin/NewsFeedManager"));
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
                 <Route path="gallery" element={<GalleryManager />} />
                 <Route path="messages" element={<Messages />} />
                 <Route path="applications" element={<Applications />} />
+                <Route path="news" element={<NewsFeedManager />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

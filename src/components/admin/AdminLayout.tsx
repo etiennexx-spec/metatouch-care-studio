@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { LayoutDashboard, Package, FileText, Image, Mail, Briefcase, LogOut, Menu, X, ArrowLeft } from "lucide-react";
+import { LayoutDashboard, Package, FileText, Image, Mail, Briefcase, LogOut, Menu, X, ArrowLeft, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import logo from "@/assets/logo-metacares.png";
@@ -10,6 +10,7 @@ const navItems = [
   { to: "/admin/products", icon: Package, label: "Produits" },
   { to: "/admin/content", icon: FileText, label: "Contenus" },
   { to: "/admin/gallery", icon: Image, label: "Images" },
+  { to: "/admin/news", icon: Newspaper, label: "Fil d'actualité" },
   { to: "/admin/messages", icon: Mail, label: "Messages" },
   { to: "/admin/applications", icon: Briefcase, label: "Candidatures" },
 ];
