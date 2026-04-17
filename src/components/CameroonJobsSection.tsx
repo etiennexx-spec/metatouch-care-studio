@@ -652,6 +652,44 @@ const CameroonJobsSection = () => {
             <p className="text-muted-foreground">{selectedActivity?.description}</p>
           </DialogContent>
         </Dialog>
+
+        {/* News Item Detail Dialog */}
+        <Dialog open={!!selectedNews} onOpenChange={() => setSelectedNews(null)}>
+          <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>{selectedNews?.title}</DialogTitle>
+              <DialogDescription className="flex items-center gap-2 flex-wrap">
+                <span className="inline-block px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-xs font-medium">
+                  Actualité {selectedNews?.period}
+                </span>
+                {selectedNews?.event_date && (
+                  <span className="text-xs text-muted-foreground flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    {selectedNews.event_date}
+                  </span>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+            {selectedNews?.media_url && (
+              selectedNews.media_type === "video" ? (
+                <video
+                  src={selectedNews.media_url}
+                  controls
+                  className="w-full rounded-lg max-h-[60vh] bg-black"
+                />
+              ) : (
+                <img
+                  src={selectedNews.media_url}
+                  alt={selectedNews.title}
+                  className="w-full max-h-[60vh] object-contain rounded-lg bg-muted"
+                />
+              )
+            )}
+            {selectedNews?.description && (
+              <p className="text-muted-foreground whitespace-pre-line">{selectedNews.description}</p>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
