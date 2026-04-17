@@ -1,12 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useSiteSection } from "@/hooks/useSiteSection";
-import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2, Calendar, CalendarDays, CalendarRange } from "lucide-react";
+import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2, Calendar, CalendarDays, CalendarRange, Video as VideoIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePublicNewsFeed, type NewsItem } from "@/hooks/useNewsFeed";
 import {
   Dialog,
   DialogContent,
@@ -180,8 +181,10 @@ const periodFilters: { key: ProgramPeriod; label: string; icon: typeof Calendar 
 
 const CameroonJobsSection = () => {
   const { data: section } = useSiteSection("cameroon_jobs");
+  const { data: newsItems = [] } = usePublicNewsFeed();
   const [selectedJob, setSelectedJob] = useState<typeof cameroonJobs[0] | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
+  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [activePeriod, setActivePeriod] = useState<ProgramPeriod>("hebdomadaire");
   const [formData, setFormData] = useState({
     name: "",
@@ -193,6 +196,11 @@ const CameroonJobsSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const filteredNews = useMemo(
+    () => newsItems.filter((n) => n.period === activePeriod),
+    [newsItems, activePeriod]
+  );
 
   // Auto-scroll for jobs
   useEffect(() => {
