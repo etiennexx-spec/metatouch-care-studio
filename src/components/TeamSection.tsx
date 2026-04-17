@@ -47,7 +47,7 @@ const TeamSection = () => {
     { icon: UserCheck, label: "Directeur Général", value: "Monsieur PIERRE TAHAM NELSTOR" },
     { icon: Users, label: "Managers", value: "11 managers" },
     { icon: Globe, label: "Présence internationale", value: "Belgique • Cameroun • France • Canada" },
-    { icon: Megaphone, label: "Marketing", value: "Plusieurs équipes marketing" },
+    { icon: Megaphone, label: "Marketing", value: " 10 équipes marketing" },
   ];
 
   return (
@@ -80,7 +80,7 @@ const TeamSection = () => {
         {/* Branch Cameroun: Manager + Siège Belgique side by side */}
         <div className="mb-12 md:mb-16">
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-6 text-center">
-            🌍 Branche Cameroun & Siège Belgique
+            🌍 Branche Cameroun et Siège Belgique
           </h3>
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
             {/* Manager Cameroun */}
@@ -183,7 +183,11 @@ const TeamSection = () => {
                       </div>
                       <div className="p-2">
                         <Link to={`/equipe/${employee.id}`}>
-                          <Button variant="ghost" size="sm" className="w-full text-primary hover:text-primary/80 text-xs">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="w-full text-primary hover:text-primary/80 text-xs"
+                          >
                             <Eye className="w-3 h-3 mr-1" />
                             Voir plus
                           </Button>
