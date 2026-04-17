@@ -1,12 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useSiteSection } from "@/hooks/useSiteSection";
-import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2, Calendar, CalendarDays, CalendarRange } from "lucide-react";
+import { Briefcase, Send, Upload, FileText, X, MapPin, Clock, Loader2, Calendar, CalendarDays, CalendarRange, Video as VideoIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePublicNewsFeed, type NewsItem } from "@/hooks/useNewsFeed";
 import {
   Dialog,
   DialogContent,
@@ -180,8 +181,10 @@ const periodFilters: { key: ProgramPeriod; label: string; icon: typeof Calendar 
 
 const CameroonJobsSection = () => {
   const { data: section } = useSiteSection("cameroon_jobs");
+  const { data: newsItems = [] } = usePublicNewsFeed();
   const [selectedJob, setSelectedJob] = useState<typeof cameroonJobs[0] | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
+  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [activePeriod, setActivePeriod] = useState<ProgramPeriod>("hebdomadaire");
   const [formData, setFormData] = useState({
     name: "",
@@ -193,6 +196,11 @@ const CameroonJobsSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const filteredNews = useMemo(
+    () => newsItems.filter((n) => n.period === activePeriod),
+    [newsItems, activePeriod]
+  );
 
   // Auto-scroll for jobs
   useEffect(() => {
@@ -290,20 +298,21 @@ const CameroonJobsSection = () => {
                     onClick={() => setSelectedJob(job)}
                     className="bg-background rounded-xl p-4 cursor-pointer border border-border/50 hover:border-primary/50 transition-colors"
                   >
-                    <div className="flex gap-4">
-                      <img
-                        src={job.image}
-                        alt={job.title}
-                        className="w-20 h-20 rounded-lg object-cover"
-                      />
-                      <div className="flex-1">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Briefcase className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
                         <h4 className="font-semibold text-foreground mb-1">{job.title}</h4>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                          <MapPin className="w-3 h-3" />
-                          {job.location}
-                          <span className="mx-1">•</span>
-                          <Clock className="w-3 h-3" />
-                          {job.type}
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2 flex-wrap">
+                          <span className="flex items-center gap-1">
+                            <MapPin className="w-3 h-3" />
+                            {job.location}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            {job.type}
+                          </span>
                         </div>
                         <p className="text-sm text-muted-foreground line-clamp-2">{job.description}</p>
                       </div>
@@ -424,6 +433,82 @@ const CameroonJobsSection = () => {
                 ))}
             </motion.div>
           </AnimatePresence>
+
+          {/* Dynamic News Feed (admin-managed) */}
+          {filteredNews.length > 0 && (
+            <div className="mt-10">
+              <div className="flex items-center justify-center gap-2 mb-5">
+                <span className="h-px flex-1 bg-border max-w-[80px]" />
+                <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                  📰 Fil d'actualité {activePeriod}
+                </h4>
+                <span className="h-px flex-1 bg-border max-w-[80px]" />
+              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`news-${activePeriod}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
+                >
+                  {filteredNews.map((news) => (
+                    <motion.div
+                      key={news.id}
+                      whileHover={{ scale: 1.03 }}
+                      onClick={() => setSelectedNews(news)}
+                      className="relative rounded-xl overflow-hidden cursor-pointer group bg-card border border-primary/20 shadow-sm"
+                    >
+                      {news.media_url && (
+                        <div className="relative h-44 bg-muted">
+                          {news.media_type === "video" ? (
+                            <>
+                              <video
+                                src={news.media_url}
+                                className="w-full h-full object-cover"
+                                muted
+                                playsInline
+                              />
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
+                                <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
+                                  <VideoIcon className="w-6 h-6 text-primary" />
+                                </div>
+                              </div>
+                            </>
+                          ) : (
+                            <img
+                              src={news.media_url}
+                              alt={news.title}
+                              loading="lazy"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                          )}
+                        </div>
+                      )}
+                      <div className="p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="inline-block px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-xs font-medium">
+                            Actualité
+                          </span>
+                          {news.event_date && (
+                            <span className="text-xs text-muted-foreground flex items-center gap-1">
+                              <Calendar className="w-3 h-3" />
+                              {news.event_date}
+                            </span>
+                          )}
+                        </div>
+                        <h4 className="text-sm font-semibold text-foreground line-clamp-2 mb-1">{news.title}</h4>
+                        {news.description && (
+                          <p className="text-xs text-muted-foreground line-clamp-2">{news.description}</p>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          )}
         </div>
 
         {/* Job Application Dialog */}
@@ -565,6 +650,44 @@ const CameroonJobsSection = () => {
               className="w-full h-48 object-cover rounded-lg"
             />
             <p className="text-muted-foreground">{selectedActivity?.description}</p>
+          </DialogContent>
+        </Dialog>
+
+        {/* News Item Detail Dialog */}
+        <Dialog open={!!selectedNews} onOpenChange={() => setSelectedNews(null)}>
+          <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>{selectedNews?.title}</DialogTitle>
+              <DialogDescription className="flex items-center gap-2 flex-wrap">
+                <span className="inline-block px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-xs font-medium">
+                  Actualité {selectedNews?.period}
+                </span>
+                {selectedNews?.event_date && (
+                  <span className="text-xs text-muted-foreground flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    {selectedNews.event_date}
+                  </span>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+            {selectedNews?.media_url && (
+              selectedNews.media_type === "video" ? (
+                <video
+                  src={selectedNews.media_url}
+                  controls
+                  className="w-full rounded-lg max-h-[60vh] bg-black"
+                />
+              ) : (
+                <img
+                  src={selectedNews.media_url}
+                  alt={selectedNews.title}
+                  className="w-full max-h-[60vh] object-contain rounded-lg bg-muted"
+                />
+              )
+            )}
+            {selectedNews?.description && (
+              <p className="text-muted-foreground whitespace-pre-line">{selectedNews.description}</p>
+            )}
           </DialogContent>
         </Dialog>
       </div>

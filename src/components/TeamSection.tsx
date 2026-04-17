@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Eye } from "lucide-react";
+import { Eye, Building2, Users, Globe, Megaphone, UserCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSiteSection } from "@/hooks/useSiteSection";
 import {
@@ -13,62 +13,17 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { cameroonEmployees } from "@/data/teamMembers";
-
-// Import admin images
-import admin1 from "@/assets/admin-1.jpg";
-import admin2 from "@/assets/admin-2.jpg";
-import admin3 from "@/assets/admin-3.jpg";
-
-const belgiumAdmins = [
-  {
-    name: "Marc Duval",
-    role: "Directeur Général",
-    location: "Bruxelles, Belgique",
-    image: admin1,
-    description: "15 ans d'expérience dans le secteur de la santé",
-  },
-  {
-    name: "Sylvie Mbeki",
-    role: "Directrice des Opérations",
-    location: "Bruxelles, Belgique",
-    image: admin2,
-    description: "Experte en gestion des ressources humaines médicales",
-  },
-  {
-    name: "Philippe Nkomo",
-    role: "Directeur Administratif",
-    location: "Bruxelles, Belgique",
-    image: admin3,
-    description: "Spécialiste en développement stratégique",
-  },
-];
-
+import managerCameroun from "@/assets/manager-cameroun.jpg";
 
 const TeamSection = () => {
   const { data: teamSection } = useSiteSection("team");
-  const [adminApi, setAdminApi] = useState<CarouselApi>();
   const [employeeApi, setEmployeeApi] = useState<CarouselApi>();
-  const [adminCurrent, setAdminCurrent] = useState(0);
   const [employeeCurrent, setEmployeeCurrent] = useState(0);
-
-  const onAdminSelect = useCallback(() => {
-    if (!adminApi) return;
-    setAdminCurrent(adminApi.selectedScrollSnap());
-  }, [adminApi]);
 
   const onEmployeeSelect = useCallback(() => {
     if (!employeeApi) return;
     setEmployeeCurrent(employeeApi.selectedScrollSnap());
   }, [employeeApi]);
-
-  useEffect(() => {
-    if (!adminApi) return;
-    onAdminSelect();
-    adminApi.on("select", onAdminSelect);
-    return () => {
-      adminApi.off("select", onAdminSelect);
-    };
-  }, [adminApi, onAdminSelect]);
 
   useEffect(() => {
     if (!employeeApi) return;
@@ -79,15 +34,6 @@ const TeamSection = () => {
     };
   }, [employeeApi, onEmployeeSelect]);
 
-  // Auto-scroll for admin carousel
-  useEffect(() => {
-    if (!adminApi) return;
-    const interval = setInterval(() => {
-      adminApi.scrollNext();
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [adminApi]);
-
   // Auto-scroll for employee carousel
   useEffect(() => {
     if (!employeeApi) return;
@@ -96,6 +42,13 @@ const TeamSection = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, [employeeApi]);
+
+  const belgiumStats = [
+    { icon: UserCheck, label: "Directeur Général", value: "Monsieur PIERRE TAHAM NELSTOR" },
+    { icon: Users, label: "Managers", value: "11 managers" },
+    { icon: Globe, label: "Présence internationale", value: "Belgique • Cameroun • France • Canada" },
+    { icon: Megaphone, label: "Marketing", value: "Plusieurs équipes marketing" },
+  ];
 
   return (
     <section id="equipe" className="py-12 md:py-20 bg-background">
@@ -124,77 +77,79 @@ const TeamSection = () => {
           </p>
         </div>
 
-        {/* Belgium Administrators */}
+        {/* Branch Cameroun: Manager + Siège Belgique side by side */}
         <div className="mb-12 md:mb-16">
-          <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
-            🇧🇪 Direction - Belgique
+          <h3 className="text-lg md:text-xl font-bold text-foreground mb-6 text-center">
+            🌍 Branche Cameroun & Siège Belgique
           </h3>
-          <div className="max-w-4xl mx-auto px-4 md:px-12">
-            <Carousel
-              setApi={setAdminApi}
-              opts={{
-                align: "center",
-                loop: true,
-              }}
-              className="w-full"
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {/* Manager Cameroun */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-card rounded-2xl overflow-hidden shadow-card border border-border/50"
             >
-              <CarouselContent>
-                {belgiumAdmins.map((admin, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <motion.div
-                      whileHover={{ y: -5 }}
-                      className="bg-card rounded-2xl overflow-hidden shadow-card border border-border/50 text-center"
-                    >
-                      <div className="relative">
-                        <img
-                          src={admin.image}
-                          alt={admin.name}
-                          className="w-full h-64 object-cover object-top"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      </div>
-                      <div className="p-5 -mt-16 relative z-10">
-                        <div className="w-20 h-20 rounded-full border-4 border-card overflow-hidden mx-auto mb-3">
-                          <img
-                            src={admin.image}
-                            alt={admin.name}
-                            className="w-full h-full object-cover object-top"
-                            loading="lazy"
-                          />
-                        </div>
-                        <h4 className="font-bold text-foreground text-lg">{admin.name}</h4>
-                        <p className="text-primary font-medium text-sm">{admin.role}</p>
-                        <p className="text-muted-foreground text-xs mt-1">{admin.location}</p>
-                        <p className="text-muted-foreground text-sm mt-3">{admin.description}</p>
-                      </div>
-                    </motion.div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-
-            {/* Dots */}
-            <div className="flex justify-center gap-2 mt-4">
-              {belgiumAdmins.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => adminApi?.scrollTo(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === adminCurrent ? "bg-primary w-6" : "bg-primary/30"
-                  }`}
+              <div className="relative h-72 md:h-80">
+                <img
+                  src={managerCameroun}
+                  alt="Manager du Cameroun"
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                  width={768}
+                  height={1024}
                 />
-              ))}
-            </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                  <span className="inline-block px-3 py-1 rounded-full bg-primary/90 text-primary-foreground text-xs font-semibold mb-2">
+                    🇨🇲 Cameroun
+                  </span>
+                  <h4 className="text-2xl font-bold">Manager du Cameroun</h4>
+                  <p className="text-sm opacity-90 mt-1">Responsable des opérations Meta Cares Cameroun</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Siège Belgique */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-6 md:p-7 text-primary-foreground shadow-card flex flex-col"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-12 h-12 rounded-xl bg-primary-foreground/20 flex items-center justify-center">
+                  <Building2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="inline-block px-2 py-0.5 rounded-full bg-primary-foreground/20 text-xs font-semibold mb-1">
+                    🇧🇪 Belgique
+                  </span>
+                  <h4 className="text-2xl font-bold">Siège Belgique</h4>
+                </div>
+              </div>
+
+              <ul className="space-y-4 flex-1">
+                {belgiumStats.map((stat, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-primary-foreground/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <stat.icon className="w-4 h-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs uppercase tracking-wide opacity-75 font-medium">{stat.label}</p>
+                      <p className="text-sm md:text-base font-semibold leading-snug mt-0.5">{stat.value}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
         </div>
 
         {/* Cameroon Employees */}
         <div>
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
-            🇨🇲 Équipe Cameroun - 5 Professionnels
+            🇨🇲 Équipe Cameroun - {cameroonEmployees.length} Professionnels
           </h3>
           <div className="max-w-6xl mx-auto px-4 md:px-12">
             <Carousel
