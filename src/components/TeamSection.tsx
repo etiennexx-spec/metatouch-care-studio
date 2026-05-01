@@ -44,6 +44,7 @@ const TeamSection = () => {
   }, [employeeApi]);
 
   const belgiumStats = [
+    { icon: UserCheck, label: "Manager du Cameroun", value: "ELWIS NOUBISSI" },
     { icon: UserCheck, label: "Directeur Général", value: "Monsieur PIERRE TAHAM NELSTOR" },
     { icon: Users, label: "Managers", value: "11 managers" },
     { icon: Globe, label: "Présence internationale", value: "Belgique • Cameroun • France • Canada" },
