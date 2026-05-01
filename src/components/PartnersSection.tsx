@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Building2, Hospital, Users, Briefcase, GraduationCap, Heart, ArrowRight, ExternalLink } from "lucide-react";
+import { useEffect, useState, useMemo } from "react";
+import { Building2, Hospital, Users, Briefcase, GraduationCap, Heart, ArrowRight, ExternalLink, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useDynamicPartners } from "@/hooks/useDynamicContent";
 
 const partnerTypes = [
   {
