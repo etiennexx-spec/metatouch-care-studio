@@ -16,7 +16,7 @@ import ServiceDetailModal from "./ServiceDetailModal";
 import { useSiteSection } from "@/hooks/useSiteSection";
 import { useDynamicServices } from "@/hooks/useDynamicContent";
 
-const services = [
+const staticServices = [
   {
     icon: UserPlus,
     title: "Mise en disposition du personnel",
