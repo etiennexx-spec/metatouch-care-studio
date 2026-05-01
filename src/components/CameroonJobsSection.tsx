@@ -362,153 +362,66 @@ const CameroonJobsSection = () => {
           </div>
         </div>
 
-        {/* Programs & Activities with Filters */}
+        {/* Social Media Panel */}
         <div className="mb-6 md:mb-8">
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 text-center">
-            Programmes & Activités
+            Suivez-nous sur les réseaux sociaux
           </h3>
           <p className="text-sm text-muted-foreground text-center mb-6">
-            Découvrez les activités planifiées par l'équipe Meta Cares au Cameroun
+            Restez connectés avec l'actualité de Meta Cares Cameroun
           </p>
 
-          {/* Period Filters */}
-          <div className="flex justify-center gap-2 md:gap-3 mb-6">
-            {periodFilters.map((filter) => (
-              <Button
-                key={filter.key}
-                variant={activePeriod === filter.key ? "default" : "outline"}
-                onClick={() => setActivePeriod(filter.key)}
-                className={activePeriod === filter.key ? "gradient-bg text-primary-foreground" : ""}
-                size="sm"
+          <div className="max-w-3xl mx-auto bg-card rounded-2xl border border-border/50 shadow-card p-6 md:p-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+              {/* Facebook */}
+              <a
+                href="https://www.facebook.com/profile.php?id=100090137613823"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center justify-center gap-3 p-5 rounded-xl bg-background border border-border/50 hover:border-primary hover:shadow-lg transition-all"
               >
-                <filter.icon className="w-4 h-4 mr-1.5" />
-                {filter.label}
-              </Button>
-            ))}
-          </div>
+                <div className="w-14 h-14 rounded-full bg-[#1877F2] flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </div>
+                <span className="text-sm font-semibold text-foreground">Facebook</span>
+                <span className="text-xs text-muted-foreground">Meta Cares</span>
+              </a>
 
-          {/* Filtered Activities Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activePeriod}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
-            >
-              {activities
-                .filter((a) => a.period === activePeriod)
-                .map((activity) => (
-                  <motion.div
-                    key={activity.id}
-                    whileHover={{ scale: 1.03 }}
-                    onClick={() => setSelectedActivity(activity)}
-                    className="relative rounded-xl overflow-hidden cursor-pointer group bg-card border border-border/50 shadow-sm"
-                  >
-                    <img
-                      src={activity.image}
-                      alt={activity.title}
-                      loading="lazy"
-                      width={768}
-                      height={512}
-                      className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                          {activity.type}
-                        </span>
-                        {activity.date && (
-                          <span className="text-xs text-muted-foreground flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
-                            {activity.date}
-                          </span>
-                        )}
-                      </div>
-                      <h4 className="text-sm font-semibold text-foreground line-clamp-2 mb-1">{activity.title}</h4>
-                      <p className="text-xs text-muted-foreground line-clamp-2">{activity.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-            </motion.div>
-          </AnimatePresence>
+              {/* TikTok */}
+              <a
+                href="https://www.tiktok.com/@meta.cares.camero?lang=fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center justify-center gap-3 p-5 rounded-xl bg-background border border-border/50 hover:border-primary hover:shadow-lg transition-all"
+              >
+                <div className="w-14 h-14 rounded-full bg-foreground flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg className="w-7 h-7 text-background" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.94a8.16 8.16 0 0 0 4.77 1.52V7a4.85 4.85 0 0 1-1.84-.31z"/>
+                  </svg>
+                </div>
+                <span className="text-sm font-semibold text-foreground">TikTok</span>
+                <span className="text-xs text-muted-foreground">@meta.cares.camero</span>
+              </a>
 
-          {/* Dynamic News Feed (admin-managed) */}
-          {filteredNews.length > 0 && (
-            <div className="mt-10">
-              <div className="flex items-center justify-center gap-2 mb-5">
-                <span className="h-px flex-1 bg-border max-w-[80px]" />
-                <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide">
-                  📰 Fil d'actualité {activePeriod}
-                </h4>
-                <span className="h-px flex-1 bg-border max-w-[80px]" />
-              </div>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`news-${activePeriod}`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
-                >
-                  {filteredNews.map((news) => (
-                    <motion.div
-                      key={news.id}
-                      whileHover={{ scale: 1.03 }}
-                      onClick={() => setSelectedNews(news)}
-                      className="relative rounded-xl overflow-hidden cursor-pointer group bg-card border border-primary/20 shadow-sm"
-                    >
-                      {news.media_url && (
-                        <div className="relative h-44 bg-muted">
-                          {news.media_type === "video" ? (
-                            <>
-                              <video
-                                src={news.media_url}
-                                className="w-full h-full object-cover"
-                                muted
-                                playsInline
-                              />
-                              <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
-                                <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
-                                  <VideoIcon className="w-6 h-6 text-primary" />
-                                </div>
-                              </div>
-                            </>
-                          ) : (
-                            <img
-                              src={news.media_url}
-                              alt={news.title}
-                              loading="lazy"
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                          )}
-                        </div>
-                      )}
-                      <div className="p-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="inline-block px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-xs font-medium">
-                            Actualité
-                          </span>
-                          {news.event_date && (
-                            <span className="text-xs text-muted-foreground flex items-center gap-1">
-                              <Calendar className="w-3 h-3" />
-                              {news.event_date}
-                            </span>
-                          )}
-                        </div>
-                        <h4 className="text-sm font-semibold text-foreground line-clamp-2 mb-1">{news.title}</h4>
-                        {news.description && (
-                          <p className="text-xs text-muted-foreground line-clamp-2">{news.description}</p>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/metacares_group/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center justify-center gap-3 p-5 rounded-xl bg-background border border-border/50 hover:border-primary hover:shadow-lg transition-all"
+              >
+                <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                  </svg>
+                </div>
+                <span className="text-sm font-semibold text-foreground">Instagram</span>
+                <span className="text-xs text-muted-foreground">@metacares_group</span>
+              </a>
             </div>
-          )}
+          </div>
         </div>
 
         {/* Job Application Dialog */}
