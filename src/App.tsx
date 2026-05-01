@@ -21,6 +21,13 @@ const GalleryManager = lazy(() => import("./pages/admin/GalleryManager"));
 const Messages = lazy(() => import("./pages/admin/Messages"));
 const Applications = lazy(() => import("./pages/admin/Applications"));
 const NewsFeedManager = lazy(() => import("./pages/admin/NewsFeedManager"));
+const TeamManager = lazy(() => import("./pages/admin/TeamManager"));
+const ProgramsManager = lazy(() => import("./pages/admin/ProgramsManager"));
+const WorksManager = lazy(() => import("./pages/admin/WorksManager"));
+const TestimonialsManager = lazy(() => import("./pages/admin/TestimonialsManager"));
+const PartnersManager = lazy(() => import("./pages/admin/PartnersManager"));
+const ServicesManager = lazy(() => import("./pages/admin/ServicesManager"));
+const AdminsManager = lazy(() => import("./pages/admin/AdminsManager"));
 
 const queryClient = new QueryClient();
 
