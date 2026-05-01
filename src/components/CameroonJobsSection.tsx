@@ -362,6 +362,132 @@ const CameroonJobsSection = () => {
           </div>
         </div>
 
+        {/* Programmes & Activités */}
+        <div className="mb-12 md:mb-16">
+          <div className="text-center mb-6 md:mb-8">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-3">
+              Programmes & Activités
+            </span>
+            <h3 className="text-xl md:text-3xl font-bold text-foreground mb-2">
+              Nos <span className="gradient-text">activités</span> au Cameroun
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base px-4">
+              Découvrez nos programmes hebdomadaires, mensuels et annuels au service des patients et des communautés.
+            </p>
+          </div>
+
+          {/* Period filters */}
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-6 md:mb-8">
+            {periodFilters.map(({ key, label, icon: Icon }) => (
+              <button
+                key={key}
+                onClick={() => setActivePeriod(key)}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all border ${
+                  activePeriod === key
+                    ? "bg-primary text-primary-foreground border-primary shadow-md"
+                    : "bg-card text-foreground border-border/50 hover:border-primary/50"
+                }`}
+              >
+                <Icon className="w-4 h-4" />
+                {label}
+              </button>
+            ))}
+          </div>
+
+          {/* Activities grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activePeriod}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+            >
+              {activities
+                .filter((a) => a.period === activePeriod)
+                .map((activity) => (
+                  <motion.div
+                    key={activity.id}
+                    whileHover={{ y: -4 }}
+                    onClick={() => setSelectedActivity(activity)}
+                    className="bg-card rounded-xl overflow-hidden border border-border/50 shadow-card cursor-pointer group"
+                  >
+                    <div className="relative h-40 overflow-hidden">
+                      <img
+                        src={activity.image}
+                        alt={activity.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <span className="absolute top-2 left-2 inline-block px-2 py-0.5 rounded-full bg-background/90 text-foreground text-xs font-medium capitalize">
+                        {activity.type}
+                      </span>
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-semibold text-foreground mb-1 line-clamp-1">{activity.title}</h4>
+                      {activity.date && (
+                        <p className="text-xs text-primary font-medium mb-2 flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {activity.date}
+                        </p>
+                      )}
+                      <p className="text-sm text-muted-foreground line-clamp-2">{activity.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+
+              {/* Dynamic news items from admin */}
+              {filteredNews.map((news) => (
+                <motion.div
+                  key={`news-${news.id}`}
+                  whileHover={{ y: -4 }}
+                  onClick={() => setSelectedNews(news)}
+                  className="bg-card rounded-xl overflow-hidden border border-secondary/30 shadow-card cursor-pointer group"
+                >
+                  <div className="relative h-40 overflow-hidden bg-muted">
+                    {news.media_url ? (
+                      news.media_type === "video" ? (
+                        <video
+                          src={news.media_url}
+                          muted
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <img
+                          src={news.media_url}
+                          alt={news.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                        <VideoIcon className="w-8 h-8" />
+                      </div>
+                    )}
+                    <span className="absolute top-2 left-2 inline-block px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground text-xs font-medium">
+                      Actualité
+                    </span>
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-semibold text-foreground mb-1 line-clamp-1">{news.title}</h4>
+                    {news.event_date && (
+                      <p className="text-xs text-secondary font-medium mb-2 flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {news.event_date}
+                      </p>
+                    )}
+                    {news.description && (
+                      <p className="text-sm text-muted-foreground line-clamp-2">{news.description}</p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
         {/* Social Media Panel */}
         <div className="mb-6 md:mb-8">
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 text-center">
