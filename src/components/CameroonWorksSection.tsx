@@ -53,20 +53,20 @@ const CameroonWorksSection = () => {
         </div>
 
         <div
-          className="relative max-w-md mx-auto h-[480px] md:h-[560px] overflow-hidden rounded-2xl border border-border/50 bg-card shadow-card [mask-image:linear-gradient(to_bottom,transparent,black_8%,black_92%,transparent)]"
+          className="relative w-full overflow-hidden rounded-2xl border border-border/50 bg-card shadow-card [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
           <motion.div
-            className="flex flex-col gap-4 p-4"
-            animate={{ y: paused ? undefined : ["0%", "-50%"] }}
+            className="flex flex-row gap-4 p-4 w-max"
+            animate={{ x: paused ? undefined : ["0%", "-50%"] }}
             transition={{ duration: 40, ease: "linear", repeat: Infinity }}
           >
             {loopItems.map((item, idx) => (
               <button
                 key={`${item.title}-${idx}`}
                 onClick={() => setSelected(item)}
-                className="group relative w-full aspect-[3/4] rounded-xl overflow-hidden bg-muted shadow-md hover:shadow-xl transition-shadow"
+                className="group relative w-[220px] md:w-[260px] shrink-0 aspect-[3/4] rounded-xl overflow-hidden bg-muted shadow-md hover:shadow-xl transition-shadow"
                 aria-label={`Agrandir ${item.title}`}
               >
                 {item.type === "video" ? (
