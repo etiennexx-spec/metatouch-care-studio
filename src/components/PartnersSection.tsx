@@ -74,7 +74,7 @@ const PartnersSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % partnerTypes.length);
+      setCurrentIndex((prev) => (prev + 1) % partnerTypes_.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
@@ -116,7 +116,7 @@ const PartnersSection = () => {
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {partnerTypes.map((partner, index) => (
+            {partnerTypes_.map((partner, index) => (
               <div 
                 key={index}
                 className="min-w-full px-2 sm:px-4"
@@ -151,7 +151,7 @@ const PartnersSection = () => {
 
           {/* Dots indicator */}
           <div className="flex justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-6">
-            {partnerTypes.map((_, index) => (
+            {partnerTypes_.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
@@ -165,7 +165,7 @@ const PartnersSection = () => {
 
         {/* Quick partner grid */}
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-4">
-          {partnerTypes.map((partner, index) => (
+          {partnerTypes_.map((partner, index) => (
             <button
               key={index}
               onClick={() => handlePartnerClick(partner)}
