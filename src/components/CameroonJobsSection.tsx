@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePublicNewsFeed, type NewsItem } from "@/hooks/useNewsFeed";
+import { useDynamicPrograms } from "@/hooks/useDynamicContent";
 import {
   Dialog,
   DialogContent,
