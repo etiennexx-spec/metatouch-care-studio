@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Play, X, ImageIcon } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useDynamicWorks } from "@/hooks/useDynamicContent";
 import videoPresentation from "@/assets/video-presentation.mp4";
 import video2 from "@/assets/works/video-2.mp4";
 import flyer1 from "@/assets/works/flyer-1.png";
@@ -14,7 +15,7 @@ type WorkItem =
   | { type: "video"; src: string; title: string }
   | { type: "image"; src: string; title: string };
 
-const works: WorkItem[] = [
+const staticWorks: WorkItem[] = [
   { type: "video", src: videoPresentation, title: "Présentation Meta Cares" },
   { type: "video", src: video2, title: "Notre équipe en action" },
   { type: "image", src: flyer1, title: "Moniteur Multi-Paramètres Comen NC5" },
@@ -27,6 +28,16 @@ const works: WorkItem[] = [
 const CameroonWorksSection = () => {
   const [selected, setSelected] = useState<WorkItem | null>(null);
   const [paused, setPaused] = useState(false);
+  const { data: dynamicWorks = [] } = useDynamicWorks();
+
+  const works: WorkItem[] = useMemo(() => [
+    ...staticWorks,
+    ...dynamicWorks.map((w: any): WorkItem => ({
+      type: w.media_type === "video" ? "video" : "image",
+      src: w.media_url,
+      title: w.title,
+    })),
+  ], [dynamicWorks]);
 
   // Duplicate for seamless loop
   const loopItems = [...works, ...works];
