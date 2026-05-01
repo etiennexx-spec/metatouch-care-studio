@@ -11,6 +11,7 @@ import { useSiteSection } from "@/hooks/useSiteSection";
 const JoinTeamSection = lazy(() => import("@/components/JoinTeamSection"));
 const CameroonJobsSection = lazy(() => import("@/components/CameroonJobsSection"));
 const TeamSection = lazy(() => import("@/components/TeamSection"));
+const CameroonWorksSection = lazy(() => import("@/components/CameroonWorksSection"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const SectionLoader = () => (
@@ -106,6 +107,9 @@ const Careers = () => {
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <TeamSection />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <CameroonWorksSection />
         </Suspense>
       </main>
       <Suspense fallback={<SectionLoader />}>
