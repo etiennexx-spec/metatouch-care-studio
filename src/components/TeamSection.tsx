@@ -110,14 +110,14 @@ const TeamSection = () => {
               </div>
             </motion.div>
 
-            {/* Siège Belgique */}
+            {/* Siège Belgique - Défilement vertical automatique */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-6 md:p-7 text-primary-foreground shadow-card flex flex-col"
+              className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-6 md:p-7 text-primary-foreground shadow-card flex flex-col h-72 md:h-80 overflow-hidden"
             >
-              <div className="flex items-center gap-3 mb-5">
+              <div className="flex items-center gap-3 mb-4 flex-shrink-0">
                 <div className="w-12 h-12 rounded-xl bg-primary-foreground/20 flex items-center justify-center">
                   <Building2 className="w-6 h-6" />
                 </div>
@@ -129,19 +129,25 @@ const TeamSection = () => {
                 </div>
               </div>
 
-              <ul className="space-y-4 flex-1">
-                {belgiumStats.map((stat, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-primary-foreground/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <stat.icon className="w-4 h-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs uppercase tracking-wide opacity-75 font-medium">{stat.label}</p>
-                      <p className="text-sm md:text-base font-semibold leading-snug mt-0.5">{stat.value}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+              <div className="relative flex-1 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
+                <motion.ul
+                  className="space-y-4"
+                  animate={{ y: ["0%", "-50%"] }}
+                  transition={{ duration: 14, ease: "linear", repeat: Infinity }}
+                >
+                  {[...belgiumStats, ...belgiumStats].map((stat, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <div className="w-9 h-9 rounded-lg bg-primary-foreground/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <stat.icon className="w-4 h-4" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs uppercase tracking-wide opacity-75 font-medium">{stat.label}</p>
+                        <p className="text-sm md:text-base font-semibold leading-snug mt-0.5">{stat.value}</p>
+                      </div>
+                    </li>
+                  ))}
+                </motion.ul>
+              </div>
             </motion.div>
           </div>
         </div>
