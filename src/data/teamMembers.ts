@@ -3,6 +3,7 @@ import employee2 from "@/assets/employee-cm-2.jpg";
 import employee3 from "@/assets/employee-cm-3.jpg";
 import employee4 from "@/assets/employee-cm-4.jpg";
 import employee5 from "@/assets/employee-cm-5.jpg";
+import employee6 from "@/assets/employee-cm-6.jpg";
 
 export interface TeamMember {
   id: string;
@@ -108,5 +109,30 @@ export const cameroonEmployees: TeamMember[] = [
     ],
     certifications: ["Content Marketing Institute", "Yoast SEO", "Mailchimp Email Marketing"],
     email: "obam.alexandre@metacares.app",
+  },
+  {
+    id: "dr-kamga-medical",
+    name: "Dr. KAMGA Médical",
+    role: "Conseiller Médical & Brand Ambassador",
+    location: "Yaoundé",
+    image: employee6,
+    bio: "Médecin praticien et ambassadeur de la marque Meta Cares, il apporte son expertise clinique pour valider les contenus médicaux diffusés et représenter l'entreprise auprès des professionnels de santé et des patients.",
+    skills: [
+      "Expertise médicale",
+      "Communication santé",
+      "Relations professionnelles",
+      "Vulgarisation scientifique",
+      "Représentation de marque",
+      "Conseil produits médicaux",
+    ],
+    experience: "5 ans d'expérience clinique combinée à une mission de représentation et de conseil pour les campagnes marketing santé de Meta Cares au Cameroun.",
+    missions: [
+      "Validation médicale des contenus marketing et campagnes digitales",
+      "Représentation de Meta Cares lors d'événements santé et conférences",
+      "Conseil sur la sélection et la promotion des produits médicaux de la marketplace",
+      "Sensibilisation du public aux services Meta Cares via vidéos et témoignages",
+    ],
+    certifications: ["Doctorat en Médecine", "Formation en Communication Santé", "Marketing Pharmaceutique"],
+    email: "dr.kamga@metacares.app",
   },
 ];
