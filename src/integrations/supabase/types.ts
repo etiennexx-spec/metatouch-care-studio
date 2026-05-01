@@ -179,6 +179,42 @@ export type Database = {
         }
         Relationships: []
       }
+      partners: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_published: boolean
+          link_url: string | null
+          logo_url: string | null
+          name: string
+          sort_order: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          link_url?: string | null
+          logo_url?: string | null
+          name: string
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          link_url?: string | null
+          logo_url?: string | null
+          name?: string
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           category: string
@@ -247,6 +283,87 @@ export type Database = {
         }
         Relationships: []
       }
+      programs: {
+        Row: {
+          created_at: string
+          description: string | null
+          event_date: string | null
+          id: string
+          image_url: string | null
+          is_published: boolean
+          period: string
+          sort_order: number | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          event_date?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          period?: string
+          sort_order?: number | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          event_date?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          period?: string
+          sort_order?: number | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          created_at: string
+          details: string | null
+          icon: string | null
+          id: string
+          image_url: string | null
+          is_published: boolean
+          link_url: string | null
+          short_description: string | null
+          sort_order: number | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          details?: string | null
+          icon?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          link_url?: string | null
+          short_description?: string | null
+          sort_order?: number | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          details?: string | null
+          icon?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          link_url?: string | null
+          short_description?: string | null
+          sort_order?: number | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       site_sections: {
         Row: {
           description: string | null
@@ -280,6 +397,102 @@ export type Database = {
         }
         Relationships: []
       }
+      team_members: {
+        Row: {
+          bio: string | null
+          branch: string
+          created_at: string
+          email: string | null
+          formation: string | null
+          full_name: string
+          id: string
+          is_published: boolean
+          missions: string | null
+          phone: string | null
+          photo_url: string | null
+          role: string
+          slug: string | null
+          sort_order: number | null
+          updated_at: string
+          vision: string | null
+        }
+        Insert: {
+          bio?: string | null
+          branch?: string
+          created_at?: string
+          email?: string | null
+          formation?: string | null
+          full_name: string
+          id?: string
+          is_published?: boolean
+          missions?: string | null
+          phone?: string | null
+          photo_url?: string | null
+          role: string
+          slug?: string | null
+          sort_order?: number | null
+          updated_at?: string
+          vision?: string | null
+        }
+        Update: {
+          bio?: string | null
+          branch?: string
+          created_at?: string
+          email?: string | null
+          formation?: string | null
+          full_name?: string
+          id?: string
+          is_published?: boolean
+          missions?: string | null
+          phone?: string | null
+          photo_url?: string | null
+          role?: string
+          slug?: string | null
+          sort_order?: number | null
+          updated_at?: string
+          vision?: string | null
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          is_published: boolean
+          message: string
+          photo_url: string | null
+          rating: number | null
+          role: string | null
+          sort_order: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name: string
+          id?: string
+          is_published?: boolean
+          message: string
+          photo_url?: string | null
+          rating?: number | null
+          role?: string | null
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          is_published?: boolean
+          message?: string
+          photo_url?: string | null
+          rating?: number | null
+          role?: string | null
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -295,6 +508,45 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      works: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_published: boolean
+          media_type: string
+          media_url: string
+          sort_order: number | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          media_type?: string
+          media_url: string
+          sort_order?: number | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          media_type?: string
+          media_url?: string
+          sort_order?: number | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
