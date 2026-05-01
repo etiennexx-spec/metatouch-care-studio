@@ -4,6 +4,7 @@ import employee3 from "@/assets/employee-cm-3.jpg";
 import employee4 from "@/assets/employee-cm-4.jpg";
 import employee5 from "@/assets/employee-cm-5.jpg";
 import employee6 from "@/assets/employee-cm-6.jpg";
+import employee7 from "@/assets/employee-cm-7.jpg";
 
 export interface TeamMember {
   id: string;
@@ -134,5 +135,30 @@ export const cameroonEmployees: TeamMember[] = [
     ],
     certifications: ["Doctorat en Médecine", "Formation en Communication Santé", "Marketing Pharmaceutique"],
     email: "dr.kamga@metacares.app",
+  },
+  {
+    id: "audrey-marketing",
+    name: "Audrey",
+    role: "Responsable Marketing Digital",
+    location: "Yaoundé",
+    image: employee7,
+    bio: "Diplômée en Génie Logiciel, Audrey allie sa double expertise technique et marketing pour concevoir des solutions digitales innovantes au service de la croissance de Meta Cares. Sa rigueur d'ingénieure et sa créativité font d'elle un atout majeur de l'équipe.",
+    skills: [
+      "Génie logiciel",
+      "Marketing digital",
+      "Automatisation marketing",
+      "Analyse de données",
+      "Développement web",
+      "Stratégie digitale",
+    ],
+    experience: "Licence en Génie Logiciel complétée par une expertise en marketing digital, lui permettant de piloter des campagnes data-driven et d'optimiser les outils numériques de Meta Cares au Cameroun.",
+    missions: [
+      "Conception et déploiement d'outils digitaux pour les campagnes marketing",
+      "Automatisation des processus marketing et CRM",
+      "Analyse technique des performances et optimisation des conversions",
+      "Collaboration avec l'équipe tech pour l'intégration des solutions web",
+    ],
+    certifications: ["Licence en Génie Logiciel", "Google Digital Marketing", "Meta Blueprint"],
+    email: "audrey@metacares.app",
   },
 ];
