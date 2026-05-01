@@ -13,10 +13,31 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { cameroonEmployees } from "@/data/teamMembers";
+import { useDynamicTeam } from "@/hooks/useDynamicContent";
 
 
 const TeamSection = () => {
   const { data: teamSection } = useSiteSection("team");
+  const { data: dynamicTeam = [] } = useDynamicTeam("cameroun");
+
+  // Merge static + dynamic Cameroun members (dynamic appended)
+  const employees = [
+    ...cameroonEmployees,
+    ...dynamicTeam.map((m: any) => ({
+      id: m.slug || m.id,
+      name: m.full_name,
+      role: m.role,
+      location: "Yaoundé",
+      image: m.photo_url || "",
+      bio: m.bio || "",
+      skills: [],
+      experience: m.formation || "",
+      missions: m.missions ? m.missions.split("\n").filter(Boolean) : [],
+      certifications: m.formation ? [m.formation] : [],
+      email: m.email || "",
+    })),
+  ];
+
   const [employeeApi, setEmployeeApi] = useState<CarouselApi>();
   const [employeeCurrent, setEmployeeCurrent] = useState(0);
 
