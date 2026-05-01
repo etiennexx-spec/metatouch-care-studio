@@ -57,6 +57,20 @@ const PartnersSection = () => {
   const [selectedPartner, setSelectedPartner] = useState<typeof partnerTypes[0] | null>(null);
   const [formData, setFormData] = useState({ name: "", email: "", organization: "", message: "" });
   const { toast } = useToast();
+  const { data: dynamicPartners = [] } = useDynamicPartners();
+
+  // Merge static partner types + dynamic partners (each dynamic gets a generic icon and a "Visiter" CTA)
+  const partnerTypes_ = useMemo(() => [
+    ...partnerTypes,
+    ...dynamicPartners.map((p: any) => ({
+      icon: Handshake,
+      title: p.name,
+      description: p.description || "Partenaire de Meta Cares.",
+      services: [],
+      logoUrl: p.logo_url as string | undefined,
+      linkUrl: p.link_url as string | undefined,
+    })),
+  ], [dynamicPartners]);
 
   useEffect(() => {
     const interval = setInterval(() => {
