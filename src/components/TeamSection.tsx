@@ -78,46 +78,79 @@ const TeamSection = () => {
           </p>
         </div>
 
-        {/* Branch Cameroun: Manager + Siège Belgique side by side */}
-        <div className="mb-12 md:mb-16">
+        {/* Branche Cameroun + Siège Belgique : deux blocs côte à côte */}
+        <div className="mb-10 md:mb-12">
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-6 text-center">
             🌍 Branche Cameroun et Siège Belgique
           </h3>
-          <div className="max-w-xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+            {/* Bloc Branche Cameroun */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-card border border-border/50 rounded-2xl p-5 md:p-6 shadow-card flex flex-col h-60 md:h-64"
+            >
+              <div className="flex items-center gap-3 mb-4 flex-shrink-0">
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Globe className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-1">
+                    🇨🇲 Cameroun
+                  </span>
+                  <h4 className="text-xl md:text-2xl font-bold text-foreground">Branche Cameroun</h4>
+                </div>
+              </div>
+              <div className="flex-1 flex flex-col justify-center space-y-3 text-sm">
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground font-medium">Effectif</p>
+                  <p className="font-semibold text-foreground">{cameroonEmployees.length} professionnels</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground font-medium">Ville</p>
+                  <p className="font-semibold text-foreground">Yaoundé, Cameroun</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground font-medium">Pôles</p>
+                  <p className="font-semibold text-foreground">Marketing • Contenu • Médical • Design</p>
+                </div>
+              </div>
+            </motion.div>
 
-            {/* Siège Belgique - Défilement vertical automatique */}
+            {/* Bloc Siège Belgique - défilement vertical */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-6 md:p-7 text-primary-foreground shadow-card flex flex-col h-72 md:h-80 overflow-hidden"
+              className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-5 md:p-6 text-primary-foreground shadow-card flex flex-col h-60 md:h-64 overflow-hidden"
             >
               <div className="flex items-center gap-3 mb-4 flex-shrink-0">
-                <div className="w-12 h-12 rounded-xl bg-primary-foreground/20 flex items-center justify-center">
-                  <Building2 className="w-6 h-6" />
+                <div className="w-11 h-11 rounded-xl bg-primary-foreground/20 flex items-center justify-center">
+                  <Building2 className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="inline-block px-2 py-0.5 rounded-full bg-primary-foreground/20 text-xs font-semibold mb-1">
                     🇧🇪 Belgique
                   </span>
-                  <h4 className="text-2xl font-bold">Siège Belgique</h4>
+                  <h4 className="text-xl md:text-2xl font-bold">Siège Belgique</h4>
                 </div>
               </div>
 
               <div className="relative flex-1 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
                 <motion.ul
-                  className="space-y-4"
+                  className="space-y-3"
                   animate={{ y: ["0%", "-50%"] }}
                   transition={{ duration: 14, ease: "linear", repeat: Infinity }}
                 >
                   {[...belgiumStats, ...belgiumStats].map((stat, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-primary-foreground/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <li key={i} className="flex items-start gap-2.5">
+                      <div className="w-8 h-8 rounded-lg bg-primary-foreground/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <stat.icon className="w-4 h-4" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-wide opacity-75 font-medium">{stat.label}</p>
-                        <p className="text-sm md:text-base font-semibold leading-snug mt-0.5">{stat.value}</p>
+                        <p className="text-[10px] uppercase tracking-wide opacity-75 font-medium">{stat.label}</p>
+                        <p className="text-xs md:text-sm font-semibold leading-snug mt-0.5">{stat.value}</p>
                       </div>
                     </li>
                   ))}
