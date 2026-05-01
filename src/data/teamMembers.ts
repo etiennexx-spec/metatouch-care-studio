@@ -4,6 +4,7 @@ import employee3 from "@/assets/employee-cm-3.jpg";
 import employee4 from "@/assets/employee-cm-4.jpg";
 import employee5 from "@/assets/employee-cm-5.jpg";
 import employee6 from "@/assets/employee-cm-6.jpg";
+import employee7 from "@/assets/employee-cm-7.jpg";
 
 export interface TeamMember {
   id: string;
