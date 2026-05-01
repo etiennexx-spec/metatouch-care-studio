@@ -60,6 +60,18 @@ const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const { data: section } = useSiteSection("testimonials");
+  const { data: dynamicTestimonials = [] } = useDynamicTestimonials();
+
+  const testimonials = useMemo(() => [
+    ...staticTestimonials,
+    ...dynamicTestimonials.map((t: any) => ({
+      name: t.full_name,
+      role: t.role || "",
+      image: t.photo_url || "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
+      content: t.message,
+      rating: Math.min(5, Math.max(1, t.rating || 5)),
+    })),
+  ], [dynamicTestimonials]);
 
   const onSelect = useCallback(() => {
     if (!api) return;
