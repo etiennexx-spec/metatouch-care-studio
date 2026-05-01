@@ -13,7 +13,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { cameroonEmployees } from "@/data/teamMembers";
-import managerCameroun from "@/assets/manager-cameroun.jpg";
+
 
 const TeamSection = () => {
   const { data: teamSection } = useSiteSection("team");
