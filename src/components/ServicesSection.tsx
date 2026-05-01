@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   UserPlus,
   GraduationCap,
@@ -8,11 +8,13 @@ import {
   Stethoscope,
   ShoppingBag,
   ArrowRight,
-  ExternalLink
+  ExternalLink,
+  Sparkles
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import ServiceDetailModal from "./ServiceDetailModal";
 import { useSiteSection } from "@/hooks/useSiteSection";
+import { useDynamicServices } from "@/hooks/useDynamicContent";
 
 const services = [
   {
