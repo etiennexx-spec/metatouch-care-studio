@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePublicNewsFeed, type NewsItem } from "@/hooks/useNewsFeed";
+import { useDynamicPrograms } from "@/hooks/useDynamicContent";
 import {
   Dialog,
   DialogContent,
@@ -182,6 +183,7 @@ const periodFilters: { key: ProgramPeriod; label: string; icon: typeof Calendar 
 const CameroonJobsSection = () => {
   const { data: section } = useSiteSection("cameroon_jobs");
   const { data: newsItems = [] } = usePublicNewsFeed();
+  const { data: dynamicPrograms = [] } = useDynamicPrograms();
   const [selectedJob, setSelectedJob] = useState<typeof cameroonJobs[0] | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
@@ -196,6 +198,20 @@ const CameroonJobsSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Merge static + dynamic programs
+  const mergedActivities: Activity[] = useMemo(() => [
+    ...activities,
+    ...dynamicPrograms.map((p: any, idx: number) => ({
+      id: 1000 + idx,
+      title: p.title,
+      description: p.description || "",
+      image: p.image_url || actReunion,
+      type: "programme",
+      period: (p.period as ProgramPeriod) || "hebdomadaire",
+      date: p.event_date || undefined,
+    })),
+  ], [dynamicPrograms]);
 
   const filteredNews = useMemo(
     () => newsItems.filter((n) => n.period === activePeriod),
@@ -404,7 +420,7 @@ const CameroonJobsSection = () => {
               transition={{ duration: 0.3 }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
             >
-              {activities
+              {mergedActivities
                 .filter((a) => a.period === activePeriod)
                 .map((activity) => (
                   <motion.div

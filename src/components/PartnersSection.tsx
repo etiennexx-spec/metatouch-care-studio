@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Building2, Hospital, Users, Briefcase, GraduationCap, Heart, ArrowRight, ExternalLink } from "lucide-react";
+import { useEffect, useState, useMemo } from "react";
+import { Building2, Hospital, Users, Briefcase, GraduationCap, Heart, ArrowRight, ExternalLink, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useDynamicPartners } from "@/hooks/useDynamicContent";
 
 const partnerTypes = [
   {
@@ -56,15 +57,33 @@ const PartnersSection = () => {
   const [selectedPartner, setSelectedPartner] = useState<typeof partnerTypes[0] | null>(null);
   const [formData, setFormData] = useState({ name: "", email: "", organization: "", message: "" });
   const { toast } = useToast();
+  const { data: dynamicPartners = [] } = useDynamicPartners();
+
+  // Merge static partner types + dynamic partners (each dynamic gets a generic icon and a "Visiter" CTA)
+  const partnerTypes_ = useMemo(() => [
+    ...partnerTypes,
+    ...dynamicPartners.map((p: any) => ({
+      icon: Handshake,
+      title: p.name,
+      description: p.description || "Partenaire de Meta Cares.",
+      services: [],
+      logoUrl: p.logo_url as string | undefined,
+      linkUrl: p.link_url as string | undefined,
+    })),
+  ], [dynamicPartners]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % partnerTypes.length);
+      setCurrentIndex((prev) => (prev + 1) % partnerTypes_.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
 
-  const handlePartnerClick = (partner: typeof partnerTypes[0]) => {
+  const handlePartnerClick = (partner: any) => {
+    if (partner.linkUrl) {
+      window.open(partner.linkUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
     setSelectedPartner(partner);
     setIsModalOpen(true);
   };
@@ -101,7 +120,7 @@ const PartnersSection = () => {
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {partnerTypes.map((partner, index) => (
+            {partnerTypes_.map((partner, index) => (
               <div 
                 key={index}
                 className="min-w-full px-2 sm:px-4"
@@ -136,7 +155,7 @@ const PartnersSection = () => {
 
           {/* Dots indicator */}
           <div className="flex justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-6">
-            {partnerTypes.map((_, index) => (
+            {partnerTypes_.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
@@ -150,7 +169,7 @@ const PartnersSection = () => {
 
         {/* Quick partner grid */}
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-4">
-          {partnerTypes.map((partner, index) => (
+          {partnerTypes_.map((partner, index) => (
             <button
               key={index}
               onClick={() => handlePartnerClick(partner)}

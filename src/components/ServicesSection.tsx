@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   UserPlus,
   GraduationCap,
@@ -8,13 +8,15 @@ import {
   Stethoscope,
   ShoppingBag,
   ArrowRight,
-  ExternalLink
+  ExternalLink,
+  Sparkles
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import ServiceDetailModal from "./ServiceDetailModal";
 import { useSiteSection } from "@/hooks/useSiteSection";
+import { useDynamicServices } from "@/hooks/useDynamicContent";
 
-const services = [
+const staticServices = [
   {
     icon: UserPlus,
     title: "Mise en disposition du personnel",
@@ -117,8 +119,22 @@ const services = [
 ];
 
 const ServicesSection = () => {
-  const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+  const [selectedService, setSelectedService] = useState<any | null>(null);
   const { data: section } = useSiteSection("services");
+  const { data: dynamicServices = [] } = useDynamicServices();
+
+  const services = useMemo(() => [
+    ...staticServices,
+    ...dynamicServices.map((s: any) => ({
+      icon: Sparkles,
+      title: s.title,
+      description: s.short_description || "",
+      fullDescription: s.details || s.short_description || "",
+      benefits: [],
+      process: "",
+      ...(s.link_url ? { externalLink: s.link_url } : {}),
+    })),
+  ], [dynamicServices]);
 
   return (
     <section id="services" className="py-12 md:py-20 bg-muted/30">

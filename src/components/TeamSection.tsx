@@ -13,10 +13,31 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { cameroonEmployees } from "@/data/teamMembers";
+import { useDynamicTeam } from "@/hooks/useDynamicContent";
 
 
 const TeamSection = () => {
   const { data: teamSection } = useSiteSection("team");
+  const { data: dynamicTeam = [] } = useDynamicTeam("cameroun");
+
+  // Merge static + dynamic Cameroun members (dynamic appended)
+  const employees = [
+    ...cameroonEmployees,
+    ...dynamicTeam.map((m: any) => ({
+      id: m.slug || m.id,
+      name: m.full_name,
+      role: m.role,
+      location: "Yaoundé",
+      image: m.photo_url || "",
+      bio: m.bio || "",
+      skills: [],
+      experience: m.formation || "",
+      missions: m.missions ? m.missions.split("\n").filter(Boolean) : [],
+      certifications: m.formation ? [m.formation] : [],
+      email: m.email || "",
+    })),
+  ];
+
   const [employeeApi, setEmployeeApi] = useState<CarouselApi>();
   const [employeeCurrent, setEmployeeCurrent] = useState(0);
 
@@ -105,7 +126,7 @@ const TeamSection = () => {
               <div className="flex-1 flex flex-col justify-center space-y-3 text-sm">
                 <div>
                   <p className="text-xs uppercase tracking-wide text-muted-foreground font-medium">Effectif</p>
-                  <p className="font-semibold text-foreground">{cameroonEmployees.length} professionnels</p>
+                  <p className="font-semibold text-foreground">{employees.length} professionnels</p>
                 </div>
                 <div>
                   <p className="text-xs uppercase tracking-wide text-muted-foreground font-medium">Ville</p>
@@ -163,7 +184,7 @@ const TeamSection = () => {
         {/* Cameroon Employees */}
         <div>
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 md:mb-6 text-center">
-            🇨🇲 Équipe Cameroun - {cameroonEmployees.length} Professionnels
+            🇨🇲 Équipe Cameroun - {employees.length} Professionnels
           </h3>
           <div className="max-w-6xl mx-auto px-4 md:px-12">
             <Carousel
@@ -175,7 +196,7 @@ const TeamSection = () => {
               className="w-full"
             >
               <CarouselContent>
-                {cameroonEmployees.map((employee, index) => (
+                {employees.map((employee, index) => (
                   <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
                     <motion.div
                       whileHover={{ scale: 1.05 }}
@@ -217,7 +238,7 @@ const TeamSection = () => {
 
             {/* Dots */}
             <div className="flex justify-center gap-1 mt-4">
-              {cameroonEmployees.map((_, index) => (
+              {employees.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => employeeApi?.scrollTo(index)}
