@@ -5,6 +5,7 @@ import employee4 from "@/assets/employee-cm-4.jpg";
 import employee5 from "@/assets/employee-cm-5.jpg";
 import employee6 from "@/assets/employee-cm-6.jpg";
 import employee7 from "@/assets/employee-cm-7.jpg";
+import employee8 from "@/assets/employee-cm-8.jpg";
 
 export interface TeamMember {
   id: string;
@@ -160,5 +161,30 @@ export const cameroonEmployees: TeamMember[] = [
     ],
     certifications: ["Licence en Génie Logiciel", "Google Digital Marketing", "Meta Blueprint"],
     email: "audrey@metacares.app",
+  },
+  {
+    id: "paul-cedric-steve",
+    name: "PAUL CEDRIC Steve",
+    role: "Responsable Marketing Digital & Designer",
+    location: "Yaoundé",
+    image: employee8,
+    bio: "Designer et stratège digital, Paul Cédric Steve allie créativité visuelle et expertise marketing pour façonner l'identité de Meta Cares. Sa vision : faire du design un levier de confiance et d'impact pour les patients, les professionnels de santé et les partenaires du groupe.",
+    skills: [
+      "Design graphique",
+      "Direction artistique",
+      "Marketing digital",
+      "Branding & identité visuelle",
+      "UI/UX Design",
+      "Gestion de projet",
+    ],
+    experience: "Formation en Marketing Digital complétée par une solide pratique en design, lui permettant de piloter à la fois la stratégie de marque et la production des supports visuels de Meta Cares au Cameroun.",
+    missions: [
+      "Définition et garantie de la cohérence de l'identité visuelle de Meta Cares",
+      "Conception des supports marketing : campagnes, réseaux sociaux, print et digital",
+      "Pilotage des campagnes de marketing digital et de la stratégie de contenu visuel",
+      "Coordination des équipes créatives et structuration des process de production",
+    ],
+    certifications: ["Formation en Marketing Digital", "Adobe Creative Suite", "Meta Blueprint"],
+    email: "paul.cedric@metacares.app",
   },
 ];
