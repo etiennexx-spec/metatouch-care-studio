@@ -83,33 +83,7 @@ const TeamSection = () => {
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-6 text-center">
             🌍 Branche Cameroun et Siège Belgique
           </h3>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
-            {/* Manager Cameroun */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-card rounded-2xl overflow-hidden shadow-card border border-border/50"
-            >
-              <div className="relative h-72 md:h-80">
-                <img
-                  src={managerCameroun}
-                  alt="Manager du Cameroun"
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
-                  width={1000}
-                  height={2024}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                  <span className="inline-block px-3 py-1 rounded-full bg-primary/90 text-primary-foreground text-xs font-semibold mb-2">
-                    🇨🇲 Cameroun
-                  </span>
-                  <h4 className="text-2xl font-bold">Manager du Cameroun</h4>
-                  <p className="text-sm opacity-90 mt-1">Responsable des opérations Meta Cares Cameroun</p>
-                </div>
-              </div>
-            </motion.div>
+          <div className="max-w-xl mx-auto">
 
             {/* Siège Belgique - Défilement vertical automatique */}
             <motion.div
