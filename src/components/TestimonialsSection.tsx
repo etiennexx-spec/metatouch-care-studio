@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { MessageCircle, Facebook, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSiteSection } from "@/hooks/useSiteSection";
+import { useDynamicTestimonials } from "@/hooks/useDynamicContent";
 
 import {
   Carousel,
@@ -10,7 +11,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 
-const testimonials = [
+const staticTestimonials = [
   {
     name: "Marie Dupont",
     role: "Patiente - Belgique",
