@@ -79,7 +79,11 @@ const PartnersSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handlePartnerClick = (partner: typeof partnerTypes[0]) => {
+  const handlePartnerClick = (partner: any) => {
+    if (partner.linkUrl) {
+      window.open(partner.linkUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
     setSelectedPartner(partner);
     setIsModalOpen(true);
   };
