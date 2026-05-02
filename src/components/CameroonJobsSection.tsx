@@ -17,15 +17,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-import actFormation from "@/assets/activity-formation.jpg";
-import actCampagne from "@/assets/activity-campagne.jpg";
-import actReunion from "@/assets/activity-reunion.jpg";
-import actVisite from "@/assets/activity-visite.jpg";
-import actLogistique from "@/assets/activity-logistique.jpg";
-import actSensibilisation from "@/assets/activity-sensibilisation.jpg";
-import actGala from "@/assets/activity-gala.jpg";
-import actMarketing from "@/assets/activity-marketing.jpg";
-import actPartenariat from "@/assets/activity-partenariat.jpg";
+import activityPlaceholder from "@/assets/activity-reunion.jpg";
 
 const cameroonJobs = [
   {
@@ -87,92 +79,8 @@ interface Activity {
   date?: string;
 }
 
-const activities: Activity[] = [
-  // Hebdomadaire
-  {
-    id: 1,
-    title: "Réunion d'équipe soins à domicile",
-    description: "Briefing hebdomadaire de l'équipe terrain : planification des visites, répartition des patients et suivi des cas prioritaires à Douala et Yaoundé.",
-    image: actReunion,
-    type: "réunion",
-    period: "hebdomadaire",
-    date: "Tous les lundis",
-  },
-  {
-    id: 2,
-    title: "Visites à domicile – Suivi patients",
-    description: "Programme de visites régulières chez les patients chroniques et les personnes âgées. Contrôle des constantes, renouvellement des pansements et accompagnement personnalisé.",
-    image: actVisite,
-    type: "soins",
-    period: "hebdomadaire",
-    date: "Du lundi au vendredi",
-  },
-  {
-    id: 3,
-    title: "Stratégie marketing digital",
-    description: "Session de travail sur les réseaux sociaux, création de contenu santé et analyse des performances des campagnes digitales de Meta Cares Cameroun.",
-    image: actMarketing,
-    type: "marketing",
-    period: "hebdomadaire",
-    date: "Tous les mercredis",
-  },
-  // Mensuel
-  {
-    id: 4,
-    title: "Formation continue des soignants",
-    description: "Atelier de perfectionnement pour les infirmiers et aides-soignants : nouvelles techniques de soins, protocoles d'hygiène et gestion des urgences à domicile.",
-    image: actFormation,
-    type: "formation",
-    period: "mensuel",
-    date: "1er samedi du mois",
-  },
-  {
-    id: 5,
-    title: "Campagne de sensibilisation santé",
-    description: "Descente dans les quartiers de Douala pour sensibiliser les populations sur l'hypertension, le diabète et les maladies chroniques. Dépistages gratuits et conseils de prévention.",
-    image: actCampagne,
-    type: "campagne",
-    period: "mensuel",
-    date: "2ème semaine du mois",
-  },
-  {
-    id: 6,
-    title: "Approvisionnement matériel médical",
-    description: "Réception et inventaire du matériel médical : équipements de soins, consommables et dispositifs médicaux pour les interventions terrain et partenaires hospitaliers.",
-    image: actLogistique,
-    type: "logistique",
-    period: "mensuel",
-    date: "Fin de mois",
-  },
-  // Annuel
-  {
-    id: 7,
-    title: "Conférence annuelle Meta Cares",
-    description: "Grand événement rassemblant les équipes Belgique et Cameroun : bilan de l'année, objectifs stratégiques, remise de distinctions et soirée de gala.",
-    image: actGala,
-    type: "événement",
-    period: "annuel",
-    date: "Décembre",
-  },
-  {
-    id: 8,
-    title: "Séminaire de sensibilisation nationale",
-    description: "Journée nationale de sensibilisation aux soins à domicile au Cameroun. Conférences avec des médecins, témoignages de patients et tables rondes sur l'avenir de la santé.",
-    image: actSensibilisation,
-    type: "séminaire",
-    period: "annuel",
-    date: "Avril",
-  },
-  {
-    id: 9,
-    title: "Signature de nouveaux partenariats",
-    description: "Cérémonie officielle de signature de conventions avec les hôpitaux et cliniques partenaires au Cameroun pour étendre la couverture des soins Meta Cares.",
-    image: actPartenariat,
-    type: "partenariat",
-    period: "annuel",
-    date: "Septembre",
-  },
-];
+// Activités gérées 100% depuis le dashboard (/admin/programs)
+const activities: Activity[] = [];
 
 const periodFilters: { key: ProgramPeriod; label: string; icon: typeof Calendar }[] = [
   { key: "hebdomadaire", label: "Hebdomadaire", icon: Calendar },
@@ -206,7 +114,7 @@ const CameroonJobsSection = () => {
       id: 1000 + idx,
       title: p.title,
       description: p.description || "",
-      image: p.image_url || actReunion,
+      image: p.image_url || activityPlaceholder,
       type: "programme",
       period: (p.period as ProgramPeriod) || "hebdomadaire",
       date: p.event_date || undefined,
