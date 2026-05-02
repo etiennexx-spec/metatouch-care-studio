@@ -17,15 +17,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-import actFormation from "@/assets/activity-formation.jpg";
-import actCampagne from "@/assets/activity-campagne.jpg";
-import actReunion from "@/assets/activity-reunion.jpg";
-import actVisite from "@/assets/activity-visite.jpg";
-import actLogistique from "@/assets/activity-logistique.jpg";
-import actSensibilisation from "@/assets/activity-sensibilisation.jpg";
-import actGala from "@/assets/activity-gala.jpg";
-import actMarketing from "@/assets/activity-marketing.jpg";
-import actPartenariat from "@/assets/activity-partenariat.jpg";
+import activityPlaceholder from "@/assets/activity-reunion.jpg";
 
 const cameroonJobs = [
   {
