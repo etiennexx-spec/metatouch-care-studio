@@ -114,7 +114,7 @@ const CameroonJobsSection = () => {
       id: 1000 + idx,
       title: p.title,
       description: p.description || "",
-      image: p.image_url || actReunion,
+      image: p.image_url || activityPlaceholder,
       type: "programme",
       period: (p.period as ProgramPeriod) || "hebdomadaire",
       date: p.event_date || undefined,
